@@ -1,29 +1,29 @@
-const { Schema, model } = require("mongoose");
+const { Schema } = require("mongoose");
 
 const educationInfoSchema = new Schema(
-    {
-        programName: {
-            type: String,
-            required: true,
-        },
-        institution: {
-            type: String,
-        },
-        startDate: {
-            type: Date,
-        }, //format on query? Month/YYYY
-        endDate: {
-            type: Date,
-        }, //format on query? Month/YYYY
+  {
+    programName: {
+      type: String,
+      required: true,
     },
-    {
-        toJSON: {
-            virtuals: true,
-        },
-        id: false,
-    }
+    institution: {
+      type: String,
+    },
+    startDate: {
+      type: String,
+    }, 
+    endDate: {
+      type: String,
+    },
+  },
+  {
+    toJSON: {
+      virtuals: true,
+    },
+    id: false,
+  }
 );
 
-const EducationInfo = model("EducationInfo", educationInfoSchema);
+// const EducationInfo = model("EducationInfo", educationInfoSchema);
 
-module.exports = EducationInfo;
+module.exports = educationInfoSchema;

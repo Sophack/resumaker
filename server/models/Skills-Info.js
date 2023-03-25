@@ -1,4 +1,4 @@
-const { Schema, model } = require("mongoose");
+const { Schema } = require("mongoose");
 
 const skillsInfoSchema = new Schema(
     {
@@ -15,14 +15,8 @@ const skillsInfoSchema = new Schema(
             type: String,
         },
     },
-    {
-        toJSON: {
-            virtuals: true,
-        },
-        id: false,
-    }
 );
 
-const SkillsInfo = model("SkillsInfo", skillsInfoSchema);
+// const SkillsInfo = model("SkillsInfo", skillsInfoSchema);
 
-module.exports = SkillsInfo;
+module.exports = skillsInfoSchema;

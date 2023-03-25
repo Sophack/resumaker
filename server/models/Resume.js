@@ -1,27 +1,25 @@
-// We probably could get rid of this, but here it is for now...
+const { Schema } = require('mongoose');
 
-const { Schema, model } = require("mongoose");
-
-const PersonalInfo = require('./Personal-Info');
-const EducationInfo = require('./Education-Info');
-const ExperienceInfo = require('./Experience-Info');
-const SkillsInfo = require('./Skills-Info');
+const PersonalInfo = require("./Personal-Info");
+const EducationInfo = require("./Education-Info");
+const ExperienceInfo = require("./Experience-Info");
+const SkillsInfo = require("./Skills-Info");
 
 const resumeSchema = new Schema(
-    {
-        personal: [PersonalInfo],
-        education: [EducationInfo],
-        experience: [ExperienceInfo],
-        skills: [SkillsInfo]
+  {
+    personal: [PersonalInfo],
+    education: [EducationInfo],
+    experience: [ExperienceInfo],
+    skills: [SkillsInfo],
+  },
+  {
+    toJSON: {
+      getters: true,
     },
-    {
-        toJSON: {
-            virtuals: true,
-        },
-        id: false,
-    }
+    id: false,
+  }
 );
 
-const Resume = model("Resume", resumeSchema);
+// const Resume = mongoose.model("Resume", resumeSchema);
 
-module.exports = Resume;
+module.exports = resumeSchema;

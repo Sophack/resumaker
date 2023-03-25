@@ -1,4 +1,4 @@
-const { Schema, model } = require("mongoose");
+const { Schema } = require("mongoose");
 
 const experienceInfoSchema = new Schema(
     {
@@ -9,11 +9,11 @@ const experienceInfoSchema = new Schema(
             type: String,
         },
         startDate: {
-            type: Date,
-        }, //format on query? Month/YYYY
+            type: String,
+        },
         endDate: {
-            type: Date,
-        }, //format on query? Month/YYYY
+            type: String,
+        },
         employmentDuration: {
             type: String, //Should it be number of years? But what happens with months?
         },
@@ -21,14 +21,8 @@ const experienceInfoSchema = new Schema(
             type: String,
         }
     },
-    {
-        toJSON: {
-            virtuals: true,
-        },
-        id: false,
-    }
 );
 
-const ExperienceInfo = model("ExperienceInfo", experienceInfoSchema);
+// const ExperienceInfo = model("ExperienceInfo", experienceInfoSchema);
 
-module.exports = ExperienceInfo;
+module.exports = experienceInfoSchema;

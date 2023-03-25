@@ -1,48 +1,57 @@
-// NOTE: COPIED MOST from Lesson 23-Stripe 
+// NOTE: COPIED MOST from Lesson 23-Stripe
+const mongoose = require("mongoose");
+const { Schema } = mongoose
+// const bcrypt = require("bcrypt");
+const resumeSchema = require("./Resume.js");
 
-const { Schema, model } = require('mongoose');
-const bcrypt = require('bcrypt');
-
-const userSchema = new Schema({
-  firstName: {
-    type: String,
-    required: true,
-    trim: true
+const userSchema = new Schema(
+  {
+    username: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+    email: {
+      type: String,
+      required: true,
+      unique: true,
+      match: [/.+@.+\..+/, "Must match an email address!"],
+    },
+    password: {
+      type: String,
+      required: true,
+      minlength: 8,
+    },
+    resume: [resumeSchema],
   },
-  lastName: {
-    type: String,
-    required: true,
-    trim: true
-  },
-  email: {
-    type: String,
-    required: true,
-    unique: true,
-    match: [/.+@.+\..+/, 'Must match an email address!']
-  },
-  password: {
-    type: String,
-    required: true,
-    minlength: 8
-  },
-  resume: [Resume]
-});
-
-// set up pre-save middleware to create password
-userSchema.pre('save', async function(next) {
-  if (this.isNew || this.isModified('password')) {
-    const saltRounds = 10;
-    this.password = await bcrypt.hash(this.password, saltRounds);
+  {
+    toJSON: {
+      virtuals: true,
+    },
+    id: false,
   }
+);
 
-  next();
+// virtual for saved resumes
+userSchema.virtual("savedResumes").get(function () {
+  return this.resume.length;
 });
 
-// compare the incoming password with the hashed password
-userSchema.methods.isCorrectPassword = async function(password) {
-  return await bcrypt.compare(password, this.password);
-};
+// // set up pre-save middleware to create password
+// userSchema.pre("save", async function (next) {
+//   if (this.isNew || this.isModified("password")) {
+//     const saltRounds = 10;
+//     this.password = await bcrypt.hash(this.password, saltRounds);
+//   }
 
-const User = model('User', userSchema);
+//   next();
+// });
+
+// // compare the incoming password with the hashed password
+// userSchema.methods.isCorrectPassword = async function (password) {
+//   return await bcrypt.compare(password, this.password);
+// };
+
+const User = mongoose.model("User", userSchema);
 
 module.exports = User;

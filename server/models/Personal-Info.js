@@ -1,4 +1,4 @@
-const { Schema, model } = require("mongoose");
+const { Schema } = require("mongoose");
 
 const personalInfoSchema = new Schema(
     {
@@ -24,14 +24,8 @@ const personalInfoSchema = new Schema(
             required: true,
         }
     },
-    {
-        toJSON: {
-            virtuals: true,
-        },
-        id: false,
-    }
 );
 
-const PersonalInfo = model("PersonalInfo", personalInfoSchema);
+// const PersonalInfo = model("PersonalInfo", personalInfoSchema);
 
-module.exports = PersonalInfo;
+module.exports = personalInfoSchema;
