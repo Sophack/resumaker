@@ -1,6 +1,6 @@
 const { Schema } = require("mongoose");
 
-const educationInfoSchema = new Schema(
+const education = new Schema(
   {
     programName: {
       type: String,
@@ -11,7 +11,7 @@ const educationInfoSchema = new Schema(
     },
     startDate: {
       type: String,
-    }, 
+    },
     endDate: {
       type: String,
     },
@@ -24,6 +24,4 @@ const educationInfoSchema = new Schema(
   }
 );
 
-// const EducationInfo = model("EducationInfo", educationInfoSchema);
-
-module.exports = educationInfoSchema;
+module.exports = education;

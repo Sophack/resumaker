@@ -1,5 +1,5 @@
 // const { AuthenticationError } = require("apollo-server-express");
-const { User } = require("../models");
+const { User, Resume } = require("../models");
 // const { signToken } = require("../utils/auth");
 
 const resolvers = {
@@ -7,37 +7,42 @@ const resolvers = {
     me: async (parent, { meId }) => {
       return await User.findOne({ meId });
     },
-    // throw new AuthenticationError("Your need to be logged in");
-    // //   return await User.findById(args.id);
   },
 
-  Mutation: {
-    addUser: async (parent, { username, email, password }) => {
-      try {
-        const user = await User.create({ username, email, password });
-        // const token = signToken(user);
-        return user; //add "token" back here
-      } catch (error) {
-        console.log(error);
-      }
+    Mutation: {
+      addUser: async (parent, { username, email, password }) => {
+        try {
+          const user = await User.create({ username, email, password });
+          // const token = signToken(user);
+          return user; //add "token" back here
+        } catch (error) {
+          console.log(error);
+        }
+      },
+
+      createResume: async (parent, { id, PersonalData }) => {
+        //took out context
+        //   if (user) {
+        try {
+          const createResume = await User.create({ id, PersonalData})
+          return createResume;
+        } catch (error) {
+          console.log(error);
+        }
+        //   throw new AuthenticationError("Please Login");
+      },
+      //   },
     },
+  };
 
-    saveResume: async (parent, { personalInfoInput }) => {
-      //took out context
-      //   if (user) {
-      const updatedUser = await User.findOneAndUpdate(
-        { _id: user._id },
-        { $addToSet: { saveResume: personalInfoInput } },
-        { new: true }
-      );
-      return updatedUser;
-    },
-    //   throw new AuthenticationError("Please Login");
-  },
-  //   },
-};
+module.exports = resolvers;
 
+// getResume: () => Resume,
 
+// getOneResume: async (parent, { meId, resume }) => {
+//   return await User.findOne({ meId, resume });
+  // throw new AuthenticationError("Your need to be logged in");
+  // //   return await User.findById(args.id);
 
 // const resolvers = {
 //     Query: {
@@ -108,5 +113,3 @@ const resolvers = {
 //         },
 //     },
 // };
-
-module.exports = resolvers;

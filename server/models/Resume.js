@@ -1,16 +1,16 @@
-const { Schema } = require('mongoose');
+const { Schema } = require("mongoose");
 
-const PersonalInfo = require("./Personal-Info");
-const EducationInfo = require("./Education-Info");
-const ExperienceInfo = require("./Experience-Info");
-const SkillsInfo = require("./Skills-Info");
+const personal = require("./Personal");
+const education = require("./Education");
+const experience = require("./Experience");
+const skills = require("./Skills");
 
-const resumeSchema = new Schema(
+const resume = new Schema(
   {
-    personal: [PersonalInfo],
-    education: [EducationInfo],
-    experience: [ExperienceInfo],
-    skills: [SkillsInfo],
+    personal: personal,
+    education: [education],
+    experience: [experience],
+    skills: [skills],
   },
   {
     toJSON: {
@@ -20,6 +20,4 @@ const resumeSchema = new Schema(
   }
 );
 
-// const Resume = mongoose.model("Resume", resumeSchema);
-
-module.exports = resumeSchema;
+module.exports = resume;

@@ -3,17 +3,14 @@ const { gql } = require("apollo-server-express");
 //should update Resume target the subdocs in resume first and then update, or will we need an update to happen across the board?
 const typeDefs = gql`
   type Query {
-    me(id:ID!): User
+    me(id: ID!): User
     getResume: Resume
   }
 
   type Mutation {
-
     addUser(username: String!, email: String!, password: String!): User
 
-    saveResume(
-      input: [PersonalInfoInput]
-    ): User
+    createResume(id:ID!, input: PersonalData): User
   }
 
   type User {
@@ -21,15 +18,14 @@ const typeDefs = gql`
     username: String
     email: String
     savedResumes: Int
-    resume: [Resume]
+    resume: Resume
   }
 
   type Resume {
-    personal: [PersonalInfo]
+    personal: PersonalInfo
   }
 
   type PersonalInfo {
-    id: ID!
     fullName: String
     email: String
     phone: String
@@ -38,7 +34,7 @@ const typeDefs = gql`
     objective: String
   }
 
-  input PersonalInfoInput {
+  input PersonalData {
     fullName: String
     email: String
     phone: String
@@ -56,7 +52,7 @@ module.exports = typeDefs;
 // }
 // type Mutation {
 //   login(email: String!, password: String!): Auth
-  
+
 //   addUser(username: String!, email: String!, password: String!): Auth
 
 //   saveResume(
