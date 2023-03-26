@@ -1,14 +1,99 @@
-body {
-  font-family: 'Rubik', sans-serif;
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap');
+
+:root {
+	--grey: #282828;
+  --lightgrey: #9f9f9f;
+	--lightblue: #9fc9fc;
+	--skyblue: #6fa6fb;
+	--purple: #8d91d6;
+	--pink: #e1a5d5;
+	--snow: #f0eefd;
+  --white: #fff;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: 'Rubik Mono One', sans-serif;
+html {
+  scroll-behavior: smooth;
+  height: 100%;
+  background-color: var(--grey);
+  background-attachment: fixed;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif !important;
+}
+
+.navbar {
+  height: 60px !important;
+  background-image: linear-gradient(to right, var(--lightblue) 0%, var(--skyblue) 25%, var(--purple) 50%, var(--pink) 75%, var(--snow) 100%) !important;
+  padding: 0 !important;
+  align-items: baseline !important;
+  display: inline !important;
+  z-index: 0 !important;
+}
+
+.title {
+  font-family: 'Montserrat', sans-serif !important;
+  font-size: 24px !important;
+  font-weight: 700 !important;
+  letter-spacing: 2px !important;
+  cursor: default;
+  text-decoration: none;
+  color: var(--white);
+}
+
+.fa-file {
+  margin-right: 12px;
+  font-size: 26px !important;
+}
+
+.fa-bars {
+  font-size: 32px !important;
+  float: inline-end !important;
+  cursor: pointer;
+  padding: 10px 0px 10px 0px;
+}
+
+#nav-menu {
+  z-index: 1 !important;
+}
+
+#nav-menu div {
+  position: fixed !important;
+  top: 65px !important;
+  width: fit-content !important;
+  border-radius: 10px !important;
+  box-shadow: 0 10px 20px 0 var(--shadow) !important;
+}
+
+#nav-menu ul {
+  padding: 20px 0px 20px 0px !important;
+}
+
+#nav-menu li {
+  font-family: 'Montserrat', sans-serif !important;
+  font-size: 15px !important;
+  font-weight: 600 !important;
+  letter-spacing: 1px !important;;
+  padding: 10px 25px 10px 25px;
+  color: var(--grey);
+  justify-content: center !important;
+}
+
+.fa-right-to-bracket,
+.fa-right-from-bracket {
+  font-size: 20px !important;
+  margin-left: 6px;
+}
+
+#nav-sign-up :after {
+  transform:translate(15%, 0%);
+  margin-top: 40px;
+  margin-bottom: 0 !important;
+  content: '';
+  width: 75%;
+  height: 2px;
+  background: var(--lightgrey);
+  display: block;
 }
 
 .small {

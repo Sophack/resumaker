@@ -1,5 +1,5 @@
 const { AuthenticationError } = require("apollo-server-express");
-const { User } = require("../models");
+const { User, Resume, Education, Work } = require("../models");
 const { signToken } = require("../utils/auth");
 
 const resolvers = {
@@ -8,7 +8,8 @@ const resolvers = {
             if (context.user) {
                 const userData = await User.findOne({ _id: context.user._id })
                 .select("-__v -password")
-                .populate('books');              
+                .populate('books')
+                .populate('resumes');              
                 return userData;
             };
             throw new AuthenticationError("Please Login!");
@@ -43,6 +44,7 @@ const resolvers = {
 
 
         saveBook: async (parent, { bookData }, context) => {
+            console.log(context.user);
             if ( context.user ) {
                 const updatedUser = await User
                     .findOneAndUpdate(
@@ -56,6 +58,7 @@ const resolvers = {
         },
 
         removeBook: async (parent, { bookId }, context) => {
+            console.log(context.book);
             if (context.user) {
                 const updatedUser = await User.findOneAndUpdate(
                     { _id: context.user._id },
@@ -66,6 +69,27 @@ const resolvers = {
             };
             throw new AuthenticationError("Please Login!");
         },
+        createResume: async (parent, {resumeInput}, context) => {
+            // if (context.user) {
+                console.log(resumeInput.name);
+                const newResume = new Resume ({
+                    color: resumeInput.color,                    
+                    user: context.user._id,
+                });
+                return newResume;
+            // }
+            // throw new AuthenticationError("Login!");
+        },
+        createEducation: async (parent, {education}, context) => {
+            if(context.user) {
+                const createEducation = new Education({
+                    education,
+                    resume: resume.id,
+                });
+                const education = await createEducation.save();
+                return education;
+            }
+        }
     },
 };
 
