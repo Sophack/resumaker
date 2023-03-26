@@ -17,7 +17,11 @@
     "react-router-dom": "^5.1.2",
     "react-scripts": "^5.0.1",
     "graphql": "^16.6.0",
-    "graphql-tag": "^2.12.6"
+    "graphql-tag": "^2.12.6",
+    "@emotion/react": "^11.10.6",
+    "@emotion/styled": "^11.10.6",
+    "@mui/icons-material": "^5.11.11",
+    "@mui/material": "^5.11.14",
   },
   "scripts": {
     "start": "react-scripts start",
