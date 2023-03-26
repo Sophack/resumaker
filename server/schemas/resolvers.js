@@ -10,18 +10,29 @@ const resolvers = {
   },
 
   Mutation: {
-    saveResume: async (parent, { personalInfoInput }) => { //took out context
-    //   if (user) {
-        const updatedUser = await User.findOneAndUpdate(
-          { _id: user._id },
-          { $addToSet: { saveResume: personalInfoInput } },
-          { new: true }
-        );
-        return updatedUser;
+    addUser: async (parent, { username, email, password }) => {
+      try {
+        const user = await User.create({ username, email, password });
+        // const token = signToken(user);
+        return user; //add "token" back here
+      } catch (error) {
+        console.log(error);
       }
-    //   throw new AuthenticationError("Please Login");
     },
-//   },
+
+    saveResume: async (parent, { personalInfoInput }) => {
+      //took out context
+      //   if (user) {
+      const updatedUser = await User.findOneAndUpdate(
+        { _id: user._id },
+        { $addToSet: { saveResume: personalInfoInput } },
+        { new: true }
+      );
+      return updatedUser;
+    },
+    //   throw new AuthenticationError("Please Login");
+  },
+  //   },
 };
 
 // const resolvers = {
