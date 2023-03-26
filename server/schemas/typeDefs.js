@@ -3,7 +3,7 @@ const { gql } = require("apollo-server-express");
 //should update Resume target the subdocs in resume first and then update, or will we need an update to happen across the board?
 const typeDefs = gql`
   type Query {
-    me: User
+    me(id:ID!): User
     getResume: Resume
   }
 

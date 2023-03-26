@@ -4,9 +4,11 @@ const { User } = require("../models");
 
 const resolvers = {
   Query: {
-    getResume: async () => {
-      return await User.find({});
+    me: async (parent, { meId }) => {
+      return await User.findOne({ meId });
     },
+    // throw new AuthenticationError("Your need to be logged in");
+    // //   return await User.findById(args.id);
   },
 
   Mutation: {
@@ -35,6 +37,8 @@ const resolvers = {
   //   },
 };
 
+
+
 // const resolvers = {
 //     Query: {
 //         me: async (parent, args, context) => {
@@ -46,6 +50,10 @@ const resolvers = {
 //             };
 //             throw new AuthenticationError("Please Login!");
 //         },
+// getResume: async () => {
+//   return await User.find({});
+// },
+
 //     },
 
 //     Mutation: {
