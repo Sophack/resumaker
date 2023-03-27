@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Navbar, Nav, Container, Modal, Tab } from 'react-bootstrap';
-import { AppBar, Box, Toolbar, Menu, MenuItem, Typography } from '@mui/material';
+// import { Navbar, Nav, Container, Modal, Tab } from 'react-bootstrap';
+import { AppBar, Box, Toolbar, Menu, MenuItem, Typography, Modal } from '@mui/material';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFile, faBars, faRightToBracket, faRightFromBracket } from '@fortawesome/free-solid-svg-icons'
 
@@ -12,8 +12,11 @@ import Auth from '../utils/auth';
 
 const AppNavbar = () => {
 
-  // set modal display state
+  // set modal / sign up / log in display state
   const [showModal, setShowModal] = useState(false);
+  const [showSignup, setShowSignup] = useState(false);
+  const [showLogin, setShowLogin] = useState(false);
+
   // set anchored element state
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
@@ -65,8 +68,8 @@ const AppNavbar = () => {
                 ) : (
                     // if user is not logged in, show sign up & log in, which opens modal
                     <>
-                      <MenuItem id='nav-sign-up' onClick={() => setShowModal(true)}>Sign up</MenuItem>
-                      <MenuItem id='nav-log-in' onClick={() => setShowModal(true)}>
+                      <MenuItem id='nav-sign-up' onClick={() => setShowModal(true)+setShowSignup(!showSignup)}>Sign up</MenuItem>
+                      <MenuItem id='nav-log-in' onClick={() => setShowModal(true)+setShowLogin(!showLogin)}>
                         Log in
                         <FontAwesomeIcon icon={faRightToBracket} />
                       </MenuItem>
@@ -78,35 +81,14 @@ const AppNavbar = () => {
       </Box>
       {/* set modal data up */}
       <Modal
-        size='lg'
-        show={showModal}
-        onHide={() => setShowModal(false)}
-        aria-labelledby='signup-modal'>
-        {/* tab container to do either signup or login component */}
-        <Tab.Container defaultActiveKey='login'>
-          <Modal.Header closeButton>
-            <Modal.Title id='signup-modal'>
-              <Nav variant='pills'>
-                <Nav.Item>
-                  <Nav.Link eventKey='login'>Login</Nav.Link>
-                </Nav.Item>
-                <Nav.Item>
-                  <Nav.Link eventKey='signup'>Sign Up</Nav.Link>
-                </Nav.Item>
-              </Nav>
-            </Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            <Tab.Content>
-              <Tab.Pane eventKey='login'>
-                <LoginForm handleModalClose={() => setShowModal(false)} />
-              </Tab.Pane>
-              <Tab.Pane eventKey='signup'>
-                <SignUpForm handleModalClose={() => setShowModal(false)} />
-              </Tab.Pane>
-            </Tab.Content>
-          </Modal.Body>
-        </Tab.Container>
+        open={showModal}
+        onClose={() => setShowModal(false)+setShowSignup(false)+setShowLogin(false)}
+        aria-labelledby='signup-modal'
+      >
+        <Box className='modal-box'>
+            {showLogin && <LoginForm handleModalClose={() => setShowModal(false)} />}
+            {showSignup && <SignUpForm handleModalClose={() => setShowModal(false)} />}
+        </Box>
       </Modal>
     </>
   );
