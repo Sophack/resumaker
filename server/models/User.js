@@ -21,7 +21,12 @@ const userSchema = new Schema(
       required: true,
       minlength: 8,
     },
-    resume: [resume],
+    resumeId: [
+      {
+        type: Schema.Types.ObjectId,
+        default: () => new Types.ObjectId(),
+      },
+    ],
   },
   {
     toJSON: {

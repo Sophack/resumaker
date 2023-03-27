@@ -1,5 +1,5 @@
 // const { AuthenticationError } = require("apollo-server-express");
-const { User, Resume } = require("../models");
+const { User, Resume, PersonalInfo } = require("../models");
 // const { signToken } = require("../utils/auth");
 
 const resolvers = {
@@ -7,33 +7,39 @@ const resolvers = {
     me: async (parent, { meId }) => {
       return await User.findOne({ meId });
     },
+
+    resume: async (parent, { id }) => {
+      return await User.findOne({ id });
+    },
+
+    personalInfo: async (parent, { id }) => {
+      return await Resume.findOne({ id });
+    },
   },
 
-    Mutation: {
-      addUser: async (parent, { username, email, password }) => {
-        try {
-          const user = await User.create({ username, email, password });
-          // const token = signToken(user);
-          return user; //add "token" back here
-        } catch (error) {
-          console.log(error);
-        }
-      },
-
-      createResume: async (parent, { id, PersonalData }) => {
-        //took out context
-        //   if (user) {
-        try {
-          const createResume = await User.create({ id, PersonalData})
-          return createResume;
-        } catch (error) {
-          console.log(error);
-        }
-        //   throw new AuthenticationError("Please Login");
-      },
-      //   },
+  Mutation: {
+    addUser: async (parent, { username, email, password }) => {
+      try {
+        const user = await User.create({ username, email, password });
+        // const token = signToken(user);
+        return user; //add "token" back here
+      } catch (error) {
+        console.log(error);
+      }
     },
-  };
+
+    createPersonalInfo: async (parent, args) => {
+      console.log("this is id and personaldata -->", args);
+      return await Resume.create(args);
+      //   console.log("this is id and personaldata -->", id, personalData)
+      //   const personal = await Resume.findByIdAndUpdate({ id, personalData });
+      //   console.log("this is updatedUser -->", personal);
+      //   return personal;
+      // }
+      //   throw new AuthenticationError("Please Login");
+    },
+  },
+};
 
 module.exports = resolvers;
 
@@ -41,8 +47,8 @@ module.exports = resolvers;
 
 // getOneResume: async (parent, { meId, resume }) => {
 //   return await User.findOne({ meId, resume });
-  // throw new AuthenticationError("Your need to be logged in");
-  // //   return await User.findById(args.id);
+// throw new AuthenticationError("Your need to be logged in");
+// //   return await User.findById(args.id);
 
 // const resolvers = {
 //     Query: {

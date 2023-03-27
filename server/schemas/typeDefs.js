@@ -4,13 +4,14 @@ const { gql } = require("apollo-server-express");
 const typeDefs = gql`
   type Query {
     me(id: ID!): User
-    getResume: Resume
+    resume(id: ID!): User
+    personalInfo(user_id: ID!): Resume
   }
 
   type Mutation {
     addUser(username: String!, email: String!, password: String!): User
 
-    createResume(id:ID!, input: PersonalData): User
+    createPersonalInfo(user_id: ID!, input: PersonalData): Resume
   }
 
   type User {
@@ -18,14 +19,18 @@ const typeDefs = gql`
     username: String
     email: String
     savedResumes: Int
-    resume: Resume
+    resume_id: String
   }
 
   type Resume {
-    personal: PersonalInfo
+    resume_id: ID
+    user_id: String
+    personal: [PersonalInfo]
   }
 
   type PersonalInfo {
+    user_id: ID
+    resume_id: ID
     fullName: String
     email: String
     phone: String

@@ -1,23 +1,29 @@
-const { Schema } = require("mongoose");
+const { Schema, model } = require("mongoose");
 
 const personal = require("./Personal");
 const education = require("./Education");
 const experience = require("./Experience");
 const skills = require("./Skills");
 
-const resume = new Schema(
-  {
-    personal: personal,
-    education: [education],
-    experience: [experience],
-    skills: [skills],
-  },
-  {
-    toJSON: {
-      getters: true,
+const resumeSchema = new Schema({
+  resumeId: [
+    {
+      type: Schema.Types.ObjectId,
+      default: () => new Types.ObjectId(),
     },
-    id: false,
-  }
-);
+  ],
+  user_id: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "User",
+    },
+  ],
+  personal: [personal],
+  education: [education],
+  experience: [experience],
+  skills: [skills],
+});
 
-module.exports = resume;
+const Resume = model("Resume", resumeSchema);
+
+module.exports = Resume;

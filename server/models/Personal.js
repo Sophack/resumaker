@@ -1,6 +1,18 @@
 const { Schema } = require("mongoose");
 
 const personal = new Schema({
+  user_id: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "User",
+    },
+  ], 
+  resume_id: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Resume",
+    },
+  ], 
   fullName: {
     type: String,
     required: true,
