@@ -1,6 +1,8 @@
 // see SignupForm.js for comments
 import React, { useState } from 'react';
-import { Form, Button, Alert } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import { Button, Typography } from '@mui/material';
+import { Input, FormLabel, Alert } from '@mui/joy';
 
 //Importing useMutation and the exported login_user mutation
 import { useMutation } from "@apollo/react-hooks";
@@ -49,42 +51,63 @@ const LoginForm = () => {
 
   return (
     <>
-      <Form noValidate validated={validated} onSubmit={handleFormSubmit}>
-        <Alert dismissible onClose={() => setShowAlert(false)} show={showAlert} variant='danger'>
-          Something went wrong with your login credentials!
-        </Alert>
-        <Form.Group className='mb-3'>
-          <Form.Label htmlFor='email'>Email</Form.Label>
-          <Form.Control
+      <Typography className='modal-title' component='h1'>
+        Log in
+      </Typography>
+
+      <Typography className='modal-subtitle' component='p'>
+        Log in to access all the site's features
+      </Typography>
+
+      <form noValidate validated={validated} onSubmit={handleFormSubmit}>
+        <div className='mb-3'>
+          <FormLabel className='email-label' htmlFor='email'>Email</FormLabel>
+          <Input
+            className='email-input'
             type='text'
-            placeholder='Your email'
             name='email'
             onChange={handleInputChange}
             value={userFormData.email}
             required
           />
-          <Form.Control.Feedback type='invalid'>Email is required!</Form.Control.Feedback>
-        </Form.Group>
+          {/* <Form.Control.Feedback type='invalid'>Email is required!</Form.Control.Feedback> */}
+        </div>
 
-        <Form.Group className='mb-3'>
-          <Form.Label htmlFor='password'>Password</Form.Label>
-          <Form.Control
+        <div className='mb-3'>
+          <FormLabel className='password-label' htmlFor='password'>Password</FormLabel>
+          <Input
+            className='password-input'
             type='password'
-            placeholder='Your password'
             name='password'
             onChange={handleInputChange}
             value={userFormData.password}
             required
           />
-          <Form.Control.Feedback type='invalid'>Password is required!</Form.Control.Feedback>
-        </Form.Group>
-        <Button
-          disabled={!(userFormData.email && userFormData.password)}
-          type='submit'
-          variant='success'>
-          Submit
-        </Button>
-      </Form>
+          {/* <Form.Control.Feedback type='invalid'>Password is required!</Form.Control.Feedback> */}
+        </div>
+
+        {/* show alert if server response is bad */}
+        {/* <Alert severity="error" dismissible onClose={() => setShowAlert(false)} show={showAlert}>
+          Something went wrong with your login credentials!
+        </Alert> */}
+
+        <div className='modal-button-container'>
+          <Button
+            onClick={() => {}}
+            className='submit-button'
+            disabled={!(userFormData.email && userFormData.password)}
+            type='submit'
+            variant='success'>
+            Log in
+          </Button>
+        </div>
+
+        <div className='modal-divider' />
+
+        <Typography className='modal-footer' component='p'>
+          New user? <Link onClick={() => {}}>Create an account</Link>!
+        </Typography>
+      </form>
     </>
   );
 };
