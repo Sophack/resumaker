@@ -8,7 +8,7 @@ import Auth from '../utils/auth';
 
 const SignupForm = () => {
   // set initial form state
-  const [userFormData, setUserFormData] = useState({ username: '', email: '', password: '' });
+  const [userFormData, setUserFormData] = useState({ email: '', password: '' });
   // set state for form validation
   const [validated] = useState(false);
   // set state for alert
@@ -41,7 +41,6 @@ const SignupForm = () => {
     }
 
     setUserFormData({
-      username: '',
       email: '',
       password: '',
     });
@@ -93,7 +92,7 @@ const SignupForm = () => {
           <Button
             onClick={() => {}}
             className='submit-button'
-            disabled={!(userFormData.username && userFormData.email && userFormData.password)}
+            disabled={!(userFormData.email && userFormData.password)}
             type='submit'
             variant='success'>
             Submit
