@@ -1,14 +1,12 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { Button, Typography } from '@mui/material';
-import { Input, FormLabel, FormControl, Alert } from '@mui/joy';
+import { Form, Button, Alert } from 'react-bootstrap';
 import { useMutation } from "@apollo/client";
 import { ADD_USER } from "../utils/mutations";
 import Auth from '../utils/auth';
 
 const SignupForm = () => {
   // set initial form state
-  const [userFormData, setUserFormData] = useState({ email: '', password: '' });
+  const [userFormData, setUserFormData] = useState({ username: '', email: '', password: '' });
   // set state for form validation
   const [validated] = useState(false);
   // set state for alert
@@ -41,6 +39,7 @@ const SignupForm = () => {
     }
 
     setUserFormData({
+      username: '',
       email: '',
       password: '',
     });
@@ -48,63 +47,58 @@ const SignupForm = () => {
 
   return (
     <>
-      <Typography className='modal-title' component='h1'>
-        Sign up
-      </Typography>
-      <Typography className='modal-subtitle' component='p'>
-        Sign up to update your resume at any time
-      </Typography>
       {/* This is needed for the validation functionality above */}
-      <form noValidate validated={validated} onSubmit={handleFormSubmit}>
+      <Form noValidate validated={validated} onSubmit={handleFormSubmit}>
+        {/* show alert if server response is bad */}
+        <Alert dismissible onClose={() => setShowAlert(false)} show={showAlert} variant='danger'>
+          Something went wrong with your signup!
+        </Alert>
 
-        <div className='mb-3'>
-          <FormLabel className='email-label' htmlFor='email'>Email</FormLabel>
-          <Input
-            className='email-input'
+        <Form.Group className='mb-3'>
+          <Form.Label htmlFor='username'>Username</Form.Label>
+          <Form.Control
+            type='text'
+            placeholder='Your username'
+            name='username'
+            onChange={handleInputChange}
+            value={userFormData.username}
+            required
+          />
+          <Form.Control.Feedback type='invalid'>Username is required!</Form.Control.Feedback>
+        </Form.Group>
+
+        <Form.Group className='mb-3'>
+          <Form.Label htmlFor='email'>Email</Form.Label>
+          <Form.Control
             type='email'
+            placeholder='Your email address'
             name='email'
             onChange={handleInputChange}
             value={userFormData.email}
             required
           />
-          {/* <Form.Control.Feedback type='invalid'>Email is required!</Form.Control.Feedback> */}
-        </div>
+          <Form.Control.Feedback type='invalid'>Email is required!</Form.Control.Feedback>
+        </Form.Group>
 
-        <div className='mb-3'>
-          <FormLabel className='password-label' htmlFor='password'>Password</FormLabel>
-          <Input
-            className='password-input'
+        <Form.Group className='mb-3'>
+          <Form.Label htmlFor='password'>Password</Form.Label>
+          <Form.Control
             type='password'
+            placeholder='Your password'
             name='password'
             onChange={handleInputChange}
             value={userFormData.password}
             required
           />
-          {/* <Form.Control.Feedback type='invalid'>Password is required!</Form.Control.Feedback> */}
-        </div>
-
-        {/* show alert if server response is bad */}
-        {/* <Alert severity="error" dismissible onClose={() => setShowAlert(false)} show={showAlert}>
-          Something went wrong with your signup!
-        </Alert> */}
-
-        <div className='modal-button-container'>
-          <Button
-            onClick={() => {}}
-            className='submit-button'
-            disabled={!(userFormData.email && userFormData.password)}
-            type='submit'
-            variant='success'>
-            Submit
-          </Button>
-        </div>
-
-        <div className='modal-divider' />
-
-        <Typography className='modal-footer' component='p'>
-          Already an existing user? <Link onClick={() => {}}>Log in</Link>!
-        </Typography>
-      </form>
+          <Form.Control.Feedback type='invalid'>Password is required!</Form.Control.Feedback>
+        </Form.Group>
+        <Button
+          disabled={!(userFormData.username && userFormData.email && userFormData.password)}
+          type='submit'
+          variant='success'>
+          Submit
+        </Button>
+      </Form>
     </>
   );
 };

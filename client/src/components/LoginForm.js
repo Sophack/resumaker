@@ -1,5 +1,5 @@
 // see SignupForm.js for comments
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Button, Typography } from '@mui/material';
 import { Input, FormLabel, Alert } from '@mui/joy';
@@ -10,15 +10,27 @@ import { LOGIN_USER } from "../utils/mutations";
 //Auth middleware
 import Auth from '../utils/auth';
 
+
 const LoginForm = () => {
   const [userFormData, setUserFormData] = useState({ email: '', password: '' });
   const [validated] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
 
+  //error not working
   const [loginUser, { error }] = useMutation(LOGIN_USER);
 
-  const handleInputChange = (event) => {
-    const { name, value } = event.target;
+  //update the browser with useEffect
+  useEffect(() => {
+    if (error) {
+      setShowAlert(true);
+    } else {
+      setShowAlert(false);
+    }
+  }, [error]);
+
+  //defined to handle input 
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
     setUserFormData({ ...userFormData, [name]: value });
   };
 
@@ -42,8 +54,9 @@ const LoginForm = () => {
       console.error(err);
     }
 
+    //clear form values 
+
     setUserFormData({
-      username: '',
       email: '',
       password: '',
     });
@@ -62,9 +75,17 @@ const LoginForm = () => {
       <form noValidate validated={validated} onSubmit={handleFormSubmit}>
         <div className='mb-3'>
           <FormLabel className='email-label' htmlFor='email'>Email</FormLabel>
+          <Alert
+          dismissible
+          onClose={() => setShowAlert(false)}
+          show={showAlert}
+          variant="danger"
+        >
+          Something went wrong with your signup!
+        </Alert>
           <Input
             className='email-input'
-            type='text'
+            type='email'
             name='email'
             onChange={handleInputChange}
             value={userFormData.email}
