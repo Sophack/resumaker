@@ -1,5 +1,5 @@
 // const { AuthenticationError } = require("apollo-server-express");
-const { User, Resume, PersonalInfo } = require("../models");
+const { User, Resume } = require("../models");
 // const { signToken } = require("../utils/auth");
 
 const resolvers = {
@@ -28,16 +28,16 @@ const resolvers = {
       }
     },
 
-    createPersonalInfo: async (parent, PersonalData ) => {
-      console.log("this is id and personaldata -->", PersonalData);
-      const newResume = Resume.create({ PersonalData });
-      return newResume;
-      //   console.log("this is id and personaldata -->", id, personalData)
-      //   const personal = await Resume.findByIdAndUpdate({ id, personalData });
-      //   console.log("this is updatedUser -->", personal);
-      //   return personal;
-      // }
-      //   throw new AuthenticationError("Please Login");
+    createResume: async (parent, { userId, resumeInput }, context) => {
+      // if (context.user) {
+console.log(userId, resumeInput);
+      const resume = await Resume.create({ ...resumeInput });
+      const updatedUser = await User.findByIdAndUpdate(
+        { _id: userId },
+        { $push: { resume: resume._id } },
+        { new: true }
+      );
+    return updatedUser;
     },
   },
 };

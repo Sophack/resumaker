@@ -1,4 +1,4 @@
-const { Schema, model } = require("mongoose");
+const { Schema } = require("mongoose");
 
 const personalSchema = new Schema({
   fullName: {
@@ -22,12 +22,8 @@ const personalSchema = new Schema({
     type: String,
     required: true,
   },
-  resume_id: {
-      type: Schema.Types.ObjectId,
-      ref: "Resume",
-    },
 });
 
-const Personal = model("Personal", personalSchema);
+// const Personal = model("Personal", personalSchema);
 
-module.exports = Personal;
+module.exports = personalSchema;

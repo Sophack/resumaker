@@ -16,7 +16,7 @@ const userSchema = new Schema(
       required: true,
       minlength: 8,
     },
-    resumeId: {
+    resume: {
       type: Schema.Types.ObjectId,
       ref: "Resume",
     },

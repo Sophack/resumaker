@@ -9,26 +9,28 @@ const typeDefs = gql`
 
   type Mutation {
     addUser(email: String!, password: String!): User
-    createPersonalInfo(input: PersonalData): Resume
+    createResume(userId: ID, resumeInput: ResumeInput!): User
   }
 
   type User {
     _id: ID!
     email: String
     savedResumes: Int
-    resume_id: String
+    resume: Resume
   }
 
   type Resume {
-    id: ID
-    personal: [PersonalInfo]
+    _id: ID
+    personal: [Personal]
+    skills: [Skills]
   }
 
   input ResumeInput {
-    trialNumber: String
+    personal: [personalInput]
+    skills: [skillsInput]
   }
 
-  type PersonalInfo {
+  type Personal {
     fullName: String
     email: String
     phone: String
@@ -37,13 +39,28 @@ const typeDefs = gql`
     objective: String
   }
 
-  input PersonalData {
+  input personalInput {
     fullName: String
     email: String
     phone: String
     location: String
     role: String
     objective: String
+  }
+
+  type Skills {
+    id: ID!
+    industryKnowledge: String
+    toolsAndTechnologies: String
+    languages: String
+    transferableSkills: String
+  }
+
+  input skillsInput {
+    industryKnowledge: String
+    toolsAndTechnologies: String
+    languages: String
+    transferableSkills: String
   }
 `;
 
