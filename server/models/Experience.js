@@ -1,6 +1,6 @@
-const { Schema } = require("mongoose");
+const { Schema, model } = require("mongoose");
 
-const experience = new Schema({
+const experienceSchema = new Schema({
   role: {
     type: String,
   },
@@ -19,6 +19,12 @@ const experience = new Schema({
   description: {
     type: String,
   },
+  resume_id: {
+    type: Schema.Types.ObjectId,
+    ref: "Resume",
+  },
 });
 
-module.exports = experience;
+const Experience = model("Experience", experienceSchema);
+
+module.exports = Experience;

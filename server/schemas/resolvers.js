@@ -9,18 +9,18 @@ const resolvers = {
     },
 
     resume: async (parent, { id }) => {
-      return await User.findOne({ id });
-    },
-
-    personalInfo: async (parent, { id }) => {
       return await Resume.findOne({ id });
     },
+
+    //   personalInfo: async (parent, { id }) => {
+    //     return await Resume.findOne({ id });
+    //   },
   },
 
   Mutation: {
-    addUser: async (parent, { username, email, password }) => {
+    addUser: async (parent, { email, password }) => {
       try {
-        const user = await User.create({ username, email, password });
+        const user = await User.create({ email, password });
         // const token = signToken(user);
         return user; //add "token" back here
       } catch (error) {
@@ -28,9 +28,10 @@ const resolvers = {
       }
     },
 
-    createPersonalInfo: async (parent, args) => {
-      console.log("this is id and personaldata -->", args);
-      return await Resume.create(args);
+    createPersonalInfo: async (parent, PersonalData ) => {
+      console.log("this is id and personaldata -->", PersonalData);
+      const newResume = Resume.create({ PersonalData });
+      return newResume;
       //   console.log("this is id and personaldata -->", id, personalData)
       //   const personal = await Resume.findByIdAndUpdate({ id, personalData });
       //   console.log("this is updatedUser -->", personal);

@@ -1,27 +1,25 @@
-const { Schema } = require("mongoose");
+const { Schema, model } = require("mongoose");
 
-const education = new Schema(
-  {
-    programName: {
-      type: String,
-      required: true,
-    },
-    institution: {
-      type: String,
-    },
-    startDate: {
-      type: String,
-    },
-    endDate: {
-      type: String,
-    },
+const educationSchema = new Schema({
+  programName: {
+    type: String,
+    required: true,
   },
-  {
-    toJSON: {
-      virtuals: true,
-    },
-    id: false,
-  }
-);
+  institution: {
+    type: String,
+  },
+  startDate: {
+    type: String,
+  },
+  endDate: {
+    type: String,
+  },
+  resume_id: {
+    type: Schema.Types.ObjectId,
+    ref: "Resume",
+  },
+});
 
-module.exports = education;
+const Education = model("Education", educationSchema);
+
+module.exports = Education;

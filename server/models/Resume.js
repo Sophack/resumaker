@@ -1,27 +1,39 @@
 const { Schema, model } = require("mongoose");
 
-const personal = require("./Personal");
-const education = require("./Education");
-const experience = require("./Experience");
-const skills = require("./Skills");
+// const personal = require("./Personal");
+// const education = require("./Education");
+// const experience = require("./Experience");
+// const skills = require("./Skills");
 
 const resumeSchema = new Schema({
-  resumeId: [
+  personal: [
     {
       type: Schema.Types.ObjectId,
-      default: () => new Types.ObjectId(),
+      ref: "Personal",
     },
   ],
-  user_id: [
+  education: [
     {
       type: Schema.Types.ObjectId,
-      ref: "User",
+      ref: "Education",
     },
   ],
-  personal: [personal],
-  education: [education],
-  experience: [experience],
-  skills: [skills],
+  experience: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Experience",
+    },
+  ],
+  skills: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Skills",
+    },
+  ],
+  user_id: {
+    type: Schema.Types.ObjectId,
+    ref: "User",
+  },
 });
 
 const Resume = model("Resume", resumeSchema);

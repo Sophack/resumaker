@@ -1,6 +1,6 @@
-const { Schema } = require("mongoose");
+const { Schema, model } = require("mongoose");
 
-const skills = new Schema({
+const skillsSchema = new Schema({
   industryKnowledge: {
     type: String,
   },
@@ -13,6 +13,12 @@ const skills = new Schema({
   transferableSkills: {
     type: String,
   },
+  resume_id: {
+    type: Schema.Types.ObjectId,
+    ref: "Resume",
+  },
 });
 
-module.exports = skills;
+const Skills = model("Skills", skillsSchema);
+
+module.exports = Skills;

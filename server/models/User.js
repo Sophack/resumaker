@@ -1,15 +1,10 @@
 // NOTE: COPIED MOST from Lesson 23-Stripe
 const { Schema, model } = require("mongoose");
 // const bcrypt = require("bcrypt");
-const resume = require("./Resume.js");
+// const resume = require("./Resume.js");
 
 const userSchema = new Schema(
   {
-    username: {
-      type: String,
-      required: true,
-      trim: true,
-    },
     email: {
       type: String,
       required: true,
@@ -21,18 +16,15 @@ const userSchema = new Schema(
       required: true,
       minlength: 8,
     },
-    resumeId: [
-      {
-        type: Schema.Types.ObjectId,
-        default: () => new Types.ObjectId(),
-      },
-    ],
+    resumeId: {
+      type: Schema.Types.ObjectId,
+      ref: "Resume",
+    },
   },
   {
     toJSON: {
       virtuals: true,
     },
-    id: false,
   }
 );
 

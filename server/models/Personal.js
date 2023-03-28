@@ -1,18 +1,6 @@
-const { Schema } = require("mongoose");
+const { Schema, model } = require("mongoose");
 
-const personal = new Schema({
-  user_id: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: "User",
-    },
-  ], 
-  resume_id: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: "Resume",
-    },
-  ], 
+const personalSchema = new Schema({
   fullName: {
     type: String,
     required: true,
@@ -34,6 +22,12 @@ const personal = new Schema({
     type: String,
     required: true,
   },
+  resume_id: {
+      type: Schema.Types.ObjectId,
+      ref: "Resume",
+    },
 });
 
-module.exports = personal;
+const Personal = model("Personal", personalSchema);
+
+module.exports = Personal;
