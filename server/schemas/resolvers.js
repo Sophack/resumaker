@@ -8,13 +8,13 @@ const resolvers = {
       return await User.findOne({ meId });
     },
 
-    resume: async (parent, { id }) => {
-      return await Resume.findOne({ id });
+    resume: async (parent, args, context) => {
+      const user = await User.findById({ _id: "64222211f5b62de24705de0c" });
+      const resumeID = user.resume[0];
+      const resume = await Resume.findById({ _id: resumeID });
+      console.log(resume);
+      return resume;
     },
-
-    //   personalInfo: async (parent, { id }) => {
-    //     return await Resume.findOne({ id });
-    //   },
   },
 
   Mutation: {
@@ -30,14 +30,14 @@ const resolvers = {
 
     createResume: async (parent, { userId, resumeInput }, context) => {
       // if (context.user) {
-console.log(userId, resumeInput);
+      console.log(userId, resumeInput);
       const resume = await Resume.create({ ...resumeInput });
       const updatedUser = await User.findByIdAndUpdate(
         { _id: userId },
         { $push: { resume: resume._id } },
         { new: true }
       );
-    return updatedUser;
+      return { resume };
     },
   },
 };
