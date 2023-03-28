@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Button, Typography } from '@mui/material';
-import { Input, FormLabel, FormControl, Alert } from '@mui/joy';
+import { Input, FormLabel, Alert } from '@mui/joy';
+
+// importing useMutation and the exported add_user mutation
 import { useMutation } from "@apollo/client";
 import { ADD_USER } from "../utils/mutations";
+
 import Auth from '../utils/auth';
 
 const SignupForm = () => {
@@ -102,7 +105,7 @@ const SignupForm = () => {
         <div className='modal-divider' />
 
         <Typography className='modal-footer' component='p'>
-          Already an existing user? <Link onClick={() => {}}>Log in</Link>!
+          Already an existing user? <Link href="/" onClick={() => {}}>Log in</Link>!
         </Typography>
       </form>
     </>

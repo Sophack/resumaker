@@ -4,9 +4,10 @@ import { Link } from 'react-router-dom';
 import { Button, Typography } from '@mui/material';
 import { Input, FormLabel, Alert } from '@mui/joy';
 
-//Importing useMutation and the exported login_user mutation
+// Importing useMutation and the exported login_user mutation
 import { useMutation } from "@apollo/react-hooks";
 import { LOGIN_USER } from "../utils/mutations";
+
 //Auth middleware
 import Auth from '../utils/auth';
 
@@ -43,7 +44,6 @@ const LoginForm = () => {
     }
 
     setUserFormData({
-      username: '',
       email: '',
       password: '',
     });
@@ -105,7 +105,7 @@ const LoginForm = () => {
         <div className='modal-divider' />
 
         <Typography className='modal-footer' component='p'>
-          New user? <Link onClick={() => {}}>Create an account</Link>!
+          New user? <Link href="/" onClick={() => {}}>Create an account</Link>!
         </Typography>
       </form>
     </>
