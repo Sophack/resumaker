@@ -80,23 +80,13 @@ const AppNavbar = () => {
         </AppBar>
       </Box>
       {/* set modal data up */}
-      <Modal
-        open={showModal}
-        onClose={() => setShowModal(false)+setShowSignup(false)+setShowLogin(false)}
-        aria-labelledby='signup-modal'
-      >
-        <Box className='modal-box'>
-            {showLogin && <LoginForm handleModalClose={() => setShowModal(false)} />}
-            {showSignup && <SignUpForm handleModalClose={() => setShowModal(false)} />}
-        </Box>
-      </Modal>
+      
     </>
   );
 };
 
 //create separate component for signup modal 
 //import modal and button logic inside this component 
-//use logic of the navbar inside this new component 
-
+//use logic of the navbar inside this new component
 
 export default AppNavbar;

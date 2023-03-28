@@ -12,6 +12,8 @@ import SavedBooks from "./pages/SavedBooks";
 import Navbar from "./components/Navbar";
 import LoginForm from "./components/LoginForm";
 import SignupForm from "./components/SignupForm";
+import { PDFViewer } from '@react-pdf/renderer';
+import MyDocument from './PDF';
 
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
@@ -60,6 +62,9 @@ function App() {
             <Route render={() => <h1 className="display-2">Wrong page!</h1>} />
           </Switch>
         </>
+        <PDFViewer>
+    <MyDocument />
+  </PDFViewer>
       </Router>
     </ApolloProvider>
   );
