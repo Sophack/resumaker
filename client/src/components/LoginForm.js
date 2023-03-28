@@ -1,6 +1,5 @@
 // see SignupForm.js for comments
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import { Button, Typography } from '@mui/material';
 import { Input, FormLabel, Alert } from '@mui/joy';
 
@@ -126,7 +125,7 @@ const LoginForm = () => {
         <div className='modal-divider' />
 
         <Typography className='modal-footer' component='p'>
-          New user? <Button onClick={() => {}}>Create an account</Button>!
+          New user? <Button onClick={(userFormData.username && userFormData.email && userFormData.password)}>Create an account</Button>
         </Typography>
       </form>
     </>
