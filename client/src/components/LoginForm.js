@@ -125,7 +125,10 @@ const LoginForm = () => {
         <div className='modal-divider' />
 
         <Typography className='modal-footer' component='p'>
-          New user? <Button onClick={(userFormData.username && userFormData.email && userFormData.password)}>Create an account</Button>
+          New user? <Button onClick={(userFormData.username && userFormData.email && userFormData.password)}
+          type='submit'
+          className='submit-button'
+          variant='success'>Create an account</Button>
         </Typography>
       </form>
     </>
