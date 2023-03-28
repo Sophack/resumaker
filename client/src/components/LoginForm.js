@@ -16,7 +16,7 @@ const LoginForm = () => {
   const [validated] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
 
-  //error not working
+
   const [loginUser, { error }] = useMutation(LOGIN_USER);
 
   //update the browser with useEffect
@@ -126,7 +126,7 @@ const LoginForm = () => {
         <div className='modal-divider' />
 
         <Typography className='modal-footer' component='p'>
-          New user? <Link onClick={() => {}}>Create an account</Link>!
+          New user? <Button onClick={() => {}}>Create an account</Button>!
         </Typography>
       </form>
     </>

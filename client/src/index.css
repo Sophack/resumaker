@@ -182,6 +182,7 @@ body {
   letter-spacing: 1px !important;
   margin-top: 20px !important;
   box-shadow: 0 8px 6px -6px var(--shadow) !important;
+  border: var(--pink);
 }
 
 .Mui-disabled {
