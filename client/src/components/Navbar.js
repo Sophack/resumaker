@@ -94,4 +94,9 @@ const AppNavbar = () => {
   );
 };
 
+//create separate component for signup modal 
+//import modal and button logic inside this component 
+//use logic of the navbar inside this new component 
+
+
 export default AppNavbar;

@@ -185,6 +185,8 @@ body {
   border: var(--pink);
 }
 
+.createButton
+
 .Mui-disabled {
   background-color: var(--lightgrey) !important;
 }

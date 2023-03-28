@@ -1,6 +1,6 @@
 // see SignupForm.js for comments
 import React, { useState, useEffect } from 'react';
-import { Button, Typography } from '@mui/material';
+import { Button, Typography , Modal} from '@mui/material';
 import { Input, FormLabel, Alert } from '@mui/joy';
 
 //Importing useMutation and the exported login_user mutation
@@ -8,12 +8,16 @@ import { useMutation } from "@apollo/react-hooks";
 import { LOGIN_USER } from "../utils/mutations";
 //Auth middleware
 import Auth from '../utils/auth';
-
+import { Box } from '@mui/material';
+import SignUpForm from  './SignupForm';
 
 const LoginForm = () => {
   const [userFormData, setUserFormData] = useState({ email: '', password: '' });
   const [validated] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const [showSignup, setShowSignup] = useState(false);
+  const [showLogin, setShowLogin] = useState(false);
 
 
   const [loginUser, { error }] = useMutation(LOGIN_USER);
@@ -56,6 +60,7 @@ const LoginForm = () => {
     //clear form values 
 
     setUserFormData({
+      username: '',
       email: '',
       password: '',
     });
@@ -81,6 +86,7 @@ const LoginForm = () => {
           variant="danger"
         >
           Something went wrong with your signup!
+          Are you sure you're a new user?
         </Alert>
           <Input
             className='email-input'
@@ -113,7 +119,7 @@ const LoginForm = () => {
 
         <div className='modal-button-container'>
           <Button
-            onClick={() => {}}
+            onClick={() => setShowModal(true)+setShowSignup(!showSignup)}
             className='submit-button'
             disabled={!(userFormData.email && userFormData.password)}
             type='submit'
@@ -125,11 +131,25 @@ const LoginForm = () => {
         <div className='modal-divider' />
 
         <Typography className='modal-footer' component='p'>
-          New user? <Button onClick={(userFormData.username && userFormData.email && userFormData.password)}
+          New user? <Button
+        
           type='submit'
           className='submit-button'
-          variant='success'>Create an account</Button>
+          variant='success'>
+          Create an account
+        </Button>
         </Typography>
+
+        <Modal
+        open={showModal}
+        onClose={() => setShowModal(false)+setShowSignup(false)}
+        aria-labelledby='signup-modal'
+      >
+        <Box className='modal-box'>
+            {showSignup && <SignUpForm handleModalClose={() => setShowModal(false)} />}
+            {showLogin && <LoginForm handleModalClose={() => setShowModal(false)} />}
+        </Box>
+      </Modal>
       </form>
     </>
   );
