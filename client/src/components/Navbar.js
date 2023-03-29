@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-// import { Navbar, Nav, Container, Modal, Tab } from 'react-bootstrap';
 import { AppBar, Box, Toolbar, Menu, MenuItem, Typography, Modal } from '@mui/material';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFile, faBars, faRightToBracket, faRightFromBracket } from '@fortawesome/free-solid-svg-icons'
@@ -86,17 +85,24 @@ const AppNavbar = () => {
         aria-labelledby='signup-modal'
       >
         <Box className='modal-box'>
-            {showLogin && <LoginForm handleModalClose={() => setShowModal(false)} />}
-            {showSignup && <SignUpForm handleModalClose={() => setShowModal(false)} />}
+            {showLogin && <LoginForm
+              // setShowLogin={setShowLogin}
+              // showLogin={showLogin}
+              // setShowSignup={setShowSignup}
+              // showSignup={showSignup}
+              handleModalClose={() => setShowModal(false)} 
+              />}
+            {showSignup && <SignUpForm 
+              // setShowLogin={setShowLogin}
+              // showLogin={showLogin}
+              // setShowSignup={setShowSignup}
+              // showSignup={showSignup}
+              handleModalClose={() => setShowModal(false)} 
+              />}
         </Box>
       </Modal>
     </>
   );
 };
-
-//create separate component for signup modal 
-//import modal and button logic inside this component 
-//use logic of the navbar inside this new component 
-
 
 export default AppNavbar;

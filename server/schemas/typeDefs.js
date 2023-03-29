@@ -4,17 +4,16 @@ const typeDefs = gql`
 
   type Query {
     me: User
-    getResume(_id: ID!): Resume
+    getResume: Resume
   }
 
   type Mutation {
     login(email: String!, password: String!): Auth
-    addUser(username: String!, email: String!, password: String!): Auth
+    addUser(email: String!, password: String!): Auth
     saveBook(bookData: bookInput! ): User
     removeBook(bookId: String!): User
-    createResume(resumeInput: ResumeInput): Resume
-    createEducation(educationInput: EducationInput) : Resume
-    createWork(workInput: WorkInput) : Resume
+    createResume(resumeInput: ResumeInput!): Resume
+
   }
 
   type User {
@@ -23,53 +22,56 @@ const typeDefs = gql`
     email: String
     bookCount: Int
     savedBooks: [Book]
+    resume: Resume
   }
 
   type Resume {
-    id: ID
-    color: String!
-    education: [Education]!
-    name: String!
-    work: [Work]!
-  }
-
-  type Education {
-    id:ID!
-    school: String!
-    program: String!
-    start: String!
-    end: String!
-  }
-
-  input EducationInput {
-    school: String!
-    program: String!
-    start: String!
-    end: String!
-  }
-
-  type Work {
-    id: ID!
-    company: String!
-    role: String!
-    start: String!
-    end: String!
-    duties: String!
-  }
-  
-  input WorkInput {
-    company: String!
-    role: String!
-    start: String!
-    end: String!
-    duties: String!
+    _id: ID
+    color: String
+    education: [Education]
+    name: String
+    work: [Work]
   }
 
   input ResumeInput{
     color: String
+    education: [educationInput]
     name: String
+    work: [workInput]
   }
 
+  input workInput {
+    company: String
+    role: String
+    start: String
+    end: String
+    duties: String
+  }
+
+  input educationInput {
+    school: String
+    program: String
+    start: String
+    end: String
+  }
+
+  type Education {
+    _id: ID
+    school: String
+    program: String
+    start: String
+    end: String
+  }
+
+  type Work {
+    _id: ID
+    company: String
+    role: String
+    start: String
+    end: String
+    duties: String
+  }
+  
   type Book {
     bookId: String!
     authors: [String]

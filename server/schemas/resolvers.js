@@ -1,25 +1,37 @@
 const { AuthenticationError } = require("apollo-server-express");
-const { User, Resume, Education, Work } = require("../models");
+const { User, Resume} = require("../models");
 const { signToken } = require("../utils/auth");
 
 const resolvers = {
     Query: {
         me: async (parent, args, context) => {
             if (context.user) {
-                const userData = await User.findOne({ _id: context.user._id })
-                .select("-__v -password")
-                .populate('books')
-                .populate('resumes');              
+                const userData = await User.findById({ _id: context.user._id })
+                    .select("-__v -password")
+                    .populate('resumes');
+                console.log(userData)              
                 return userData;
             };
             throw new AuthenticationError("Please Login!");
         },
+        getResume: async (parent, args, context) => {
+            if (context.user) {
+                const user = await User.findById({_id: context.user._id});
+                const resumeID = user.resume[0];
+                const resume = await Resume.findById({_id: resumeID});
+                return resume;
+            };
+            throw new AuthenticationError("Please Login!");
+        }
+
     }, 
 
     Mutation: {
         addUser: async ( parent, args ) => {
-            try {
-                const user = await User.create(args);
+            try {   
+                const createdUser = {username: args.email, email: args.email, password: args.password}
+                console.log(createdUser)
+                const user = await User.create(createdUser);
                 const token = signToken(user);
                 return { token, user };                
             } catch (error) {
@@ -44,7 +56,6 @@ const resolvers = {
 
 
         saveBook: async (parent, { bookData }, context) => {
-            console.log(context.user);
             if ( context.user ) {
                 const updatedUser = await User
                     .findOneAndUpdate(
@@ -69,27 +80,23 @@ const resolvers = {
             };
             throw new AuthenticationError("Please Login!");
         },
+        //Change when front end input fields complete
         createResume: async (parent, {resumeInput}, context) => {
             // if (context.user) {
-                console.log(resumeInput.name);
-                const newResume = new Resume ({
-                    color: resumeInput.color,                    
-                    user: context.user._id,
-                });
-                return newResume;
+
+
+                const resume = await Resume.create(
+                    {...resumeInput});
+                await User.findByIdAndUpdate(
+                    {_id: "6423cb096e5f8b10581fb587"},
+                    {$push: {resume: resume._id}},
+                    {new: true}
+                );
+
+                return resume;
             // }
             // throw new AuthenticationError("Login!");
         },
-        createEducation: async (parent, {education}, context) => {
-            if(context.user) {
-                const createEducation = new Education({
-                    education,
-                    resume: resume.id,
-                });
-                const education = await createEducation.save();
-                return education;
-            }
-        }
     },
 };
 

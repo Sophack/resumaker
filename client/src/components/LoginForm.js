@@ -1,39 +1,25 @@
 // see SignupForm.js for comments
-import React, { useState, useEffect } from 'react';
-import { Button, Typography , Modal} from '@mui/material';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { Button, Typography } from '@mui/material';
 import { Input, FormLabel, Alert } from '@mui/joy';
 
-//Importing useMutation and the exported login_user mutation
+// Importing useMutation and the exported login_user mutation
 import { useMutation } from "@apollo/react-hooks";
 import { LOGIN_USER } from "../utils/mutations";
+
 //Auth middleware
 import Auth from '../utils/auth';
-import { Box } from '@mui/material';
-import SignUpForm from  './SignupForm';
 
 const LoginForm = () => {
   const [userFormData, setUserFormData] = useState({ email: '', password: '' });
   const [validated] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
-  const [showModal, setShowModal] = useState(false);
-  const [showSignup, setShowSignup] = useState(false);
-  const [showLogin, setShowLogin] = useState(false);
-
 
   const [loginUser, { error }] = useMutation(LOGIN_USER);
 
-  //update the browser with useEffect
-  useEffect(() => {
-    if (error) {
-      setShowAlert(true);
-    } else {
-      setShowAlert(false);
-    }
-  }, [error]);
-
-  //defined to handle input 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
     setUserFormData({ ...userFormData, [name]: value });
   };
 
@@ -57,10 +43,7 @@ const LoginForm = () => {
       console.error(err);
     }
 
-    //clear form values 
-
     setUserFormData({
-      username: '',
       email: '',
       password: '',
     });
@@ -79,18 +62,9 @@ const LoginForm = () => {
       <form noValidate validated={validated} onSubmit={handleFormSubmit}>
         <div className='mb-3'>
           <FormLabel className='email-label' htmlFor='email'>Email</FormLabel>
-          <Alert
-          dismissible
-          onClose={() => setShowAlert(false)}
-          show={showAlert}
-          variant="danger"
-        >
-          Something went wrong with your signup!
-          Are you sure you're a new user?
-        </Alert>
           <Input
             className='email-input'
-            type='email'
+            type='text'
             name='email'
             onChange={handleInputChange}
             value={userFormData.email}
@@ -119,7 +93,7 @@ const LoginForm = () => {
 
         <div className='modal-button-container'>
           <Button
-            onClick={() => setShowModal(true)+setShowSignup(!showSignup)}
+            onClick={() => {}}
             className='submit-button'
             disabled={!(userFormData.email && userFormData.password)}
             type='submit'
@@ -131,25 +105,8 @@ const LoginForm = () => {
         <div className='modal-divider' />
 
         <Typography className='modal-footer' component='p'>
-          New user? <Button
-        
-          type='submit'
-          className='submit-button'
-          variant='success'>
-          Create an account
-        </Button>
+          New user? <Link href="/" onClick={() => {}}>Create an account</Link>!
         </Typography>
-
-        <Modal
-        open={showModal}
-        onClose={() => setShowModal(false)+setShowSignup(false)}
-        aria-labelledby='signup-modal'
-      >
-        <Box className='modal-box'>
-            {showSignup && <SignUpForm handleModalClose={() => setShowModal(false)} />}
-            {showLogin && <LoginForm handleModalClose={() => setShowModal(false)} />}
-        </Box>
-      </Modal>
       </form>
     </>
   );
