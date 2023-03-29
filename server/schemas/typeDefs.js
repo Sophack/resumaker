@@ -10,9 +10,8 @@ const typeDefs = gql`
   type Mutation {
     login(email: String!, password: String!): Auth
     addUser(email: String!, password: String!): Auth
-    saveBook(bookData: bookInput! ): User
-    removeBook(bookId: String!): User
     createResume(resumeInput: ResumeInput!): Resume
+    removeBook(bookId: String!): User
 
   }
 
@@ -27,17 +26,38 @@ const typeDefs = gql`
 
   type Resume {
     _id: ID
-    color: String
-    education: [Education]
     name: String
+    color: String
+    personal: [Personal]
+    education: [Education]
     work: [Work]
+    skills: [Skills]
   }
 
   input ResumeInput{
-    color: String
-    education: [educationInput]
     name: String
+    color: String
+    
+    personal: [personalInput]
+    education: [educationInput]
     work: [workInput]
+    skills: [skillsInput]
+  }
+
+  input personalInput {
+    fullName: String
+    email: String
+    phone: String
+    location: String
+    role: String
+    objective: String
+  }
+
+  input educationInput {
+    school: String
+    program: String
+    start: String
+    end: String
   }
 
   input workInput {
@@ -48,11 +68,20 @@ const typeDefs = gql`
     duties: String
   }
 
-  input educationInput {
-    school: String
-    program: String
-    start: String
-    end: String
+  input skillsInput {
+    industryKnowledge: [String]
+    toolsAndTechnologies: [String]
+    languages: [String]
+    transferableSkills: [String]
+  }
+
+  type Personal {
+    fullName: String
+    email: String
+    phone: String
+    location: String
+    role: String
+    objective: String
   }
 
   type Education {
@@ -71,25 +100,15 @@ const typeDefs = gql`
     end: String
     duties: String
   }
+
+  type Skills {
+    id: ID!
+    industryKnowledge: [String]
+    toolsAndTechnologies: [String]
+    languages: [String]
+    transferableSkills: [String]
+  }
   
-  type Book {
-    bookId: String!
-    authors: [String]
-    description: String
-    title: String!
-    image: String
-    link: String
-  }
-
-  input bookInput{
-    description: String
-    title: String!
-    bookId: String!
-    image: String
-    link: String
-    authors: [String]
-  }
-
   type Auth{
     token: ID!
     user: User
