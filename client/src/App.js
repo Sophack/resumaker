@@ -12,8 +12,9 @@ import SavedBooks from "./pages/SavedBooks";
 import Navbar from "./components/Navbar";
 import LoginForm from "./components/LoginForm";
 import SignupForm from "./components/SignupForm";
-import { PDFViewer } from '@react-pdf/renderer';
-import MyDocument from './PDF';
+// import { PDFViewer } from '@react-pdf/renderer';
+// import MyDocument from './PDF';
+import Footer from './components/Footer';
 
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
@@ -65,7 +66,9 @@ function App() {
         <PDFViewer>
     <MyDocument />
   </PDFViewer>
+  <Footer/>
       </Router>
+
     </ApolloProvider>
   );
 }
