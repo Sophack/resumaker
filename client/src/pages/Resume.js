@@ -22,6 +22,7 @@ const PopulateResume = () => {
             <>       
             {console.log(Object.keys(resumeData).length)}      
             <div style={{marginTop: "60px"}}>
+              <div className='populated'>
                 <h1>`{resumeData.__typename}`</h1>
                 <p>{resumeData.color}</p>
                 <p>{resumeData.education[0].__typename}</p>
@@ -40,7 +41,12 @@ const PopulateResume = () => {
                     <li>{resumeData.work[0].end}</li>
                 </ul>
                 {/* {console.log(JSON.stringify(resumeData.work[0]) + " is this working?")} */}
-            </div> 
+              </div>
+
+              <div className='createResume'>
+              
+              </div>
+            </div>
             </>
          )         
     } else {

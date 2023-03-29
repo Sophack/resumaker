@@ -82,20 +82,30 @@ const resolvers = {
         },
         //Change when front end input fields complete
         createResume: async (parent, {resumeInput}, context) => {
-            // if (context.user) {
-
-
+            if (context.user) {
+                //Get the resume id from user schema
+                const user = await User.findById({_id: context.user._id});                
+                const resumeID = user.resume[0];
+                if(resumeID){
+                    //Remove the sepcific resume from user schema
+                    await User.findByIdAndUpdate(
+                        {_id: context.user._id},
+                        {$unset: {resume: resumeID}}                    
+                    );  
+                    //Delete the found resume from the resumes
+                    await Resume.findByIdAndDelete({_id: resumeID});
+                }               
+                //Create the resume and add to user
                 const resume = await Resume.create(
                     {...resumeInput});
                 await User.findByIdAndUpdate(
-                    {_id: "6423cb096e5f8b10581fb587"},
+                    {_id: context.user._id},
                     {$push: {resume: resume._id}},
                     {new: true}
                 );
-
                 return resume;
-            // }
-            // throw new AuthenticationError("Login!");
+            }
+            throw new AuthenticationError("Login!");
         },
     },
 };
