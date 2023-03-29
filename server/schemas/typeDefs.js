@@ -11,16 +11,12 @@ const typeDefs = gql`
     login(email: String!, password: String!): Auth
     addUser(email: String!, password: String!): Auth
     createResume(resumeInput: ResumeInput!): Resume
-    removeBook(bookId: String!): User
-
   }
 
   type User {
     _id: ID!
     username: String
     email: String
-    bookCount: Int
-    savedBooks: [Book]
     resume: Resume
   }
 
@@ -36,8 +32,7 @@ const typeDefs = gql`
 
   input ResumeInput{
     name: String
-    color: String
-    
+    color: String    
     personal: [personalInput]
     education: [educationInput]
     work: [workInput]

@@ -53,34 +53,6 @@ const resolvers = {
             const token = signToken(user);
             return { token, user };
         },     
-
-
-        saveBook: async (parent, { bookData }, context) => {
-            if ( context.user ) {
-                const updatedUser = await User
-                    .findOneAndUpdate(
-                        { _id: context.user._id }, 
-                        { $addToSet: { savedBooks: bookData }},
-                        { new: true }
-                    );
-                return updatedUser;
-            };
-            throw new AuthenticationError("Please Login");
-        },
-
-        removeBook: async (parent, { bookId }, context) => {
-            console.log(context.book);
-            if (context.user) {
-                const updatedUser = await User.findOneAndUpdate(
-                    { _id: context.user._id },
-                    { $pull: { savedBooks: { bookId } }},
-                    { new: true,  runValidators: true }
-                );
-                return updatedUser;
-            };
-            throw new AuthenticationError("Please Login!");
-        },
-        //Change when front end input fields complete
         createResume: async (parent, {resumeInput}, context) => {
             if (context.user) {
                 //Get the resume id from user schema
