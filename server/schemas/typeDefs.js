@@ -50,17 +50,17 @@ const typeDefs = gql`
 
   type Skills {
     id: ID!
-    industryKnowledge: String
-    toolsAndTechnologies: String
-    languages: String
-    transferableSkills: String
+    industryKnowledge: [String]
+    toolsAndTechnologies: [String]
+    languages: [String]
+    transferableSkills: [String]
   }
 
   input skillsInput {
-    industryKnowledge: String
-    toolsAndTechnologies: String
-    languages: String
-    transferableSkills: String
+    industryKnowledge: [String]
+    toolsAndTechnologies: [String]
+    languages: [String]
+    transferableSkills: [String]
   }
 `;
 
