@@ -169,8 +169,7 @@ body {
   text-align: center;
 }
 
-.submit-button,
-#welcome-button {
+.submit-button {
   font-family: 'Montserrat', sans-serif !important;
   text-transform: none !important;
   color: var(--white) !important;
@@ -215,7 +214,7 @@ a {
 }
 
 .bg-image {
-  margin-top: 15vh;
+  margin-top: 14vh;
   background-image: url('../public/images/dddepth-036.jpg');
   box-shadow: 20px 0px 20px 0px var(--shadow);
   height: 80vh;
@@ -235,10 +234,13 @@ a {
 }
 
 #welcome-box {
+  display: flexbox;
+  max-width: 436px;
   background-color: var(--white);
   height: 80vh;
-  padding: 60px 35px 35px 60px;
+  padding: 40px 35px 35px 50px;
   opacity: 80%;
+  box-shadow: 0px 0px 10px 10px var(--shadow);
 }
 
 #welcome-box h2 {
@@ -248,17 +250,99 @@ a {
   font-weight: 800 !important;
   letter-spacing: 2px !important;
   position: relative !important;
-  left: 50%;
-  transform: translate(-50%,0);
   width: fit-content;
   background: linear-gradient(to right, var(--lightblue) 0%, var(--skyblue) 25%, var(--purple) 75%, var(--pink) 100%);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  margin-bottom: 10px !important;
+  margin-bottom: 30px !important;
+}
+
+#welcome-box p {
+  font-family: 'Montserrat', sans-serif !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  cursor: default;
+  color: var(--grey);
+  letter-spacing: 1px !important;
+  margin-bottom: 30px !important;
+}
+
+#welcome-button {
+  font-family: 'Montserrat', sans-serif !important;
+  text-transform: none !important;
+  color: var(--white) !important;
+  background-color: var(--pink) !important;
+  border-radius: 20px !important;
+  width: 100% !important;
+  letter-spacing: 1px !important;
+  margin-top: 20px !important;
+  box-shadow: 0 8px 6px -6px var(--shadow) !important;
+  justify-content: center !important;
+}
+
+.hide {
+  display: none !important;
 }
 
 .small {
   font-weight: 300;
   font-style: italic;
+}
+
+@media only screen and (max-width: 785px) {
+  #welcome-box {
+    max-width: 50% !important;
+  }
+
+  #welcome-box h2 {
+    margin-top: 20px !important;
+    font-size: 25px !important;
+  }
+
+  #welcome-box p {
+  font-size: 12px !important;
+  }
+}
+
+@media only screen and (max-width: 670px) {
+  #welcome-box {
+    max-width: 60% !important;
+  }
+}
+
+@media only screen and (max-width: 560px) {
+  #welcome-box {
+    max-width: 70% !important;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  #welcome-box {
+    max-width: 80% !important;
+  }
+}
+
+@media only screen and (max-width: 418px) {
+  #welcome-box {
+    height: fit-content !important;
+    max-width: 100% !important;
+  }
+}
+
+@media only screen and (max-width: 350px) {
+  .title {
+    font-size: 20px !important;
+  }
+}
+
+@media only screen and (max-width: 335px) {
+  #welcome-box {
+    padding: 20px 25px 20px 25px;
+  }
+
+  
+  #welcome-box h2 {
+    font-size: 20px !important;
+  }
 }

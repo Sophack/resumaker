@@ -9,6 +9,7 @@ import { setContext } from '@apollo/client/link/context';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Navbar from './components/Navbar';
+import Welcome from './components/Welcome';
 
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
@@ -38,6 +39,7 @@ function App() {
     <Router>
       <>
         <Navbar />
+        <Welcome />
         <Switch>
           <Route exact path='/' component={Home} />
           <Route render={() => <h1 className='display-2'>Wrong page!</h1>} />

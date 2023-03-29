@@ -7,6 +7,8 @@ import { Input, FormLabel, Alert } from '@mui/joy';
 import { useMutation } from "@apollo/client";
 import { ADD_USER } from "../utils/mutations";
 
+import LoginForm from './LoginForm';
+
 import Auth from '../utils/auth';
 
 const SignupForm = () => {
@@ -16,6 +18,8 @@ const SignupForm = () => {
   const [validated] = useState(false);
   // set state for alert
   const [showAlert, setShowAlert] = useState(false);
+
+  const [showElement, setShowElement] = useState(false);
 
   const [addUser, {error}] = useMutation(ADD_USER);
 
@@ -51,6 +55,7 @@ const SignupForm = () => {
 
   return (
     <>
+    <div className={showElement ? 'hide' : null}>
       <Typography className='modal-title' component='h1'>
         Sign up
       </Typography>
@@ -93,7 +98,6 @@ const SignupForm = () => {
 
         <div className='modal-button-container'>
           <Button
-            onClick={() => {}}
             className='submit-button'
             disabled={!(userFormData.email && userFormData.password)}
             type='submit'
@@ -105,9 +109,11 @@ const SignupForm = () => {
         <div className='modal-divider' />
 
         <Typography className='modal-footer' component='p'>
-          Already an existing user? <Link href="/" onClick={() => {}}>Log in</Link>!
+          Already an existing user? <a href='/#' onClick={() => setShowElement(!showElement)}>Log in</a>!
         </Typography>
       </form>
+      </div>
+      {showElement && <LoginForm />}
     </>
   );
 };
