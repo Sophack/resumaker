@@ -7,14 +7,15 @@ import {
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { Routes } from 'react-router-dom';
+
 import Home from './pages/Home';
 import Resume from './pages/Resume';
 import Navbar from './components/Navbar';
 import Welcome from './components/Welcome';
-import PDF from './components/PDF';
-import Footer from './components/Footer';
-import useRef from "react";
 
+import Detail from './components/Detail';
+import NoMatch from './components/NoMatch';
 import { StoreProvider } from './utils/GlobalState';
 import Success from './pages/Success';
 import OrderHistory from './pages/OrderHistory';
@@ -50,23 +51,15 @@ function App() {
         <Navbar />
         <Welcome />
         <Switch>
-          <Route exact path='/' component={SearchBooks} />
-          <Route exact path='/saved' component={SavedBooks} />
+          <Route exact path='/' component={Resume} />
+          <Route exact path='/saved' component={Home} />
           <Route render={() => <h1 className='display-2'>Wrong page!</h1>} />
         </Switch>
         <StoreProvider>
-            <Routes>
+            <Switch>
               <Route 
                 path="/" 
                 element={<Home />} 
-              />
-              <Route 
-                path="/login" 
-                element={<Login />} 
-              />
-              <Route 
-                path="/signup" 
-                element={<Signup />} 
               />
               <Route 
                 path="/success" 
@@ -84,7 +77,7 @@ function App() {
                 path="*" 
                 element={<NoMatch />} 
               />
-            </Routes>
+            </Switch>
           </StoreProvider>
       </>
     </Router>

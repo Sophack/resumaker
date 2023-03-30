@@ -17,7 +17,7 @@ const resumeSchema = new Schema(
   {
     toJSON: {
       getters: true,
-    },
+    }
   }
 );
 
