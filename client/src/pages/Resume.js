@@ -189,6 +189,14 @@ const PopulateResume = () => {
             />
           </div>
           <div>
+            <label htmlFor="languages">Languages:</label>
+            <input
+              type="text"
+              name="languages"
+              id="languages"
+            />
+          </div>
+          <div>
             <label htmlFor="transferable-skills">Transferable Skills:</label>
             <input
               type="text"
