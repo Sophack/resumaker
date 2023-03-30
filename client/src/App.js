@@ -46,11 +46,11 @@ function App() {
         <Welcome />
         <Switch>
           <Route exact path='/' component={Home} />
-          
+          <PDF/>
+          <Footer/>
           <Route render={() => <h1 className='display-2'>Wrong page!</h1>} />
         </Switch>
-        <PDF></PDF>
-          <Footer></Footer>
+        
       </>
     </Router>
     </ApolloProvider>
