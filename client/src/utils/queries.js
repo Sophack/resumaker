@@ -26,9 +26,9 @@ export const GET_ME = gql`
         name
         work {
           company
-          role
-          start
-          end
+          roles
+          startDate
+          endDate
           duties
         }
       }
@@ -39,22 +39,28 @@ export const GET_ME = gql`
 export const GET_RESUME = gql`
   {
     getResume {
-      _id
-      color
-      name
       education {
-        _id
         school
         program
         start
         end
       }
-      work {
-        _id
-        company
+      personal {
+        fullName
+        email
+        phone
+        location
         role
-        start
-        end
+        objective
+      }
+      skills {
+        skill
+      }
+      work {
+        company
+        roles
+        startDate
+        endDate
         duties
       }
     }

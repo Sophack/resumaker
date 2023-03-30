@@ -1,17 +1,8 @@
 const { Schema } = require("mongoose");
 
 const skillsSchema = new Schema({
-  industryKnowledge: {
-    type: [String],
-  },
-  toolsAndTechnologies: {
-    type: [String],
-  },
-  languages: {
-    type: [String],
-  },
-  transferableSkills: {
-    type: [String],
+  skill: {
+    type: String,
   },
 });
 

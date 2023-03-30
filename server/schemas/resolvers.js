@@ -54,14 +54,14 @@ const resolvers = {
             return { token, user };
         },     
         createResume: async (parent, {resumeInput}, context) => {
-            if (context.user) {
+            // if (context.user) {
                 //Get the resume id from user schema
-                const user = await User.findById({_id: context.user._id});                
+                const user = await User.findById({_id: '6425fc1fc373fc3de44fcf8c'});                
                 const resumeID = user.resume[0];
                 if(resumeID){
                     //Remove the sepcific resume from user schema
                     await User.findByIdAndUpdate(
-                        {_id: context.user._id},
+                        {_id: '6425fc1fc373fc3de44fcf8c'},
                         {$unset: {resume: resumeID}}                    
                     );  
                     //Delete the found resume from the resumes
@@ -71,13 +71,13 @@ const resolvers = {
                 const resume = await Resume.create(
                     {...resumeInput});
                 await User.findByIdAndUpdate(
-                    {_id: context.user._id},
+                    {_id: '6425fc1fc373fc3de44fcf8c'},
                     {$push: {resume: resume._id}},
                     {new: true}
                 );
                 return resume;
-            }
-            throw new AuthenticationError("Login!");
+            // }
+            // throw new AuthenticationError("Login!");
         },
     },
 };

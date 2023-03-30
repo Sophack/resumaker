@@ -18,7 +18,6 @@ const personalSchema = new Schema({
   },
   objective: {
     type: String,
-    required: true,
   },
 });
 

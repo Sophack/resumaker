@@ -22,8 +22,6 @@ const typeDefs = gql`
 
   type Resume {
     _id: ID
-    name: String
-    color: String
     personal: [Personal]
     education: [Education]
     work: [Work]
@@ -31,8 +29,6 @@ const typeDefs = gql`
   }
 
   input ResumeInput{
-    name: String
-    color: String    
     personal: [personalInput]
     education: [educationInput]
     work: [workInput]
@@ -57,17 +53,14 @@ const typeDefs = gql`
 
   input workInput {
     company: String
-    role: String
-    start: String
-    end: String
+    roles: String
+    startDate: String
+    endDate: String
     duties: String
   }
 
   input skillsInput {
-    industryKnowledge: [String]
-    toolsAndTechnologies: [String]
-    languages: [String]
-    transferableSkills: [String]
+    skill: String
   }
 
   type Personal {
@@ -90,18 +83,15 @@ const typeDefs = gql`
   type Work {
     _id: ID
     company: String
-    role: String
-    start: String
-    end: String
+    roles: String
+    startDate: String
+    endDate: String
     duties: String
   }
 
   type Skills {
-    id: ID!
-    industryKnowledge: [String]
-    toolsAndTechnologies: [String]
-    languages: [String]
-    transferableSkills: [String]
+    _id: ID!
+    skill: String
   }
   
   type Auth{
