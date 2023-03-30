@@ -16,6 +16,8 @@
     "concurrently": "^5.1.0"
   },
   "dependencies": {
+    "@mui/icons-material": "^5.11.11",
+    "@react-pdf/renderer": "^3.1.9",
     "express": "^4.17.1",
     "graphql": "^15.8.0"
   }

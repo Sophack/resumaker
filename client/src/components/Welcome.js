@@ -15,6 +15,7 @@ const Welcome = () => {
             <Typography component='p'>In a few easy steps, create a beautiful resume of your own that highlights your skills and experience the best & become employment ready!</Typography>
             <Button id='welcome-button'>Make a resume!</Button>
           </Box>
+
         </div>
       </section>
     </>
