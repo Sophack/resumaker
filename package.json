@@ -12,8 +12,11 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  
+  "devDependencies": {
+    "concurrently": "^5.1.0"
+  },
   "dependencies": {
-    
+    "express": "^4.17.1",
+    "graphql": "^15.8.0"
   }
 }
