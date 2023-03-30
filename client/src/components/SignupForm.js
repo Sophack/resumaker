@@ -6,9 +6,6 @@ import { Input, FormLabel, Alert } from '@mui/joy';
 // importing useMutation and the exported add_user mutation
 import { useMutation } from "@apollo/client";
 import { ADD_USER } from "../utils/mutations";
-
-import LoginForm from './LoginForm';
-
 import Auth from '../utils/auth';
 
 const SignupForm = () => {
@@ -109,7 +106,7 @@ const SignupForm = () => {
         <div className='modal-divider' />
 
         <Typography className='modal-footer' component='p'>
-          Already an existing user? <a href='/#' onClick={() => setShowElement(!showElement)}>Log in</a>!
+          Already an existing user? <Link onClick={() => {}}>Log in</Link>!
         </Typography>
       </form>
       </div>

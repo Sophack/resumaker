@@ -8,8 +8,6 @@ import { Input, FormLabel, Alert } from '@mui/joy';
 import { useMutation } from "@apollo/react-hooks";
 import { LOGIN_USER } from "../utils/mutations";
 
-import SignUpForm from './SignupForm';
-
 //Auth middleware
 import Auth from '../utils/auth';
 
@@ -109,7 +107,7 @@ const LoginForm = () => {
         <div className='modal-divider' />
 
         <Typography className='modal-footer' component='p'>
-          New user? <a href='/#' onClick={() => setShowElement(!showElement)}>Create an account</a>!
+          New user? <Link href="/" onClick={() => {}}>Create an account</Link>!
         </Typography>
       </form>
       </div>

@@ -1,25 +1,37 @@
 const { AuthenticationError } = require("apollo-server-express");
-const { User, Resume, Education, Work } = require("../models");
+const { User, Resume} = require("../models");
 const { signToken } = require("../utils/auth");
 
 const resolvers = {
     Query: {
         me: async (parent, args, context) => {
             if (context.user) {
-                const userData = await User.findOne({ _id: context.user._id })
-                .select("-__v -password")
-                .populate('books')
-                .populate('resumes');              
+                const userData = await User.findById({ _id: context.user._id })
+                    .select("-__v -password")
+                    .populate('resumes');
+                console.log(userData)              
                 return userData;
             };
             throw new AuthenticationError("Please Login!");
         },
+        getResume: async (parent, args, context) => {
+            if (context.user) {
+                const user = await User.findById({_id: context.user._id});
+                const resumeID = user.resume[0];
+                const resume = await Resume.findById({_id: resumeID});
+                return resume;
+            };
+            throw new AuthenticationError("Please Login!");
+        }
+
     }, 
 
     Mutation: {
         addUser: async ( parent, args ) => {
-            try {
-                const user = await User.create(args);
+            try {   
+                const createdUser = {username: args.email, email: args.email, password: args.password}
+                console.log(createdUser)
+                const user = await User.create(createdUser);
                 const token = signToken(user);
                 return { token, user };                
             } catch (error) {
@@ -41,55 +53,32 @@ const resolvers = {
             const token = signToken(user);
             return { token, user };
         },     
-
-
-        saveBook: async (parent, { bookData }, context) => {
-            console.log(context.user);
-            if ( context.user ) {
-                const updatedUser = await User
-                    .findOneAndUpdate(
-                        { _id: context.user._id }, 
-                        { $addToSet: { savedBooks: bookData }},
-                        { new: true }
-                    );
-                return updatedUser;
-            };
-            throw new AuthenticationError("Please Login");
-        },
-
-        removeBook: async (parent, { bookId }, context) => {
-            console.log(context.book);
-            if (context.user) {
-                const updatedUser = await User.findOneAndUpdate(
-                    { _id: context.user._id },
-                    { $pull: { savedBooks: { bookId } }},
-                    { new: true,  runValidators: true }
-                );
-                return updatedUser;
-            };
-            throw new AuthenticationError("Please Login!");
-        },
         createResume: async (parent, {resumeInput}, context) => {
-            // if (context.user) {
-                console.log(resumeInput.name);
-                const newResume = new Resume ({
-                    color: resumeInput.color,                    
-                    user: context.user._id,
-                });
-                return newResume;
-            // }
-            // throw new AuthenticationError("Login!");
-        },
-        createEducation: async (parent, {education}, context) => {
-            if(context.user) {
-                const createEducation = new Education({
-                    education,
-                    resume: resume.id,
-                });
-                const education = await createEducation.save();
-                return education;
+            if (context.user) {
+                //Get the resume id from user schema
+                const user = await User.findById({_id: context.user._id});                
+                const resumeID = user.resume[0];
+                if(resumeID){
+                    //Remove the sepcific resume from user schema
+                    await User.findByIdAndUpdate(
+                        {_id: context.user._id},
+                        {$unset: {resume: resumeID}}                    
+                    );  
+                    //Delete the found resume from the resumes
+                    await Resume.findByIdAndDelete({_id: resumeID});
+                }               
+                //Create the resume and add to user
+                const resume = await Resume.create(
+                    {...resumeInput});
+                await User.findByIdAndUpdate(
+                    {_id: context.user._id},
+                    {$push: {resume: resume._id}},
+                    {new: true}
+                );
+                return resume;
             }
-        }
+            throw new AuthenticationError("Login!");
+        },
     },
 };
 

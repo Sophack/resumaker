@@ -1,4 +1,4 @@
-const { Schema, model } = require('mongoose');
+const { Schema } = require('mongoose');
 
 const workSchema = new Schema(
     {        
@@ -7,14 +7,8 @@ const workSchema = new Schema(
         start: { type: String },    
         end: { type: String },    
         duties: { type: String },           
-        resume: {
-            type: Schema.Types.ObjectId, //we can make a reference with "users" collection
-            ref: "resumes",
-        },
     },   
 );
 
 
-const Work = model("Work", workSchema);
-
-module.exports = Work;
+module.exports = workSchema;

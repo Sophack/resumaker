@@ -1,28 +1,25 @@
-const { Schema, model } = require('mongoose');
+const { Schema, model } = require("mongoose");
+
+const personalSchema = require("./Personal");
+const educationScema = require("./Education");
+const workSchema = require("./Work");
+const skillsSchema = require("./Skills");
 
 const resumeSchema = new Schema(
-    {
-        color: {type: String},
-        education: [
-            {
-                type: Schema.Types.ObjectId,
-                ref: 'Education',
-            },
-        ],
-        name: { type: String},
-        work: [
-            {
-                type: Schema.Types.ObjectId,
-                ref: 'Work',    
-            }
-        ],
-        user: {
-            type: Schema.Types.ObjectId, //we can make a reference with "users" collection
-            ref: "User",
-        },
-    },   
+  {
+    name: { type: String },
+    color: { type: String },
+    personal: [personalSchema],
+    education: [educationScema],
+    work: [workSchema],
+    skills: [skillsSchema],
+  },
+  {
+    toJSON: {
+      getters: true,
+    },
+  }
 );
-
 
 const Resume = model("Resume", resumeSchema);
 

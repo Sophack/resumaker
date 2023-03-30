@@ -8,6 +8,7 @@ import {
 import { setContext } from '@apollo/client/link/context';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Home from './pages/Home';
+import Resume from './pages/Resume';
 import Navbar from './components/Navbar';
 import Welcome from './components/Welcome';
 import PDF from './components/PDF';
@@ -45,9 +46,8 @@ function App() {
         <Navbar />
         <Welcome />
         <Switch>
-          <Route exact path='/' component={Home} />
-          <PDF/>
-          <Footer/>
+          <Route exact path='/' component={SearchBooks} />
+          <Route exact path='/saved' component={SavedBooks} />
           <Route render={() => <h1 className='display-2'>Wrong page!</h1>} />
         </Switch>
         
