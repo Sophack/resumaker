@@ -84,9 +84,6 @@ const ResumeFields = () => {
             }
         }
 
-        let formattedInput = JSON.stringify(resume);
-        console.log("formattedInput");
-        console.log(formattedInput);
         try {
             const response = savedResume({variables: { ...resume}});    
         } catch (error) {
