@@ -10,6 +10,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Navbar from './components/Navbar';
 import Welcome from './components/Welcome';
+import Resume from './pages/Resume';
 
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
@@ -42,6 +43,7 @@ function App() {
         <Welcome />
         <Switch>
           <Route exact path='/' component={Home} />
+          <Route exact path='/resume' component={Resume} />
           <Route render={() => <h1 className='display-2'>Wrong page!</h1>} />
         </Switch>
       </>
