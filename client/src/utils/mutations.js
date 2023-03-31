@@ -3,7 +3,7 @@ import { gql } from "@apollo/client";
 export const CREATE_RESUME = gql`
   mutation createResume($resumeInput: ResumeInput!) {
     createResume(resumeInput: $resumeInput) {
-      _id
+      token
       personal {
         fullName
         email
