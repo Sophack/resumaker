@@ -36,7 +36,7 @@ const PopulateResume = () => {
   const {loading, data} = useQuery(GET_RESUME);
   let resumeData = data?.getResume || {};
 
-  const [savedResume, {dataResume, error}] = useMutation(CREATE_RESUME);
+  const [savedResume] = useMutation(CREATE_RESUME);
 
   //Personal States Changes
   const handleNameChange = (event) => {
@@ -96,7 +96,7 @@ const PopulateResume = () => {
   // Education Object State
   const handleEducationSubmit = async (event) => {
     event.preventDefault();    
-
+    
     const educationObject = {
       school: school,
       program: program,
@@ -104,8 +104,7 @@ const PopulateResume = () => {
       end: end
     };
 
-    await setEducation([...educationState, educationObject]);
-    console.log(educationState);
+    setEducation([...educationState, educationObject]);
     await handleWorkSubmit(event);
     //TODO: set school, program to empty string when add education button is implemented
   };
@@ -134,25 +133,20 @@ const PopulateResume = () => {
       skill:skill
     }
     setSkill([skillState, skillsObject]);    
-    
+    createResume();
     //TODO: set field to empty when add Skills button is implemented
   };
 
   useEffect(() => {
-    console.log('educationState', JSON.stringify(educationState));
-    console.log('workState', JSON.stringify(workState));
-    console.log('SkillState', JSON.stringify(skillState));
-    createResume();
+    
   }, [educationState], [workState], [skillState]);
 
   const handleSubmit = async(event) => {
     event.preventDefault();
-
     await handleEducationSubmit(event);
   };
 
   const createResume = async() =>{
-
 
     let savedResumeData = {
       resumeInput: {
@@ -165,17 +159,19 @@ const PopulateResume = () => {
           objective: objective
         },
         education: educationState,
+        work: workState
+        // skill: skill
       }
     };
 
     console.log("resumeData");
     const parsedResume = JSON.stringify(savedResumeData);
-    console.log(parsedResume);
+    console.log(savedResumeData);
     try {
-      const {data} = savedResume({variables: parsedResume});
-        
+      const response = await savedResume({ variables: { ...savedResumeData }});
+
     } catch (err) {
-      
+      console.log("Print resume " + err);
     }
 
   }
@@ -183,7 +179,7 @@ const PopulateResume = () => {
   if(Object.keys(resumeData).length){
       return (
           <>       
-          {console.log(Object.keys(resumeData).length)}      
+    
           <div style={{marginTop: "60px", display: "flex", flexDirection: "row", justifyContent: "center"}}>
 
             {/* Rendered Resume On Left Half of Page */}
