@@ -4,13 +4,13 @@ import { useState } from 'react';
 
 const PDFbutton = () => {
 
-    const [show, setShow]  = useState(true)
+    const [show, setShow]  = useState(false)
   return (
     <div>
       {
           show?<PDF/>:null
         }
-      <button className='donateButton' onClick={()=>setShow(!show)}>PDF</button>
+      <button className='pdfButton' onClick={()=>setShow(!show)}>PDF</button>
     </div>
   )
 }

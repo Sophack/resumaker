@@ -317,7 +317,7 @@ a {
   height: 600px;
   position: absolute;
   top: 50%;
-  left: 80%;
+  left: 70%;
   transform: translate(-50%, -50%);
   background-color: var(--pink);
   box-shadow: 0 10px 20px 0 var(--shadow);
@@ -343,6 +343,33 @@ a {
   margin-bottom: 10px !important;
 }
 
+.pdfButton{
+  font-family: 'Montserrat', sans-serif !important;
+  text-transform: none !important;
+  color: var(--white) !important;
+  background-color: var(--pink) !important;
+  border-radius: 20px !important;
+  width: 20% !important;
+  letter-spacing: 1px !important;
+  margin-top: 20px !important;
+  box-shadow: 0 8px 6px -6px var(--shadow) !important;
+  justify-content: center !important;
+  border: none;
+  padding: 5px;
+  margin: 0px 0px 20px 20px;
+}
+
+.pdfButton:hover {
+  filter: contrast(115%);
+}
+.pdfButton:active {
+  transform: translateY(0px) scale(0.98);
+  filter: brightness(0.9);
+}
+.pdfButton:disabled {
+  opacity: 0.5;
+  cursor: none;
+}
 
 
 .hide {

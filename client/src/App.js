@@ -12,6 +12,7 @@ import Navbar from './components/Navbar';
 import Welcome from './components/Welcome';
 import Footer from './components/Footer';
 import PDFButton from './components/ButtonPDF';
+import DonateButton from './components/DonateButton';
 
 // import Payment from './components/Payment';
 // import {loadStripe} from '@stripe/stripe-js';
@@ -58,7 +59,7 @@ function App() {
      
 
       <PDFButton/>
-      <button className='donateButton'> Donate ☕</button>
+      <DonateButton/>
       <Footer/>
     </Router>
     </ApolloProvider>
