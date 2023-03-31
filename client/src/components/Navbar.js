@@ -86,17 +86,9 @@ const AppNavbar = () => {
       >
         <Box className='modal-box'>
             {showLogin && <LoginForm
-              // setShowLogin={setShowLogin}
-              // showLogin={showLogin}
-              // setShowSignup={setShowSignup}
-              // showSignup={showSignup}
               handleModalClose={() => setShowModal(false)} 
               />}
             {showSignup && <SignUpForm 
-              // setShowLogin={setShowLogin}
-              // showLogin={showLogin}
-              // setShowSignup={setShowSignup}
-              // showSignup={showSignup}
               handleModalClose={() => setShowModal(false)} 
               />}
         </Box>

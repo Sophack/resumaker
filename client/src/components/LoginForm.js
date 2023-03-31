@@ -8,6 +8,8 @@ import { Input, FormLabel, Alert } from '@mui/joy';
 import { useMutation } from "@apollo/react-hooks";
 import { LOGIN_USER } from "../utils/mutations";
 
+import SignUpForm from './SignupForm';
+
 //Auth middleware
 import Auth from '../utils/auth';
 
@@ -15,6 +17,8 @@ const LoginForm = () => {
   const [userFormData, setUserFormData] = useState({ email: '', password: '' });
   const [validated] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
+
+  const [showElement, setShowElement] = useState(false);
 
   const [loginUser, { error }] = useMutation(LOGIN_USER);
 
@@ -51,6 +55,7 @@ const LoginForm = () => {
 
   return (
     <>
+    <div className={showElement ? 'hide' : null}>
       <Typography className='modal-title' component='h1'>
         Log in
       </Typography>
@@ -93,7 +98,6 @@ const LoginForm = () => {
 
         <div className='modal-button-container'>
           <Button
-            onClick={() => {}}
             className='submit-button'
             disabled={!(userFormData.email && userFormData.password)}
             type='submit'
@@ -105,9 +109,11 @@ const LoginForm = () => {
         <div className='modal-divider' />
 
         <Typography className='modal-footer' component='p'>
-          New user? <Link href="/" onClick={() => {}}>Create an account</Link>!
+          New user? <a href='/#' onClick={() => setShowElement(!showElement)}>Create an account</a>!
         </Typography>
       </form>
+      </div>
+      {showElement && <SignUpForm />}
     </>
   );
 };
