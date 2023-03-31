@@ -35,156 +35,21 @@ const PopulateResume = () => {
 
   const {loading, data} = useQuery(GET_RESUME);
   let resumeData = data?.getResume || {};
-
-  const [savedResume, {dataResume, error}] = useMutation(CREATE_RESUME);
-
-  //Personal States Changes
-  const handleNameChange = (event) => {
-    setName(event.target.value);
-  };
-  const handleEmailChange = (event) => {
-    setEmail(event.target.value);
-  };
-  const handlePhoneChange = (event) => {
-    setPhone(event.target.value);
-  };
-  const handleLocationChange = (event) => {
-    setLocation(event.target.value);
-  };
-  const handleRoleChange = (event) => {
-    setRole(event.target.value);
-  };
-  const handleObjectiveChange = (event) => {
-    setObjective(event.target.value);
-  };
-
-  // Education States Changes
-  const handleProgramChange = (event) => {
-    setProgram(event.target.value);
-  };
-  const handleStartChange = (event) => {
-    setStart(event.target.value);
-  };
-  const handleSchoolChange = (event) => {
-    setSchool(event.target.value);
-  };
-  const handleEndChange = (event) => {
-    setEnd(event.target.value);
-  };
-
-  //Work State Changes
-  const handleCompanyChange = (event) => {
-    setCompany(event.target.value);
-  };
-  const handleRolesChange = (event) => {
-    setRoles(event.target.value);
-  };
-  const handleStartDateChange = (event) => {
-    setStartDate(event.target.value);
-  };
-  const handleEndDateChange = (event) => {
-    setEndDate(event.target.value);
-  };
-  const handleDutiesChange = (event) => {
-    setDuties(event.target.value);
-  };
   
-  //SkillS state Changes
-  const handleSkillChange = (event) => {
-    setSkill(event.target.value);
-  };  
-  // Education Object State
-  const handleEducationSubmit = async (event) => {
-    event.preventDefault();    
-
-    const educationObject = {
-      school: school,
-      program: program,
-      start: start,
-      end: end
-    };
-
-    await setEducation([...educationState, educationObject]);
-    console.log(educationState);
-    await handleWorkSubmit(event);
-    //TODO: set school, program to empty string when add education button is implemented
-  };
-
-  //Work Object State
-  const handleWorkSubmit = async (event) => {
-    event.preventDefault();  
-
-    const workObject = {
-      company: company,
-      roles:roles,
-      startDate:startDate,
-      endDate:endDate,
-      duties:duties
-    }
-
-    setWork([...workState, workObject]);
-    await handleSkillsSubmit(event);
-    //TODO: set fields to empty when add work button is implemented
-  };
-
-  const handleSkillsSubmit = async (event) => {
-    event.preventDefault();  
-
-    const skillsObject = {
-      skill:skill
-    }
-    setSkill([skillState, skillsObject]);    
-    
-    //TODO: set field to empty when add Skills button is implemented
-  };
-
-  useEffect(() => {
-    console.log('educationState', JSON.stringify(educationState));
-    console.log('workState', JSON.stringify(workState));
-    console.log('SkillState', JSON.stringify(skillState));
-    createResume();
-  }, [educationState], [workState], [skillState]);
-
-  const handleSubmit = async(event) => {
+  // create method to search for books and set state on form submit
+  const handleFormSubmit = async (event) => {
     event.preventDefault();
-
-    await handleEducationSubmit(event);
   };
 
-  const createResume = async() =>{
+  if (loading) {
+    return <h2>LOADING RESUME</h2>;
+  } 
 
-
-    let savedResumeData = {
-      resumeInput: {
-        personal: {
-          fullName: name,
-          email: email,
-          phone: phone,
-          location:location,
-          role: role,
-          objective: objective
-        },
-        education: educationState,
-      }
-    };
-
-    console.log("resumeData");
-    const parsedResume = JSON.stringify(savedResumeData);
-    console.log(parsedResume);
-    try {
-      const {data} = savedResume({variables: parsedResume});
-        
-    } catch (err) {
-      
-    }
-
-  }
-
-  if(Object.keys(resumeData).length){
-      return (
-          <>       
-          {console.log(Object.keys(resumeData).length)}      
-          <div style={{marginTop: "60px", display: "flex", flexDirection: "row", justifyContent: "center"}}>
+    if(Object.keys(resumeData).length){
+        return (
+            <>       
+            {console.log(Object.keys(resumeData).length)}      
+            <div style={{marginTop: "60px", display: "flex", flexDirection: "row", justifyContent: "center"}}>
 
             {/* Rendered Resume On Left Half of Page */}
             <div className='populated' style={{width : "40%"}}>

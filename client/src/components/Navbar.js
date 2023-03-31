@@ -85,8 +85,12 @@ const AppNavbar = () => {
         aria-labelledby='signup-modal'
       >
         <Box className='modal-box'>
-            {showLogin && <LoginForm handleModalClose={() => setShowModal(false)} />}
-            {showSignup && <SignUpForm handleModalClose={() => setShowModal(false)} />}
+            {showLogin && <LoginForm
+              handleModalClose={() => setShowModal(false)} 
+              />}
+            {showSignup && <SignUpForm 
+              handleModalClose={() => setShowModal(false)} 
+              />}
         </Box>
       </Modal>
     </>

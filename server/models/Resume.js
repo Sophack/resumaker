@@ -7,8 +7,6 @@ const skillsSchema = require("./Skills");
 
 const resumeSchema = new Schema(
   {
-    name: { type: String },
-    color: { type: String },
     personal: [personalSchema],
     education: [educationScema],
     work: [workSchema],
