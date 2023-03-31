@@ -10,9 +10,13 @@ import { Typography, Box, Button } from '@mui/material';
 // } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import Auth from '../utils/auth';
-import { useMutation } from '@apollo/react-hooks';
+import { useQuery } from '@apollo/react-hooks';
+import { GET_RESUME } from '../utils/queries';
 
 const Home = () => {
+  const { loading, data } = useQuery(GET_RESUME);
+  const resume = data?.thoughts || [];
+  console.log(resume)
 
   return (
     <>

@@ -1,5 +1,4 @@
-import { useState } from "react";
-import { useMutation } from "@apollo/client";
+import { useState, useEffect } from "react";
 import {
   FormControl,
   TextField,
@@ -10,44 +9,51 @@ import {
 } from "@mui/material";
 import TextareaAutosize from "@mui/base/TextareaAutosize";
 import Auth from "../utils/auth";
-// import { GET_ME, GET_RESUME } from "../utils/queries";
+
+import { useMutation } from "@apollo/client";
 import { CREATE_RESUME } from "../utils/mutations";
 
+const LOCAL_STORAGE_KEY = "resumaker.resume";
+
 export default function Resume() {
-  const [resume, setResume] = useState(resumeData);
 
-  // const { loading, data } = useQuery(GET_RESUME);
-  // let resumeData = data?.getResume || {};
+  const [resume, setResume] = useState({});
 
-  const [createThought, { error }] = useMutation(CREATE_RESUME);
+  const [createResume, { error }] = useMutation(CREATE_RESUME);
 
-  function handleCreateResume(event) {
-    event.preventDefault();
+  useEffect(() => {
+    const resumeJSON = localStorage.getItem(LOCAL_STORAGE_KEY);
+    if (resumeJSON) setResume(JSON.parse(resumeJSON));
+  }, []);
 
+  useEffect(() => {
+    console.log("Rendered:");
+    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(resume));
+  }, [resume]);
+
+  function handleCreateResume() {
     try {
-      const { newResume } = createThought(
+      const newResume = createResume(
         {
           variables: { ...resume },
         },
         setResume([...resume, newResume])
       );
-
-      window.location.reload();
     } catch (err) {
       console.error(err);
     }
   }
 
-  function handleResumeChange(id, resume) {
-    const newResume = [...resume];
-    const index = newResume.findIndex((r) => r.id === id);
-    newResume[index] = resume;
-    setResume(newResume);
-  }
+  // function handleResumeChange(id, resume) {
+  //   const newResume = [...resume];
+  //   const index = newResume.findIndex((r) => r.id === id);
+  //   newResume[index] = resume;
+  //   setResume(newResume);
+  // }
 
-  function handleChange(changes) {
-    handleResumeChange(resume.id, { ...resume, ...changes });
-  }
+  // function handleChange(changes) {
+  //   handleResumeChange(resume.id, { ...resume, ...changes });
+  // }
 
   return (
     <>
@@ -59,44 +65,44 @@ export default function Resume() {
         <FormControl style={{ width: "90%" }}>
           <h3 style={{ marginTop: "15px" }}>Personal</h3>
           <TextField
-            label="Full Name"
-            value={resume.personal.fullName}
-            onInput={(e) => handleChange({ name: e.target.value })}
+            label="name"
+            value={resume.name}
+            // onInput={(e) => handleChange({ name: e.target.value })}
             sx={{ width: "90%", marginTop: "5px" }}
           />
 
           <TextField
             label="Location"
-            value={resume.personal.location}
-            onInput={(e) => handleChange({ location: e.target.value })}
+            value={resume.location}
+            // onInput={(e) => handleChange({ location: e.target.value })}
             sx={{ width: "90%", marginTop: "5px" }}
           />
 
           <TextField
             label="Phone Number"
-            value={resume.personal.phone}
-            onInput={(e) => handleChange({ phone: e.target.value })}
+            value={resume.phone}
+            // onInput={(e) => handleChange({ phone: e.target.value })}
             sx={{ width: "90%", marginTop: "5px" }}
           />
 
           <TextField
             label="Email"
-            value={resume.personal.email}
-            onInput={(e) => handleChange({ email: e.target.value })}
+            value={resume.email}
+            // onInput={(e) => handleChange({ email: e.target.value })}
             sx={{ width: "90%", marginTop: "5px" }}
           />
 
           <TextField
             label="Role"
-            value={resume.personal.role}
-            onInput={(e) => handleChange({ role: e.target.value })}
+            value={resume.role}
+            // onInput={(e) => handleChange({ role: e.target.value })}
             sx={{ width: "90%", marginTop: "5px" }}
           />
 
           <TextareaAutosize
             aria-label="empty textarea"
-            value={resume.personal.objective}
-            onInput={(e) => handleChange({ objective: e.target.value })}
+            value={resume.objective}
+            // onInput={(e) => handleChange({ objective: e.target.value })}
             placeholder="  Objective"
             style={{ width: "90%", height: "60px", marginTop: "5px" }}
           />
@@ -104,66 +110,66 @@ export default function Resume() {
           <h3 style={{ marginTop: "15px" }}>Education</h3>
           <TextField
             label="School"
-            value={resume.education.school}
-            onInput={(e) => handleChange({ school: e.target.value })}
+            value={resume.school}
+            // onInput={(e) => handleChange({ school: e.target.value })}
             sx={{ width: "90%", marginTop: "5px" }}
           />
 
           <TextField
             label="Program"
-            value={resume.education.program}
-            onInput={(e) => handleChange({ education: e.target.value })}
+            value={resume.program}
+            // onInput={(e) => handleChange({ education: e.target.value })}
             sx={{ width: "90%", marginTop: "5px" }}
           />
 
           <TextField
             label="Start"
-            value={resume.education.start}
-            onInput={(e) => handleChange({ start: e.target.value })}
+            value={resume.start}
+            // onInput={(e) => handleChange({ start: e.target.value })}
             sx={{ width: "90%", marginTop: "5px" }}
           />
 
           <TextField
             label="End"
-            value={resume.education.end}
-            onInput={(e) => handleChange({ end: e.target.value })}
+            value={resume.end}
+            // onInput={(e) => handleChange({ end: e.target.value })}
             sx={{ width: "90%", marginTop: "5px" }}
           />
 
           <h3 style={{ marginTop: "15px" }}>Work</h3>
           <TextField
             label="Company"
-            value={resume.work.company}
-            onInput={(e) => handleChange({ company: e.target.value })}
+            value={resume.company}
+            // onInput={(e) => handleChange({ company: e.target.value })}
             sx={{ width: "90%", marginTop: "5px" }}
           />
 
           <TextareaAutosize
             aria-label="empty textarea"
-            value={Resume.work.roles}
-            onInput={(e) => handleChange({ roles: e.target.value })}
+            value={resume.roles}
+            // onInput={(e) => handleChange({ roles: e.target.value })}
             placeholder="  What was the role(s)"
             style={{ width: "90%", height: "60px", marginTop: "5px" }}
           />
 
           <TextField
             label="Start"
-            value={resume.work.startDate}
-            onInput={(e) => handleChange({ startDate: e.target.value })}
+            value={resume.startDate}
+            // onInput={(e) => handleChange({ startDate: e.target.value })}
             sx={{ width: "90%", marginTop: "5px" }}
           />
 
           <TextField
             label="End"
-            value={resume.work.endDate}
-            onInput={(e) => handleChange({ endDate: e.target.value })}
+            value={resume.endDate}
+            // onInput={(e) => handleChange({ endDate: e.target.value })}
             sx={{ width: "90%", marginTop: "5px" }}
           />
 
           <TextareaAutosize
             aria-label="empty textarea"
-            value={resume.work.duties}
-            onInput={(e) => handleChange({ duties: e.target.value })}
+            value={resume.duties}
+            // onInput={(e) => handleChange({ duties: e.target.value })}
             placeholder="  Duties"
             style={{ width: "90%", height: "60px", marginTop: "5px" }}
           />
@@ -171,8 +177,8 @@ export default function Resume() {
           <h3 style={{ marginTop: "15px" }}>Skills</h3>
           <TextField
             label="Skills"
-            value={resume.skills.skill}
-            onInput={(e) => handleChange({ skill: e.target.value })}
+            value={resume.skill}
+            // onInput={(e) => handleChange({ skill: e.target.value })}
             sx={{ width: "90%", marginTop: "5px" }}
           />
         </FormControl>
@@ -192,9 +198,9 @@ export default function Resume() {
   );
 }
 
-{
-  /* Create Resume Form On Right Side */
-}
+// {
+//   /* Create Resume Form On Right Side */
+// }
 // if(Object.keys(resumeData).length){
 //     return (
 //         <>
