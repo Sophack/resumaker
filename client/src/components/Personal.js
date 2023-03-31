@@ -8,7 +8,6 @@ const PersonalData = () => {
     const {loading, data} = useQuery(GET_RESUME);
     let resumeData = data?.getResume || {};
 
-
     const [personalState, setPersonalState] = useState({
         fullName: '',
         email: '',
@@ -30,7 +29,7 @@ const PersonalData = () => {
         return <h2>LOADING...</h2>;
     }   
 
-    if(resumeData){
+    if(resumeData.personal){
         return(
             <>
               <h2>Personal</h2>
