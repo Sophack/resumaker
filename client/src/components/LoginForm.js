@@ -1,9 +1,8 @@
 // see SignupForm.js for comments
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import { Button, Typography } from '@mui/material';
 import { Input, FormLabel, Alert } from '@mui/joy';
-import SignUpForm from './SignupForm'
+
 // Importing useMutation and the exported login_user mutation
 import { useMutation } from "@apollo/react-hooks";
 import { LOGIN_USER } from "../utils/mutations";

@@ -9,10 +9,10 @@ import {
 export default function PDF() {
   return (
     <div>
-      <PDFViewer>
+      <PDFViewer className='PDFcontainer'>
         <Document>
-            <Page>
-                <Text>Hello</Text>
+            <Page className="PDFtext">
+                <Text className="PDFtext">This is the PDF renderer</Text>
             </Page>
         </Document>
       </PDFViewer>

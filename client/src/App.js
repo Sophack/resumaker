@@ -7,10 +7,14 @@ import {
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-
 import Home from './pages/Home';
 import Navbar from './components/Navbar';
 import Welcome from './components/Welcome';
+import Footer from './components/Footer';
+import PDFButton from './components/ButtonPDF';
+
+// import Payment from './components/Payment';
+// import {loadStripe} from '@stripe/stripe-js';
 
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
@@ -34,28 +38,28 @@ const client = new ApolloClient({
   cache: new InMemoryCache()
 });
 
+
+
 function App() {
+
+  
+
   return (
     <ApolloProvider client={client}>
     <Router>
       <>
-        <Navbar />
-        <Welcome />
+        <Navbar/>
+        <Welcome/>
         <Switch>
           <Route exact path='/' component={Home} />
-          <Route exact path='/saved' component={Home} />
           <Route render={() => <h1 className='display-2'>Wrong page!</h1>} />
         </Switch>
-        <Button variant="contained" component="label">
-           Upload
-        <input hidden accept="image/*" multiple type="file" />
-           </Button>
-      <IconButton color="primary" aria-label="upload picture" component="label">
-  <input hidden accept="image/*" type="file" />
-  <PhotoCamera />
-     </IconButton>
-       <Footer/>
       </>
+     
+
+      <PDFButton/>
+      <button className='donateButton'> Donate ☕</button>
+      <Footer/>
     </Router>
     </ApolloProvider>
   );
