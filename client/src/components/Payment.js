@@ -8,6 +8,7 @@ function Payment() {
   const [stripePromise, setStripePromise] = useState(null);
   const [clientSecret, setClientSecret] = useState("");
 
+  //useEffect with an empty array to fetch pkey and skey
   useEffect(() => {
     fetch("/config").then(async (r) => {
       const { publishableKey } = await r.json();

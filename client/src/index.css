@@ -281,6 +281,31 @@ a {
   justify-content: center !important;
 }
 
+.donateButton{
+  background: var(--accent-color);
+  border-radius: var(--radius);
+  color: white;
+  border: 0;
+  padding: 12px 16px;
+  margin-top: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: block;
+}
+
+.donateButton:hover {
+  filter: contrast(115%);
+}
+.donateButton:active {
+  transform: translateY(0px) scale(0.98);
+  filter: brightness(0.9);
+}
+.donateButton:disabled {
+  opacity: 0.5;
+  cursor: none;
+}
+
 .hide {
   display: none !important;
 }
