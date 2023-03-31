@@ -7,19 +7,11 @@ import {
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import { Routes } from 'react-router-dom';
 
 import Home from './pages/Home';
-import Resume from './pages/Resume';
 import Navbar from './components/Navbar';
 import Welcome from './components/Welcome';
-
-import Detail from './components/Detail';
-import NoMatch from './components/NoMatch';
-import { StoreProvider } from './utils/GlobalState';
-import Success from './pages/Success';
-import OrderHistory from './pages/OrderHistory';
-
+import Footer from './components/Footer';
 
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
@@ -51,34 +43,19 @@ function App() {
         <Navbar />
         <Welcome />
         <Switch>
-          <Route exact path='/' component={Resume} />
+          <Route exact path='/' component={Home} />
           <Route exact path='/saved' component={Home} />
           <Route render={() => <h1 className='display-2'>Wrong page!</h1>} />
         </Switch>
-        <StoreProvider>
-            <Switch>
-              <Route 
-                path="/" 
-                element={<Home />} 
-              />
-              <Route 
-                path="/success" 
-                element={<Success />} 
-              />
-              <Route 
-                path="/orderHistory" 
-                element={<OrderHistory />} 
-              />
-              <Route 
-                path="/products/:id" 
-                element={<Detail />} 
-              />
-              <Route
-                path="*" 
-                element={<NoMatch />} 
-              />
-            </Switch>
-          </StoreProvider>
+        <Button variant="contained" component="label">
+           Upload
+        <input hidden accept="image/*" multiple type="file" />
+           </Button>
+      <IconButton color="primary" aria-label="upload picture" component="label">
+  <input hidden accept="image/*" type="file" />
+  <PhotoCamera />
+     </IconButton>
+       <Footer/>
       </>
     </Router>
     </ApolloProvider>
