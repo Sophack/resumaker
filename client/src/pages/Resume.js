@@ -8,27 +8,31 @@ import { CREATE_RESUME } from '../utils/mutations';
 import ResumePreview from '../components/ResumePreview';
 import ResumeBuilder from '../components/ResumeBuilder';
 
-const PopulateResume = (props) => {
+function handleClickResume(e) {
+  e.preventDefault();
+  this.setState({showComponent:true})
+}
+
+const Resume = (props) => {
     return (
         <>    
         <div style={{marginTop: "60px", display: "flex", flexDirection: "row", justifyContent: "center"}}>
-
           {/* Rendered Resume On Left Half of Page */}
           <div className='populated' style={{width : "40%"}}>
             <Card style={{marginTop: "30px", marginBottom: "30px"}}>
               <CardContent>
-                <ResumePreview></ResumePreview>
+                <ResumePreview />
               </CardContent>
             </Card>     
           </div>
           
           {/* Create Resume Form On Right Side */}
           <div className='createResume' style={{width : "50%", marginLeft: "20px", marginTop: "35px"}}>
-            <ResumeBuilder></ResumeBuilder>
+            <ResumeBuilder />
           </div>
         </div>
         </>        
   )
 };
 
-export default PopulateResume;
+export default Resume;
