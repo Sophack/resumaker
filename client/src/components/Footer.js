@@ -6,7 +6,7 @@ import TwitterIcon from '@mui/icons-material/Twitter';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import Typography from '@mui/material/Typography';
-import { makeStyles } from '@mui/material';
+
 
 const styles = {
     skyblue: {
@@ -47,7 +47,7 @@ return (
       width: 500, 
       background:"none",
       height: '2rem',
-      transform: "translate(50%,0)",
+      transform: "translate(60%,0)",
     }} 
       value={value} onChange={handleChange}>
       <BottomNavigationAction 

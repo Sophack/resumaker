@@ -1,9 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Typography, Box, Button } from "@mui/material";
 import ResumeFields from "./ResumeBuilder";
-
-import PDFButton from './components/ButtonPDF';
-import DonateButton from './components/DonateButton';
 import Auth from "../utils/auth";
 import { useMutation } from "@apollo/react-hooks";
 
