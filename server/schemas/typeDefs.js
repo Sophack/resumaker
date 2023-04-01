@@ -10,7 +10,7 @@ const typeDefs = gql`
   type Mutation {
     login(email: String!, password: String!): Auth
     addUser(email: String!, password: String!): Auth
-    createResume(resumeInput: ResumeInput!): Auth
+    createResume(resumeInput: ResumeInput!): Resume
   }
 
   type User {

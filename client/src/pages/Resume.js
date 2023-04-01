@@ -1,32 +1,52 @@
 import { useState, useEffect } from "react";
 import Auth from "../utils/auth";
 
-import { useMutation } from "@apollo/client";
+import { useQuery, useMutation } from "@apollo/client";
 import { CREATE_RESUME } from "../utils/mutations";
+import { GET_RESUME } from "../utils/queries";
 import CreateResume from "../components/CreateResume";
 
-const LOCAL_STORAGE_KEY = "resumaker.resume";
-
 export default function Resume() {
-  const [resume, setResume] = useState({});
+  const { loading, error, data } = useQuery(GET_RESUME, { errorPolicy: "all"});
+  let resumeData = data?.getResume || {};
+
+  const [createResume] = useMutation(CREATE_RESUME);
+
+  const [resume, setResume] = useState({resumeData});
   console.log("this is resume state", resume)
-
-  useEffect(() => {
-    const resumeJSON = localStorage.getItem(LOCAL_STORAGE_KEY);
-    if (resumeJSON != null) setResume(JSON.parse(resumeJSON));
-  }, []);
-
-  useEffect(() => {
-    console.log("Rendered:");
-    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(resume));
-  }, [resume]);
-
-  const [createResume, { error }] = useMutation(CREATE_RESUME);
 
   function handleCreateResume() {
     try {
-      const newResume = createResume([...resume, setResume]);
-      console.log("this is newResume", resume)
+      const newResume = {
+        personal: {
+          fullName: "",
+          email: "",
+          phone: "",
+          location: "",
+          objective: "",
+          role: "",
+        },
+        education: {
+          school: "",
+          program: "",
+          end: "",
+          start: "",
+        },
+        work: {
+          company: "",
+          roles: "",
+          startDate: "",
+          endDate: "",
+          duties: "",
+        },
+        skills: {
+          industryKnowledge: [""],
+          toolsAndTechnologies: [""],
+          languages: [""],
+          transferableSkills: [""],
+        }
+      };
+      console.log("this is newResume", newResume)
     } catch (err) {
       console.error(err);
     }
