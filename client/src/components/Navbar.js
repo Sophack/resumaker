@@ -81,6 +81,7 @@ const AppNavbar = () => {
       {/* set modal data up */}
       <Modal
         open={showModal}
+        className='fade-in'
         onClose={() => setShowModal(false)+setShowSignup(false)+setShowLogin(false)}
         aria-labelledby='signup-modal'
       >

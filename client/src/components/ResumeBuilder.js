@@ -2,8 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { GET_ME, GET_RESUME } from "../utils/queries";
 import { useQuery, useMutation } from '@apollo/client';
 import { CREATE_RESUME } from '../utils/mutations';
-import { FormControl, TextField, TextArea, Card, CardContent, Button } from '@mui/material';
+import { FormControl, TextField, Box, Button, Tab, Tabs, TabPanel } from '@mui/material';
 import TextareaAutosize from '@mui/base/TextareaAutosize'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUser, faGraduationCap, faBriefcase, faClipboard } from '@fortawesome/free-solid-svg-icons'
+import PropTypes from 'prop-types'; 
+
 import Auth from '../utils/auth';
 
 const ResumeFields = () => {
@@ -28,25 +32,30 @@ const ResumeFields = () => {
     });
 
     const handlePersonalInfoChange = (event) => {
-        setPersonalState({
-            ...personalState,
-            [event.target.name]: event.target.value
-        });
-    };    
+        event.stopPropagation(); 
+        const { name, value } = event.target;
+        setPersonalState(prevState => ({
+          ...prevState,
+          [name]: value
+        }));
+      }; 
 
-    const [educationState, setEducationState] = useState({
+    const [educationState, setEducationState] = useState([{
+        id: '',
         school: '',
         program: '',
         end: '',
         start: '',
-    });
+    }]);
 
     const handleEducationChange = (event) => {
-        setEducationState({
-            ...educationState,
-            [event.target.name]: event.target.value
-        });
-    };
+        event.stopPropagation(); 
+        const { name, value } = event.target;
+        setEducationState(prevState => ({
+          ...prevState,
+          [name]: value
+        }));
+      };
     
     const [workState, setWorkState] = useState({
         company: '',
@@ -57,11 +66,13 @@ const ResumeFields = () => {
     });
 
     const handleWorkChange = (event) => {
-        setWorkState({
-            ...workState,
-            [event.target.name]: event.target.value
-        });
-    };    
+        event.stopPropagation(); 
+        const { name, value } = event.target;
+        setWorkState(prevState => ({
+          ...prevState,
+          [name]: value
+        }));
+      };   
 
     const handleSubmit= (event) => {
         event.preventDefault();
@@ -92,44 +103,138 @@ const ResumeFields = () => {
 
     }
 
+    const TabPanel = (props) => {
+        const { children, value, index, ...other } = props;
+      
+        return (
+          <div
+            role="tabpanel"
+            hidden={value !== index}
+            id={`simple-tabpanel-${index}`}
+            aria-labelledby={`simple-tab-${index}`}
+            {...other}
+          >
+            {value === index && (
+              <Box>
+                {children}
+              </Box>
+            )}
+          </div>
+        );
+      }
+      
+      TabPanel.propTypes = {
+        children: PropTypes.node,
+        index: PropTypes.number.isRequired,
+        value: PropTypes.number.isRequired,
+      };
+      
+      const a11yProps = (index) => {
+        return {
+          id: `simple-tab-${index}`,
+          'aria-controls': `simple-tabpanel-${index}`,
+        };
+      }
+
+    const [tabValue, setTabValue] = useState(0);
+    const [textValue, setTextValue] = useState('');
+
+    const handleTabChange = (event, newValue) => {
+        event.stopPropagation(); 
+        setTabValue(newValue);
+      };
+
+    const userIcon = <FontAwesomeIcon icon={faUser} />
+    const gradCapIcon = <FontAwesomeIcon icon={faGraduationCap} />
+    const briefcaseIcon = <FontAwesomeIcon icon={faBriefcase} />
+    const clipboardIcon = <FontAwesomeIcon icon={faClipboard} />
+
     if(resumeData){
         return(
-            <div>
-            <h1>Create Resume</h1>
-            <FormControl style={{width : "90%"}}>
-                <h3 style={{ marginTop : "15px"}}>Personal</h3>
-                <TextField label="Full Name" name='fullName' value = {personalState.fullName} onChange={handlePersonalInfoChange} sx={{ width: "90%", marginTop: "5px"}}/>
-                <TextField label="Location" name='location' value = {personalState.location} onChange={handlePersonalInfoChange} sx={{ width: "90%", marginTop: "5px"}}/>
-                <TextField label="Phone Number" name='phone' value = {personalState.phone} onChange={handlePersonalInfoChange} sx={{ width: "90%", marginTop: "5px"}}/>
-                <TextField label="Email" name='email' value = {personalState.email} onChange={handlePersonalInfoChange} sx={{ width: "90%", marginTop: "5px"}}/>
-                <TextField label="Role" name='role' value = {personalState.role} onChange={handlePersonalInfoChange} sx={{ width: "90%", marginTop: "5px"}}/>
-                <TextareaAutosize aria-label="empty textarea" name='objective' value = {personalState.objective} onChange={handlePersonalInfoChange} placeholder="  Objective" style={{ width: "90%", height: "60px"  , marginTop: "5px" }}/>
-            </FormControl>
+            <>
+                <Box id='form-container'>
+                <div id='form-tabs'>
+                    <Tabs value={tabValue} onChange={handleTabChange} aria-label="Form Tabs">
+                        <Tab className='tab-personal' icon={userIcon} aria-label="Personal" {...a11yProps(0)} />
+                        <Tab className='tab-education' icon={gradCapIcon} aria-label="Education" {...a11yProps(1)} />
+                        <Tab className='tab-work'icon={briefcaseIcon} aria-label="Work" {...a11yProps(2)} />
+                        <Tab className='tab-skills' icon={clipboardIcon} aria-label="Skills" {...a11yProps(3)} />
+                    </Tabs>
+                </div>
+            <div className='form-box'>
+            <TabPanel value={tabValue} index={0}>
+                <FormControl style={{width : "90%"}}>
+                    <TextField
+                         label="Full name" 
+                         name='fullName' 
+                         value={personalState.fullName} 
+                         key={`fullName-${personalState.fullName}`} 
+                         onChange={handlePersonalInfoChange}
+                         InputLabelProps={{ shrink: true }} 
+                         style={{marginTop: '20px' }} 
+                    />
+                    <TextField
+                         label="Role" 
+                         name='role' 
+                         value={personalState.role} 
+                         key={`role-${personalState.role}`} onChange={handlePersonalInfoChange} InputLabelProps={{ shrink: true }} style={{marginTop: '20px'}} />
+                    <TextField
+                         label="Location" name='location' value={personalState.location} key={`location-${personalState.location}`} onChange={handlePersonalInfoChange} InputLabelProps={{ shrink: true }} style={{marginTop: '20px'}} />
+                    <TextField
+                         label="Email" name='email' value={personalState.email} key={`email-${personalState.email}`} onChange={handlePersonalInfoChange} InputLabelProps={{ shrink: true }} style={{marginTop: '20px'}} />
+                    <TextField
+                         label="Phone number" name='phone' value={personalState.phone} key={`phone-${personalState.phone}`}  onChange={handlePersonalInfoChange} InputLabelProps={{ shrink: true }} style={{marginTop: '20px'}} />
+                    <TextField
+                         label="Website" name='website'  onChange={handlePersonalInfoChange } InputLabelProps={{ shrink: true }} style={{marginTop: '20px'}} />
+                    <TextField
+                         label="LinkedIn" name='linkedin'  onChange={(e) => e.target.value} InputLabelProps={{ shrink: true }} style={{marginTop: '20px'}} />
+                    <TextField
+                         label="GitHub" name='github'  onChange={(e) => e.target.value} InputLabelProps={{ shrink: true }} style={{marginTop: '20px'}} />
+                    <TextField
+                         multiline rows={5} label="Career objective" name='objective' value={personalState.objective} key={`objective-${personalState.objective}`} onChange={handlePersonalInfoChange} InputLabelProps={{ shrink: true }} style={{marginTop: '20px'}}/>
+                </FormControl>
+            </TabPanel>
+            </div>
 
-            <FormControl style={{width : "90%"}}>
-                <h3 style={{ marginTop : "15px"}}>Education</h3>
-                <TextField label="School"  name='school' value = {educationState.school} onChange={handleEducationChange} sx={{ width: "90%", marginTop: "5px"}}/>
-                <TextField label="Program"  name='program' value = {educationState.program} onChange={handleEducationChange} sx={{ width: "90%", marginTop: "5px"}}/>
-                <TextField label="Start"  name='start' value = {educationState.start} onChange={handleEducationChange} sx={{ width: "90%", marginTop: "5px"}}/>
-                <TextField label="End"  name='end' value = {educationState.end} onChange={handleEducationChange} sx={{ width: "90%", marginTop: "5px"}}/>
-            </FormControl>
+            <div className='form-box'>
+            <TabPanel value={tabValue} index={1}>
+                <FormControl style={{width : "90%"}}>
+                    <TextField label="School"  name='school' value = {educationState.school} onChange={handleEducationChange} />
+                    <TextField label="Program"  name='program' value = {educationState.program} onChange={handleEducationChange} />
+                    <TextField label="Start"  name='start' value = {educationState.start} onChange={handleEducationChange} />
+                    <TextField label="End"  name='end' value = {educationState.end} onChange={handleEducationChange} />
+                </FormControl>
+            </TabPanel>
+            </div>
             
-            <FormControl style={{width : "90%"}}>
-                <h3 style={{ marginTop : "15px"}}>Work</h3>
-                <TextField label="Company" name='company' value = {workState.company} onChange={handleWorkChange} sx={{ width: "90%", marginTop: "5px"}}/>
-                <TextareaAutosize aria-label="empty textarea" name='roles' value = {workState.roles} onChange={handleWorkChange} placeholder="  What was the role(s)" style={{ width: "90%", height: "60px"  , marginTop: "5px" }}/>
-                <TextField label="Start" name='startDate' value = {workState.startDate} onChange={handleWorkChange} sx={{ width: "90%", marginTop: "5px"}}/>
-                <TextField label="End" name='endDate' value = {workState.endDate} onChange={handleWorkChange} sx={{ width: "90%", marginTop: "5px"}}/>
-                <TextareaAutosize aria-label="empty textarea" name='duties' value = {workState.duties} onChange={handleWorkChange} placeholder="  Duties" style={{ width: "90%", height: "60px"  , marginTop: "5px" }}/>
-            </FormControl>
+            <div className='form-box'>
+            <TabPanel value={tabValue} index={2}>
+                <FormControl style={{width : "90%"}}>
+                    <TextField label="Company" name='company' value={workState.company} onChange={handleWorkChange} />
+                    <TextareaAutosize aria-label="empty textarea" name='roles' value={workState.roles} onChange={handleWorkChange} />
+                    <TextField label="Start" name='startDate' valu ={workState.startDate} onChange={handleWorkChange} />
+                    <TextField label="End" name='endDate' value={workState.endDate} onChange={handleWorkChange} />
+                    <TextareaAutosize aria-label="empty textarea" name='duties' value={workState.duties} onChange={handleWorkChange} />
+                </FormControl>
+            </TabPanel>
+            </div>
 
-
-            <FormControl>
-              <Button type="submit" variant="contained" color="primary" onClick={handleSubmit}>
-                Get Data Log
-              </Button>
-            </FormControl>
-          </div>
+            <div className='form-box'>
+            <TabPanel value={tabValue} index={3}>
+                <FormControl>
+                    <h3 style={{ marginTop : "15px"}}>Skills</h3>
+                </FormControl>
+            </TabPanel>
+            </div>
+            </Box>
+             {/* <div id='button-container'>
+                <FormControl>
+                <Button type="submit" variant="contained" color="primary" onClick={handleSubmit}>
+                    Save
+                </Button>
+                </FormControl> 
+            </div>  */}
+          </>
         )
     }
 }
