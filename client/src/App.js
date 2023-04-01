@@ -13,6 +13,7 @@ import Welcome from './components/Welcome';
 import Footer from './components/Footer';
 import PDFButton from './components/ButtonPDF';
 import DonateButton from './components/DonateButton';
+import ResumeFields from './components/ResumeBuilder';
 
 // import Payment from './components/Payment';
 // import {loadStripe} from '@stripe/stripe-js';
@@ -56,8 +57,7 @@ function App() {
           <Route render={() => <h1 className='display-2'>Wrong page!</h1>} />
         </Switch>
       </>
-     
-
+      
       <PDFButton/>
       <DonateButton/>
       <Footer/>

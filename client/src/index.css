@@ -310,6 +310,35 @@ a {
   cursor: none;
 }
 
+
+#paymentBox {
+  max-width: 436px;
+  background-color: var(--white);
+  height: 45vh;
+  padding: 40px 35px 35px 50px;
+  opacity: 92%;
+  box-shadow: 0px 0px 10px 10px var(--shadow);
+  position: absolute;
+  border-radius: 10px;
+  top: 50%;
+  left: 50%;
+}
+
+#paymentBox h2 {
+  cursor: default;
+  font-family: 'Montserrat', sans-serif !important;
+  font-size: 35px !important;
+  font-weight: 800 !important;
+  letter-spacing: 2px !important;
+  position: relative !important;
+  width: fit-content;
+  background: linear-gradient(to right, var(--lightblue) 0%, var(--skyblue) 25%, var(--purple) 75%, var(--pink) 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 30px !important;
+}
+
 /* PDF styling  */
 .PDFcontainer {
   display: flex;
