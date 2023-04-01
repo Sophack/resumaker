@@ -292,7 +292,6 @@ a {
   letter-spacing: 1px !important;
   margin-top: 20px !important;
   box-shadow: 0 8px 6px -6px var(--shadow) !important;
-  justify-content: center !important;
   border: none;
   padding: 5px;
   margin: 0px 0px 20px 20px;
@@ -380,7 +379,6 @@ a {
   border-radius: 20px !important;
   width: 20% !important;
   letter-spacing: 1px !important;
-  margin-top: 20px !important;
   box-shadow: 0 8px 6px -6px var(--shadow) !important;
   justify-content: center !important;
   border: none;
@@ -400,6 +398,26 @@ a {
   cursor: none;
 }
 
+
+/* footer styling */
+
+.footerGasp {
+  cursor: default;
+  font-family: 'Montserrat', sans-serif !important;
+  font-size: 35px !important;
+  font-weight: 300 !important;
+  letter-spacing: 2px !important;
+  position: relative !important;
+  opacity: 80%;
+  left: 50%;
+  transform: translate(-50%,0);
+  width: fit-content;
+  background: linear-gradient(to right, var(--lightblue) 0%, var(--skyblue) 25%, var(--purple) 75%, var(--pink) 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 10px !important;
+}
 
 .hide {
   display: none !important;

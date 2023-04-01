@@ -5,7 +5,8 @@ import YouTubeIcon from '@mui/icons-material/YouTube';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
-
+import Typography from '@mui/material/Typography';
+import { makeStyles } from '@mui/material';
 
 const styles = {
     skyblue: {
@@ -23,11 +24,17 @@ const styles = {
           lightblue: {
             color: '#9fc9fc',
             },
+
+            footerGasp: {
+              border:"pink solid 8px"
+            },
+
   };
+
 
 const Footer = () => {
 
-      const [value, setValue] = React.useState('recents');
+const [value, setValue] = React.useState('recents');
 
 const handleChange = (event: React.SyntheticEvent, newValue: string) => {
   setValue(newValue);
@@ -40,6 +47,7 @@ return (
       width: 500, 
       background:"none",
       height: '2rem',
+      transform: "translate(50%,0)",
     }} 
       value={value} onChange={handleChange}>
       <BottomNavigationAction 
@@ -76,6 +84,9 @@ return (
       />
       
     </BottomNavigation>
+    <Typography className='footerGasp'>
+      Copyrights of G A S P 2023
+    </Typography>
   </>
   );
 }

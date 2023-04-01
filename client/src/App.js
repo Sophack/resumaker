@@ -52,14 +52,14 @@ function App() {
       <>
         <Navbar/>
         <Welcome/>
+        
         <Switch>
           <Route exact path='/' component={Home} />
           <Route render={() => <h1 className='display-2'>Wrong page!</h1>} />
         </Switch>
       </>
-      
-      <PDFButton/>
       <DonateButton/>
+      <PDFButton/>
       <Footer/>
     </Router>
     </ApolloProvider>
