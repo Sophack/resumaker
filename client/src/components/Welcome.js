@@ -20,7 +20,7 @@ export default function Welcome() {
               highlights your skills and experience the best & become employment
               ready!
             </Typography>
-              <Button component={Link} to="/resume" id="welcome-button">Make a resume!</Button>
+              <Link to="/resume"><Button id="welcome-button">Make a resume!</Button></Link>
           </Box>
         </div>
       </section>

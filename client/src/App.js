@@ -6,7 +6,7 @@ import {
   createHttpLink,
 } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Home from "./pages/Home";
 import Navbar from "./components/Navbar";
@@ -44,17 +44,15 @@ function App() {
 
   return (
     <ApolloProvider client={client}>
-      <Router>
         <>
           <Navbar />
           <Welcome />
-          <Switch>
+          <Routes>
             <Route path="" element={<Home />} />
             <Route path="/resume" element={<Resume />} />
             <Route render={() => <h1 className="display-2">Wrong page!</h1>} />
-          </Switch>
+          </Routes>
         </>
-      </Router>
     </ApolloProvider>
   );
 }
