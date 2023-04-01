@@ -1,7 +1,6 @@
-const { gql } = require('apollo-server-express');
+const { gql } = require("apollo-server-express");
 
 const typeDefs = gql`
-
   type Query {
     me: User
     getResume: Resume
@@ -28,7 +27,7 @@ const typeDefs = gql`
     skills: [Skills]
   }
 
-  input ResumeInput{
+  input ResumeInput {
     personal: [personalInput]
     education: [educationInput]
     work: [workInput]
@@ -60,7 +59,10 @@ const typeDefs = gql`
   }
 
   input skillsInput {
-    skill: String
+    industryKnowledge: [String]
+    toolsAndTechnologies: [String]
+    languages: [String]
+    transferableSkills: [String]
   }
 
   type Personal {
@@ -91,10 +93,13 @@ const typeDefs = gql`
 
   type Skills {
     _id: ID!
-    skill: String
+    industryKnowledge: [String]
+    toolsAndTechnologies: [String]
+    languages: [String]
+    transferableSkills: [String]
   }
-  
-  type Auth{
+
+  type Auth {
     token: ID!
     user: User
   }
