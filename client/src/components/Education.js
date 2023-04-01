@@ -7,11 +7,16 @@ const EducationData = () => {
   const { loading, data } = useQuery(GET_RESUME);
   let resumeData = data?.getResume || {};
 
-  const [educationState, setEducationState] = useState([]);
+  const [educationState, setEducationState] = useState({
+    school: "",
+    program: "",
+    start: "",
+    end: "",
+  });
 
   useEffect(() => {
     if (data) {
-      setEducationState(data.getResume.education);
+      setEducationState(data.getResume);
       console.log(educationState);
     }
   }, [data]);

@@ -14,7 +14,7 @@ import TextareaAutosize from "@mui/base/TextareaAutosize";
 import Auth from "../utils/auth";
 
 const ResumeFields = () => {
-  const { loading, data } = useQuery(GET_RESUME);
+  const { loading, error, data } = useQuery(GET_RESUME, { errorPolicy: "all"});
   let resumeData = data?.getResume || {};
 
   const [savedResume] = useMutation(CREATE_RESUME);

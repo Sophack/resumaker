@@ -7,11 +7,16 @@ const Skills = (props) => {
   const { loading, data } = useQuery(GET_RESUME);
   let resumeData = data?.getResume || {};
 
-  const [skillsState, setSkillsState] = useState([]);
+  const [skillsState, setSkillsState] = useState({
+    industryKnowledge: "",
+    toolsAndTechnologies: "",
+    languages: "",
+    transferableSkills: "",
+  });
 
   useEffect(() => {
     if (data) {
-      setSkillsState(data.getResume.skills);
+      setSkillsState(data.getResume);
       console.log(skillsState);
     }
   }, [data]);

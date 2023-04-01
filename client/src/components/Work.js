@@ -7,11 +7,17 @@ const WorkData = () => {
   const { loading, data } = useQuery(GET_RESUME);
   let resumeData = data?.getResume || {};
 
-  const [workState, setWorkState] = useState([]);
+  const [workState, setWorkState] = useState({
+    company: "",
+    roles: "",
+    startDate: "",
+    endDate: "",
+    duties: "",
+  });
 
   useEffect(() => {
     if (data) {
-      setWorkState(data.getResume.work);
+      setWorkState(data.getResume);
       console.log(workState);
     }
   }, [data]);
