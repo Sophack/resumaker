@@ -13,7 +13,7 @@ import {
 import TextareaAutosize from "@mui/base/TextareaAutosize";
 import Auth from "../utils/auth";
 
-const ResumeFields = () => {
+export default function ResumeBuilder() {
   const { loading, data } = useQuery(GET_RESUME);
   let resumeData = data?.getResume || {};
 
@@ -235,5 +235,3 @@ const ResumeFields = () => {
     );
   }
 };
-
-export default ResumeFields;
