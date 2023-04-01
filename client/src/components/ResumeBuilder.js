@@ -56,27 +56,23 @@ const ResumeFields = ({personalState, setPersonalState, educationState, setEduca
 
     const handleSubmit= (event) => {
         event.preventDefault();
-        console.log(personalState);
-        console.log(educationState);
-        console.log(workState);
-
         const resume = {
             resumeInput: {
                 personal: {
                     ...personalState
                 },
 
-                education: {
-                    ...educationState
-                },
-                work: {
-                    ...workState
-                }
+                // education: {
+                //     ...educationState
+                // },
             }
         }
 
         try {
           delete resume.resumeInput.personal.__typename;
+
+
+          console.log(resume);
           const response = savedResume({variables: { ...resume}});    
         } catch (error) {
             console.log(error);
@@ -208,13 +204,13 @@ const ResumeFields = ({personalState, setPersonalState, educationState, setEduca
             </TabPanel>
             </div>
             </Box>
-             {/* <div id='button-container'>
+             <div id='button-container'>
                 <FormControl>
                 <Button type="submit" variant="contained" color="primary" onClick={handleSubmit}>
                     Save
                 </Button>
                 </FormControl> 
-            </div>  */}
+            </div> 
           </>
         )
     
