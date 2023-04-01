@@ -33,6 +33,18 @@ const ResumeFields = () => {
     role: "",
   });
 
+  function handlePersonalRender({ value, personal }) {
+    const newPersonalState = [...personalState]
+    const index = newPersonalState.findIndex(resumeData => resumeData.value === value);
+    newPersonalState[index] = personal
+    setPersonalState(newPersonalState)
+  }
+
+  function handleRender(render) {
+    console.log("this is render:", render)
+    handlePersonalRender(resumeData.value, { ...resumeData, ...render })
+  }
+
   const handlePersonalInfoChange = (event) => {
     setPersonalState({
       ...personalState,
@@ -70,10 +82,10 @@ const ResumeFields = () => {
   };
 
   const [skillsState, setSkillsState] = useState({
-    industryKnowledge: [""],
-    toolsAndTechnologies: [""],
-    languages: [""],
-    transferableSkills: [""],
+    industryKnowledge: "",
+    toolsAndTechnologies: "",
+    languages: "",
+    transferableSkills: "",
   });
 
   const handleSkillsChange = (event) => {

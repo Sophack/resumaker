@@ -59,10 +59,10 @@ const typeDefs = gql`
   }
 
   input skillsInput {
-    industryKnowledge: [String]
-    toolsAndTechnologies: [String]
-    languages: [String]
-    transferableSkills: [String]
+    industryKnowledge: String
+    toolsAndTechnologies: String
+    languages: String
+    transferableSkills: String
   }
 
   type Personal {
@@ -93,10 +93,10 @@ const typeDefs = gql`
 
   type Skills {
     _id: ID!
-    industryKnowledge: [String]
-    toolsAndTechnologies: [String]
-    languages: [String]
-    transferableSkills: [String]
+    industryKnowledge: String
+    toolsAndTechnologies: String
+    languages: String
+    transferableSkills: String
   }
 
   type Auth {
