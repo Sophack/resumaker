@@ -53,17 +53,15 @@ const ResumeFields = memo(
                 work: {
                     ...workState
                 },
-                skills: {
-                    ...skillsState,
-                },
+                // skills: {
+                //     ...skillsState,
+                // },
             }
         }
         try {
           delete resume.resumeInput.personal.__typename;
           delete resume.resumeInput.education.__typename;
           delete resume.resumeInput.work.__typename;
-          delete resume.resumeInput.skills.__typename;
-
           console.log(resume);
           const response = savedResume({variables: { ...resume}});    
         } catch (error) {
