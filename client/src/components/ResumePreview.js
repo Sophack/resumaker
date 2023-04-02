@@ -1,19 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import { FormControl, TextField, TextArea, Card, CardContent, Button } from '@mui/material';
-import Personal from "./Personal";
-import Education from "./Education";
-import Work from "./Work";
-import Skills from "./Skills";
+import Personal from "./ResumeSections/Personal";
+import Education from "./ResumeSections/Education";
+import Work from "./ResumeSections/Work";
+import Skills from "./ResumeSections/Skills";
  
 
-const ResumePreview = (props) => {
+const ResumePreview = ({personalState, educationState}) => {
 
     return(
       <>
-        <Personal></Personal>
-        <Education></Education>
-        <Work></Work>
-        <Skills></Skills>        
+        <section id='resume-preview'>
+          <Personal personalState={personalState}></Personal>
+          <Education educationState={educationState}></Education>
+          <Work></Work>
+          <Skills></Skills>
+        </section>  
       </>  
     );
 } 

@@ -2,9 +2,9 @@ import React, { useState, useEffect, useCallback  } from 'react';
 import { FormControl, TextField, TextArea, Card, CardContent, Button } from '@mui/material';
 import { GET_ME, GET_RESUME } from "../utils/queries";
 import { useQuery, useMutation } from '@apollo/client';
-import Templates from '../components/Templates';
-import ResumeBuilder from '../components/ResumeBuilder';
-import ResumePreview from '../components/ResumePreview';
+import Templates from './Templates'
+import ResumeBuilder from './ResumeBuilder';
+import ResumePreview from './ResumePreview';
 
 const MakeAResume = () => {
 
