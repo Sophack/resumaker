@@ -1,34 +1,74 @@
-import React, { useState, useEffect } from 'react';
-import { useQuery, useMutation } from '@apollo/client';
+import React, { useState, useEffect, useCallback  } from 'react';
 import { FormControl, TextField, TextArea, Card, CardContent, Button } from '@mui/material';
-import TextareaAutosize from '@mui/base/TextareaAutosize';
-import Auth from '../utils/auth';
 import { GET_ME, GET_RESUME } from "../utils/queries";
-import { CREATE_RESUME } from '../utils/mutations';
-import ResumePreview from '../components/ResumePreview';
+import { useQuery, useMutation } from '@apollo/client';
+import Templates from '../components/Templates';
 import ResumeBuilder from '../components/ResumeBuilder';
+import ResumePreview from '../components/ResumePreview';
 
-const PopulateResume = (props) => {
-    return (
-        <>    
-        <div style={{marginTop: "60px", display: "flex", flexDirection: "row", justifyContent: "center"}}>
+const MakeAResume = () => {
 
-          {/* Rendered Resume On Left Half of Page */}
-          <div className='populated' style={{width : "40%"}}>
-            <Card style={{marginTop: "30px", marginBottom: "30px"}}>
-              <CardContent>
-                <ResumePreview></ResumePreview>
-              </CardContent>
-            </Card>     
-          </div>
-          
-          {/* Create Resume Form On Right Side */}
-          <div className='createResume' style={{width : "50%", marginLeft: "20px", marginTop: "35px"}}>
-            <ResumeBuilder></ResumeBuilder>
-          </div>
-        </div>
-        </>        
-  )
-};
+  const {loading, data} = useQuery(GET_RESUME);
+  let resumeData = data?.getResume || {};
 
-export default PopulateResume;
+  const [personalState, setPersonalState] = useState({
+      fullName: '',
+      email: '',
+      phone: '',
+      location: '',
+      objective: '',
+      role: ''
+  })
+
+  const [educationState, setEducationState] = useState({    
+    school: '',
+    program: '',
+    start: '',
+    end: ''    
+  });
+
+  const handlePersonalChange = (event, propertyName) => { 
+      setPersonalState({
+        ...personalState,
+        [propertyName]: event.target.value
+    });     
+  };
+
+  const handleEducationChange = (event, propertyName) => {
+    setEducationState({
+      ...educationState,
+      [propertyName]: event.target.value
+    }); 
+  };
+
+  
+  useEffect(()=> {
+      if (data) {    
+          setPersonalState(data.getResume.personal[0]);
+          console.log(data.getResume.personal[0])
+          setEducationState(data.getResume.education[0]);
+          console.log(data.getResume.education)
+      }
+  }, [data])
+
+    return(
+      <>
+        <section id='resume-maker-container'>
+            <h2 id='builder-title'>Create your resume</h2>
+            <Templates />
+            <div id='builder-preview'>
+                <ResumeBuilder personalState={personalState} 
+                  handlePersonalChange={handlePersonalChange} 
+                  educationState={educationState} 
+                  setEducationState={setEducationState} 
+                  handleEducationChange={handleEducationChange}/>
+                
+                <ResumePreview   personalState={personalState}
+                  educationState={educationState}/>
+            </div>
+        </section>
+      </>  
+    );
+} 
+
+export default MakeAResume;

@@ -10,13 +10,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Navbar from './components/Navbar';
 import Welcome from './components/Welcome';
-import Footer from './components/Footer';
-import PDFButton from './components/ButtonPDF';
-import DonateButton from './components/DonateButton';
-import ResumeFields from './components/ResumeBuilder';
-
-// import Payment from './components/Payment';
-// import {loadStripe} from '@stripe/stripe-js';
+import Resume from './pages/Resume';
 
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
@@ -55,6 +49,7 @@ function App() {
         
         <Switch>
           <Route exact path='/' component={Home} />
+          <Route exact path='/resume' component={Resume} />
           <Route render={() => <h1 className='display-2'>Wrong page!</h1>} />
         </Switch>
       </>

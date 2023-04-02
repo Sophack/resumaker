@@ -55,6 +55,7 @@ const LoginForm = () => {
 
   return (
     <>
+    <div className='fade-in'>
     <div className={showElement ? 'hide' : null}>
       <Typography className='modal-title' component='h1'>
         Log in
@@ -112,6 +113,7 @@ const LoginForm = () => {
           New user? <a href='/#' onClick={() => setShowElement(!showElement)}>Create an account</a>!
         </Typography>
       </form>
+      </div>
       </div>
       {showElement && <SignUpForm />}
     </>
