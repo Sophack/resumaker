@@ -4,7 +4,7 @@ import { GET_ME, GET_RESUME } from "../utils/queries";
 import { useQuery, useMutation } from '@apollo/client';
 import { CREATE_RESUME } from '../utils/mutations';
 import { FormControl, TextField, Box, Button, Tab, Tabs } from '@mui/material';
-import { TabContext, TabList, TabPanel } from '@material-ui/lab';
+
 
 import TextareaAutosize from '@mui/base/TextareaAutosize'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';

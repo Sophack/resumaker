@@ -28,15 +28,11 @@ const Welcome = () => {
               </>
                 )} 
           </Box>
-          {show ? <ResumeFields /> : null}
-          <Button id="welcome-button" onClick={() => setShow(!show)}>
-            Make a resume!
-          </Button>
-
         </div>
       </section>
       {showElement && <Resume/>}
     </>
+
   );
 };
 
