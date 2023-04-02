@@ -20,27 +20,34 @@ const MakeAResume = () => {
       role: ''
   })
 
-  const [educationState, setEducationState] = useState([]);
+  const [educationState, setEducationState] = useState({    
+    school: '',
+    program: '',
+    start: '',
+    end: ''    
+  });
 
-  const handlePersonalInfoChange = (event) => {
-    setPersonalState({
+  const handlePersonalChange = (event, propertyName) => { 
+      setPersonalState({
         ...personalState,
-        [event.target.name]: event.target.value
-    });
-};  
+        [propertyName]: event.target.value
+    });     
+  };
 
-const handlePersonalChange = (event, propertyName) => { 
-    setPersonalState({
-      ...personalState,
+  const handleEducationChange = (event, propertyName) => {
+    setEducationState({
+      ...educationState,
       [propertyName]: event.target.value
-  });     
-};
+    }); 
+  };
 
   
   useEffect(()=> {
       if (data) {    
           setPersonalState(data.getResume.personal[0]);
-          setEducationState(data.getResume.education);
+          console.log(data.getResume.personal[0])
+          setEducationState(data.getResume.education[0]);
+          console.log(data.getResume.education)
       }
   }, [data])
 
@@ -51,7 +58,11 @@ const handlePersonalChange = (event, propertyName) => {
             <Templates />
             <div id='builder-preview'>
                 <ResumeBuilder personalState={personalState} 
-                  handlePersonalChange={handlePersonalChange} educationState={educationState} setEducationState={setEducationState} />
+                  handlePersonalChange={handlePersonalChange} 
+                  educationState={educationState} 
+                  setEducationState={setEducationState} 
+                  handleEducationChange={handleEducationChange}/>
+                
                 <ResumePreview   personalState={personalState}
                   educationState={educationState}/>
             </div>

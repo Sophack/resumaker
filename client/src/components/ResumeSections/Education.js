@@ -8,15 +8,15 @@ const EducationData = ({educationState}) => {
     if(educationState){
         return(
             <>
-              <h2>Education</h2>
-              {educationState.map((item,index)=>
-                <div key={index}>
-                <p>Institution: {item.school}</p>
-                <p>Program: {item.program}</p>
-                <p>End: {item.start}</p>
-                <p>Start: {item.end}</p>
-                </div>  
-              )}            
+              <h2>Education</h2>              
+                <div>                    
+                    <div>
+                        <p>School: {educationState.school}</p>
+                        <p>Program: {educationState.program}</p>
+                        <p>Start: {educationState.start}</p>
+                        <p>End: {educationState.end}</p>
+                    </div>                
+                </div>                             
             </>  
         );
     } else {

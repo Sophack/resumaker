@@ -4,6 +4,7 @@ import Personal from "./ResumeSections/Personal";
 import Education from "./ResumeSections/Education";
 import Work from "./ResumeSections/Work";
 import Skills from "./ResumeSections/Skills";
+
  
 
 const ResumePreview = ({personalState, educationState}) => {

@@ -10,37 +10,21 @@ import PropTypes from 'prop-types';
 
 import Auth from '../utils/auth';
 
-const ResumeFields = memo(({personalState, handlePersonalChange, educationState, setEducationState}) => {
+
+
+const ResumeFields = memo(({personalState, handlePersonalChange,educationState, setEducationState, handleEducationChange}) => {
+
 
     const [selectedTab, setSelectedTab] = useState(0);
     const [focusedInput, setFocusedInput] = useState(null);
     const inputRefs = useRef([]);
-    console.log(personalState);
     const [savedResume] = useMutation(CREATE_RESUME);
 
     //State Objects
     const [educationStateObject, setEducation] = useState([]);
     const [workStateObject, setWork] = useState([]);
     const [skillStateObject, setSkills] = useState([]);
-  
-    useEffect(() => {
-      if (focusedInput !== null) {
-        inputRefs.current[focusedInput]?.focus();
-      }
-      inputRefs.current[focusedInput]?.focus();
-      console.log(focusedInput + "focused");
-    }, [personalState]);
 
-
-    const handleEducationChange = (event) => {
-        event.stopPropagation(); 
-        const { name, value } = event.target;
-        setEducationState(prevState => ({
-          ...prevState,
-          [name]: value
-        }));
-      };
-    
     const [workState, setWorkState] = useState({
         company: '',
         roles: '',
@@ -68,9 +52,9 @@ const ResumeFields = memo(({personalState, handlePersonalChange, educationState,
                 personal: {
                     ...personalState
                 },
-                // education: {
-                //     ...educationState
-                // },
+                education: {
+                    ...educationState
+                },
                 // work: {
                 //     ...workState
                 // }
@@ -79,7 +63,7 @@ const ResumeFields = memo(({personalState, handlePersonalChange, educationState,
 
         try {
           delete resume.resumeInput.personal.__typename;
-
+          delete resume.resumeInput.education.__typename;
 
           console.log(resume);
           const response = savedResume({variables: { ...resume}});    
