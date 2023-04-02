@@ -404,20 +404,22 @@ a {
 .footerGasp {
   cursor: default;
   font-family: 'Montserrat', sans-serif !important;
-  font-size: 35px !important;
-  font-weight: 300 !important;
+  font-size: 15px !important;
+  font-weight: 600 !important;
   letter-spacing: 2px !important;
   position: relative !important;
-  opacity: 80%;
-  left: 50%;
-  top: 10%;
+  opacity: 60%;
   transform: translate(-50%,0);
   width: fit-content;
   background: linear-gradient(to right, var(--lightblue) 0%, var(--skyblue) 25%, var(--purple) 75%, var(--pink) 100%);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  margin-bottom: 10px !important;
+  margin: 0px 0px 100px 100px !important; 
+}
+
+.footerDiv {
+  
 }
 
 .hide {

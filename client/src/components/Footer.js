@@ -43,6 +43,7 @@ const handleChange = (event: React.SyntheticEvent, newValue: string) => {
 
 return (
     <>
+    <div className='footerDiv'>
   <BottomNavigation sx={{ 
       width: 500, 
       background:"none",
@@ -84,9 +85,12 @@ return (
       />
       
     </BottomNavigation>
+
     <Typography className='footerGasp'>
-      Copyrights of G A S P 2023
+    GASP 2023 © 
     </Typography>
+  
+    </div>
   </>
   );
 }
