@@ -127,7 +127,7 @@ const ResumeFields = memo(({personalState, handlePersonalChange,educationState, 
     const [textValue, setTextValue] = useState('');
 
     const handleTabChange = (event, newValue) => {
-        setSelectedTab(newValue);
+        setSelectedTab(newValue);        
       };
 
     const userIcon = <FontAwesomeIcon icon={faUser} />
@@ -141,15 +141,16 @@ const ResumeFields = memo(({personalState, handlePersonalChange,educationState, 
 
               <Box id='form-container'>
                   <div id='form-tabs'>
-                      <Tabs onChange={handleTabChange} value={selectedTab} aria-label="Form Tabs">
-                          <Tab className='tab-personal' value={0} icon={userIcon} aria-label="Personal" {...a11yProps(0)} />
-                          <Tab className='tab-education' value={1} icon={gradCapIcon} aria-label="Education" {...a11yProps(1)} />
-                          <Tab className='tab-work' icon={briefcaseIcon} value={2} aria-label="Work" {...a11yProps(2)} />
-                          <Tab className='tab-skills' icon={clipboardIcon} value={3} aria-label="Skills" {...a11yProps(3)} />
+                      <Tabs onChange={handleTabChange} selectedTab={selectedTab} aria-label="Form Tabs">
+                          {console.log(selectedTab)}
+                          <Tab className='tab-personal'  icon={userIcon} aria-label="Personal"  />
+                          <Tab className='tab-education' icon={gradCapIcon} aria-label="Education"  />
+                          <Tab className='tab-work' icon={briefcaseIcon}  aria-label="Work"  />
+                          <Tab className='tab-skills' icon={clipboardIcon}  aria-label="Skills" />
                       </Tabs>
                   </div>
 
-              {selectedTab === 0 && (    
+              {selectedTab == 0 && (    
               <div className='form-box'>
                   <FormControl style={{width : "90%"}}>
                       <TextField
@@ -218,22 +219,22 @@ const ResumeFields = memo(({personalState, handlePersonalChange,educationState, 
               </div>
               )}
 
-              {selectedTab === 1 && (
+              {selectedTab == 1 && (
               <div className='form-box'>
-                <TabPanel value="tab2" index={1}>
+                
                     <FormControl style={{width : "90%"}}>
                         <TextField label="School"  name='school' value = {educationState.school} onChange={handleEducationChange} />
                         <TextField label="Program"  name='program' value = {educationState.program} onChange={handleEducationChange} />
                         <TextField label="Start"  name='start' value = {educationState.start} onChange={handleEducationChange} />
                         <TextField label="End"  name='end' value = {educationState.end} onChange={handleEducationChange} />
                     </FormControl>
-                </TabPanel>
+                
                 </div>
               )}
 
-              {selectedTab === 2 && (
+              {selectedTab == 2 && (
               <div className='form-box'>
-              <TabPanel value="tab3" >
+              
                   <FormControl style={{width : "90%"}}>
                       <TextField label="Company" name='company' value={workState.company} onChange={handleWorkChange} />
                       <TextareaAutosize aria-label="empty textarea" name='roles' value={workState.roles} onChange={handleWorkChange} />
@@ -241,16 +242,16 @@ const ResumeFields = memo(({personalState, handlePersonalChange,educationState, 
                       <TextField label="End" name='endDate' value={workState.endDate} onChange={handleWorkChange} />
                       <TextareaAutosize aria-label="empty textarea" name='duties' value={workState.duties} onChange={handleWorkChange} />
                   </FormControl>
-              </TabPanel>
+              
               </div>
               )}
-              {selectedTab === 3 && (
+              {selectedTab == 3 && (
               <div className='form-box'>
-              <TabPanel value="tab4">
+              
                   <FormControl>
                       <h3 style={{ marginTop : "15px"}}>Skills</h3>
                   </FormControl>
-              </TabPanel>
+              
               </div>
               )}            
               </Box>
