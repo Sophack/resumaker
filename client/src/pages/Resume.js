@@ -50,10 +50,14 @@ const handlePersonalChange = (event, propertyName) => {
             <h2 id='builder-title'>Create your resume</h2>
             <Templates />
             <div id='builder-preview'>
-                <ResumeBuilder personalState={personalState} 
-                  handlePersonalChange={handlePersonalChange} educationState={educationState} setEducationState={setEducationState} />
-                <ResumePreview   personalState={personalState}
-                  educationState={educationState}/>
+                <ResumeBuilder 
+                personalState={personalState} 
+                handlePersonalChange={handlePersonalChange} 
+                educationState={educationState} 
+                setEducationState={setEducationState} />
+                <ResumePreview   
+                personalState={personalState}
+                educationState={educationState}/>
             </div>
         </section>
       </>  

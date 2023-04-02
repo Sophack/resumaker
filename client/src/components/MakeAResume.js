@@ -22,6 +22,16 @@ const MakeAResume = () => {
 
   const [educationState, setEducationState] = useState([]);
 
+  const [workState, setWorkState] = useState({
+    company: '',
+    roles: '',
+    startDate: '',
+    endDate: '',
+    duties: ''
+  });
+
+  const [skillsState, setSkillsState] = useState([]);
+
   const handlePersonalInfoChange = (event) => {
     setPersonalState({
         ...personalState,
@@ -36,11 +46,26 @@ const handlePersonalChange = (event, propertyName) => {
   });     
 };
 
+const handleWorkChange = (event) => {
+setWorkState({
+    ...workState,
+    [event.target.name]: event.target.value
+});
+}; 
+
+const handleWork = (event, propertyName) => { 
+  setWorkState({
+    ...workState,
+    [propertyName]: event.target.value
+});     
+};
   
   useEffect(()=> {
       if (data) {    
           setPersonalState(data.getResume.personal[0]);
           setEducationState(data.getResume.education);
+          setWorkState(data.getResume.work);
+          setSkillsState(data.getResume.skills);
       }
   }, [data])
 
@@ -50,10 +75,24 @@ const handlePersonalChange = (event, propertyName) => {
             <h2 id='builder-title'>Create your resume</h2>
             <Templates />
             <div id='builder-preview'>
-                <ResumeBuilder personalState={personalState} 
-                  handlePersonalChange={handlePersonalChange} educationState={educationState} setEducationState={setEducationState} />
-                <ResumePreview   personalState={personalState}
-                  educationState={educationState}/>
+                <ResumeBuilder 
+                personalState={personalState} 
+                handlePersonalChange={handlePersonalChange} 
+                educationState={educationState} 
+                setEducationState={setEducationState}
+                workState={workState}
+                setWorkState={setWorkState}
+                handleWorkChange={handleWorkChange}
+                handleWork={handleWork}
+                skillsState={skillsState}
+                setSkillsState={setSkillsState} 
+                />
+                <ResumePreview   
+                personalState={personalState}
+                educationState={educationState}
+                workState={workState}
+                skillsState={skillsState}
+                />
             </div>
         </section>
       </>  

@@ -6,14 +6,19 @@ import Work from "./ResumeSections/Work";
 import Skills from "./ResumeSections/Skills";
  
 
-const ResumePreview = ({personalState, educationState}) => {
+const ResumePreview = (props) => {
+  const {
+    personalState, 
+    educationState, 
+    workState
+  } = props
 
     return(
       <>
         <section id='resume-preview'>
           <Personal personalState={personalState}></Personal>
           <Education educationState={educationState}></Education>
-          <Work></Work>
+          <Work> workState={workState}</Work>
           <Skills></Skills>
         </section>  
       </>  
