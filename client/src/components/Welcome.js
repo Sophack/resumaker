@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Typography, Box, Button } from '@mui/material';
 
 import MakeAResume from './MakeAResume';
-import Resume from '../pages/Resume'
+import Resume from '../components/MakeAResume';
 
 import Auth from '../utils/auth';
 import { useMutation } from "@apollo/react-hooks";

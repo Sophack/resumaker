@@ -10,10 +10,21 @@ import PropTypes from 'prop-types';
 
 import Auth from '../utils/auth';
 
-
-
-const ResumeFields = memo(({personalState, handlePersonalChange,educationState, setEducationState, handleEducationChange}) => {
-
+const ResumeFields = memo(
+    ({
+        personalState,
+        handlePersonalChange,
+        educationState,
+        setEducationState,
+        handleEducationChange,
+        workState,
+        setWorkState,
+        handleWorkChange,
+        handleWork,
+        skillsState,
+        handleSkillsChange,
+        handleSkills,
+    }) => {
 
     const [selectedTab, setSelectedTab] = useState(0);
     const [focusedInput, setFocusedInput] = useState(null);
@@ -25,25 +36,9 @@ const ResumeFields = memo(({personalState, handlePersonalChange,educationState, 
     const [workStateObject, setWork] = useState([]);
     const [skillStateObject, setSkills] = useState([]);
 
-    const [workState, setWorkState] = useState({
-        company: '',
-        roles: '',
-        startDate: '',
-        endDate: '',
-        duties: ''
-    });
-
-    const handleWorkChange = (event) => {
-      setWorkState({
-          ...workState,
-          [event.target.name]: event.target.value
-      });
-  }; 
-  
-
-  const handleFocus = (propertyName) => {
-    setFocusedInput(propertyName);
-  };
+    const handleFocus = (propertyName) => {
+        setFocusedInput(propertyName);
+    };
 
     const handleSubmit= (event) => {
         event.preventDefault();
@@ -55,15 +50,19 @@ const ResumeFields = memo(({personalState, handlePersonalChange,educationState, 
                 education: {
                     ...educationState
                 },
-                // work: {
-                //     ...workState
-                // }
+                work: {
+                    ...workState
+                },
+                skills: {
+                    ...skillsState,
+                },
             }
         }
-
         try {
           delete resume.resumeInput.personal.__typename;
           delete resume.resumeInput.education.__typename;
+          delete resume.resumeInput.work.__typename;
+          delete resume.resumeInput.skills.__typename;
 
           console.log(resume);
           const response = savedResume({variables: { ...resume}});    
@@ -252,7 +251,7 @@ const ResumeFields = memo(({personalState, handlePersonalChange,educationState, 
                             onFocus={() => handleFocus('company')}
                             ref={(el) => (inputRefs.current[0] = el)}
                             value={workState.company} 
-                            onChange={(event) => handleWorkChange(event, 'company')} 
+                            onChange={(event) => handleWork(event, 'company')} 
                             InputLabelProps={{ shrink: true }} 
                             style={{marginTop: '20px'}} 
                         />
@@ -262,7 +261,7 @@ const ResumeFields = memo(({personalState, handlePersonalChange,educationState, 
                             onFocus={() => handleFocus('roles')}
                             ref={(el) => (inputRefs.current[1] = el)}
                             value={workState.roles} 
-                            onChange={(event) => handleWorkChange(event, 'roles')} 
+                            onChange={(event) => handleWork(event, 'roles')} 
                             InputLabelProps={{ shrink: true }} 
                             style={{marginTop: '20px'}} 
                         />
@@ -272,7 +271,7 @@ const ResumeFields = memo(({personalState, handlePersonalChange,educationState, 
                             onFocus={() => handleFocus('startDate')}
                             ref={(el) => (inputRefs.current[2] = el)}
                             value={workState.startDate} 
-                            onChange={(event) => handleWorkChange(event, 'startDate')} 
+                            onChange={(event) => handleWork(event, 'startDate')} 
                             InputLabelProps={{ shrink: true }} 
                             style={{marginTop: '20px'}} 
                         />
@@ -282,7 +281,7 @@ const ResumeFields = memo(({personalState, handlePersonalChange,educationState, 
                             onFocus={() => handleFocus('endDate')}
                             ref={(el) => (inputRefs.current[3] = el)}
                             value={workState.endDate} 
-                            onChange={(event) => handleWorkChange(event, 'endDate')} 
+                            onChange={(event) => handleWork(event, 'endDate')} 
                             InputLabelProps={{ shrink: true }} 
                             style={{marginTop: '20px'}} 
                         />
@@ -293,7 +292,7 @@ const ResumeFields = memo(({personalState, handlePersonalChange,educationState, 
                             onFocus={() => handleFocus('duties')}
                             ref={(el) => (inputRefs.current[4] = el)}
                             value={workState.duties} 
-                            onChange={(event) => handleWorkChange(event, 'endDate')} 
+                            onChange={(event) => handleWork(event, 'duties')} 
                             InputLabelProps={{ shrink: true }} 
                             style={{marginTop: '20px'}} 
                         />
