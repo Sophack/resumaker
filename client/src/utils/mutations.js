@@ -29,7 +29,10 @@ export const CREATE_RESUME = gql`
       }
       skills {
         _id
-        skill
+        industryKnowledge
+        toolsAndTechnologies
+        languages
+        transferableSkills
       }
     }
   }
