@@ -1,15 +1,13 @@
-import React, { useState, useEffect } from 'react';
-import { useQuery, useMutation } from '@apollo/client';
+import React, { useState, useEffect, useCallback  } from 'react';
 import { FormControl, TextField, TextArea, Card, CardContent, Button } from '@mui/material';
-import TextareaAutosize from '@mui/base/TextareaAutosize';
-import Auth from '../utils/auth';
 import { GET_ME, GET_RESUME } from "../utils/queries";
-import { CREATE_RESUME } from '../utils/mutations';
-import ResumePreview from '../components/ResumePreview';
+import { useQuery, useMutation } from '@apollo/client';
+import Templates from '../components/Templates';
 import ResumeBuilder from '../components/ResumeBuilder';
+import ResumePreview from '../components/ResumePreview';
 
-const PopulateResume = () => {
-  
+const MakeAResume = () => {
+
   const {loading, data} = useQuery(GET_RESUME);
   let resumeData = data?.getResume || {};
 
@@ -24,6 +22,20 @@ const PopulateResume = () => {
 
   const [educationState, setEducationState] = useState([]);
 
+  const handlePersonalInfoChange = (event) => {
+    setPersonalState({
+        ...personalState,
+        [event.target.name]: event.target.value
+    });
+};  
+
+const handlePersonalChange = (event, propertyName) => { 
+    setPersonalState({
+      ...personalState,
+      [propertyName]: event.target.value
+  });     
+};
+
   
   useEffect(()=> {
       if (data) {    
@@ -32,30 +44,20 @@ const PopulateResume = () => {
       }
   }, [data])
 
-    return (
-        <>    
-        <div style={{marginTop: "60px", display: "flex", flexDirection: "row", justifyContent: "center"}}>
+    return(
+      <>
+        <section id='resume-maker-container'>
+            <h2 id='builder-title'>Create your resume</h2>
+            <Templates />
+            <div id='builder-preview'>
+                <ResumeBuilder personalState={personalState} 
+                  handlePersonalChange={handlePersonalChange} educationState={educationState} setEducationState={setEducationState} />
+                <ResumePreview   personalState={personalState}
+                  educationState={educationState}/>
+            </div>
+        </section>
+      </>  
+    );
+} 
 
-          {/* Rendered Resume On Left Half of Page */}
-          <div className='populated' style={{width : "40%"}}>
-            <Card style={{marginTop: "30px", marginBottom: "30px"}}>
-              <CardContent>
-                <ResumePreview personalState={personalState}
-                  educationState={educationState}
-                  ></ResumePreview>
-              </CardContent>
-            </Card>     
-          </div>
-          
-          {/* Create Resume Form On Right Side */}
-          <div className='createResume' style={{width : "50%", marginLeft: "20px", marginTop: "35px"}}>
-            <ResumeBuilder personalState={personalState} setPersonalState={setPersonalState}
-              educationState={educationState} setEducationState={setEducationState}           
-              ></ResumeBuilder>
-          </div>
-        </div>
-        </>        
-  )
-};
-
-export default PopulateResume;
+export default MakeAResume;

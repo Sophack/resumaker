@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback  } from 'react';
 import { FormControl, TextField, TextArea, Card, CardContent, Button } from '@mui/material';
 import { GET_ME, GET_RESUME } from "../utils/queries";
 import { useQuery, useMutation } from '@apollo/client';
@@ -22,6 +22,20 @@ const MakeAResume = () => {
 
   const [educationState, setEducationState] = useState([]);
 
+  const handlePersonalInfoChange = (event) => {
+    setPersonalState({
+        ...personalState,
+        [event.target.name]: event.target.value
+    });
+};  
+
+const handlePersonalChange = (event, propertyName) => { 
+    setPersonalState({
+      ...personalState,
+      [propertyName]: event.target.value
+  });     
+};
+
   
   useEffect(()=> {
       if (data) {    
@@ -36,8 +50,8 @@ const MakeAResume = () => {
             <h2 id='builder-title'>Create your resume</h2>
             <Templates />
             <div id='builder-preview'>
-                <ResumeBuilder personalState={personalState} setPersonalState={setPersonalState}
-              educationState={educationState} setEducationState={setEducationState} />
+                <ResumeBuilder personalState={personalState} 
+                  handlePersonalChange={handlePersonalChange} educationState={educationState} setEducationState={setEducationState} />
                 <ResumePreview   personalState={personalState}
                   educationState={educationState}/>
             </div>

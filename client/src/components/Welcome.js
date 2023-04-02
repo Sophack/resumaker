@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Typography, Box, Button } from '@mui/material';
 
 import MakeAResume from './MakeAResume';
+import Resume from '../pages/Resume'
 
 import Auth from '../utils/auth';
 import { useMutation } from "@apollo/react-hooks";
@@ -29,7 +30,7 @@ const Welcome = () => {
           </Box>
         </div>
       </section>
-      {showElement && <MakeAResume />}
+      {showElement && <Resume/>}
     </>
 
   );

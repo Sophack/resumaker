@@ -16,6 +16,7 @@
     "concurrently": "^5.1.0"
   },
   "dependencies": {
+    "@material-ui/lab": "^4.0.0-alpha.61",
     "express": "^4.17.1",
     "graphql": "^15.8.0"
   }
