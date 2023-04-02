@@ -54,7 +54,10 @@ export const GET_RESUME = gql`
         objective
       }
       skills {
-        skill
+        industryKnowledge
+        toolsAndTechnologies
+        languages
+        transferableSkills
       }
       work {
         company
