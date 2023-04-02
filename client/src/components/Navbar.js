@@ -58,12 +58,10 @@ const AppNavbar = () => {
               >
                 {/* if user is logged in, show log out in nav menu */}
                 {Auth.loggedIn() ? (
-                  <>
                     <MenuItem onClick={Auth.logout}>
                       Log out
                       <FontAwesomeIcon icon={faRightFromBracket} />
                       </MenuItem>
-                  </>
                 ) : (
                     // if user is not logged in, show sign up & log in, which opens modal
                     <>

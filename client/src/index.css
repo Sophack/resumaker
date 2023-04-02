@@ -2,6 +2,7 @@
   --shadow: #00000033;
 	--grey: #282828;
   --lightgrey: #9f9f9f;
+  --lightergrey: #dcdcdc;
 	--lightblue: #9fc9fc;
 	--skyblue: #6fa6fb;
 	--purple: #8d91d6;
@@ -297,12 +298,8 @@ a {
   justify-content: center !important;
 }
 
-#templates-box {
-  margin-top: 60px !important;
-}
-
 #builder-title {
-  margin-top: 70px !important;
+  margin-top: 90px !important;
   cursor: default;
   font-family: 'Montserrat', sans-serif !important;
   font-size: 35px !important;
@@ -326,13 +323,13 @@ a {
 #form-container {
   text-align: center;
   background-color: var(--white);
-  margin-right: 10px;
+  margin-right: 20px;
   padding: 10px 0px 10px 0px;
   border-radius: 10px;
   height: 580px;
 }
 
-#simple-tabpanel-0 {
+.form-box {
   overflow-y: auto !important;
   height: 500px !important;
   scrollbar-gutter: stable both-edges;
@@ -349,9 +346,9 @@ a {
   justify-content: center;
 }
 
-#form-container input {
+#form-container input,
+#form-container textarea {
   font-family: 'Montserrat', sans-serif !important;
-  padding: 15px;
   height: 8px;
 }
 
@@ -367,6 +364,91 @@ a {
   height: 580px;
   width: 407px;
   overflow-y: auto;
+  overflow-wrap: break-word;
+}
+
+#button-container {
+  justify-content: space-between !important;
+  width: 100%;
+  display: flex;
+}
+
+#resume-save-button,
+#resume-pdf-button {
+  font-family: 'Montserrat', sans-serif !important;
+  text-transform: none !important;
+  color: var(--white) !important;
+  background-color: var(--pink) !important;
+  border-radius: 20px !important;
+  width: 240px !important;
+  padding: 10px 20px 10px 20px;
+  letter-spacing: 1px !important;
+  margin-top: 20px !important;
+  margin-bottom: 30px;
+  box-shadow: 0 8px 6px -6px var(--shadow) !important;
+}
+
+.add-button {
+  margin-top: 15px !important;
+  height: 40px;
+  background-color: var(--lightblue) !important;
+  border-color: var(--grey);
+}
+
+#templates-box {
+  display: flex;
+  position: relative !important;
+  left: 50%;
+  transform: translate(-50%,0);
+  margin-top: 30px;
+  margin-bottom: 20px;
+  background-color: var(--white);
+  height: 110px;
+  width: 924px;
+  border-radius: 10px;
+  padding: 10px 20px 10px 20px;
+}
+
+#template-1 {
+  background-image: url('../public/images/resume-template-1.jpg');
+  box-shadow: 3px 1px 3px 1px var(--shadow);
+  height: 80vh;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  object-fit: cover;
+  height: 90px;
+  width: 65px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.template-locked {
+  background-color: var(--lightergrey);
+  box-shadow: 3px 1px 3px 1px var(--shadow);
+  height: 80vh;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  object-fit: cover;
+  height: 90px;
+  width: 65px;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-left: 20px;
+  text-align: center;
+  vertical-align: bottom;
+}
+
+.fa-lock {
+  font-size: 25px;
+  color: var(--grey);
+  position:relative;
+  top: calc(50% - 10px);
+}
+
+.template-selected {
+  filter: drop-shadow(0 0 3px var(--skyblue));
 }
 
 .Mui-disabled {
@@ -405,7 +487,7 @@ a {
 }
 
 ::-webkit-scrollbar-track {
-  background-color: transparent;
+  background-color: var(--white);
 }
 
 ::-webkit-scrollbar-thumb {
