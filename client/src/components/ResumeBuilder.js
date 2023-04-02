@@ -13,37 +13,18 @@ import PropTypes from 'prop-types';
 
 import Auth from '../utils/auth';
 
-const ResumeFields = memo(({personalState, handlePersonalChange,educationState, setEducationState}) => {
+const ResumeFields = memo(({personalState, handlePersonalChange,educationState, setEducationState, handleEducationChange}) => {
 
     const [selectedTab, setSelectedTab] = useState(0);
     const [focusedInput, setFocusedInput] = useState(null);
     const inputRefs = useRef([]);
-    console.log(personalState);
     const [savedResume] = useMutation(CREATE_RESUME);
 
     //State Objects
     const [educationStateObject, setEducation] = useState([]);
     const [workStateObject, setWork] = useState([]);
     const [skillStateObject, setSkills] = useState([]);
-  
-    useEffect(() => {
-      if (focusedInput !== null) {
-        inputRefs.current[focusedInput]?.focus();
-      }
-      inputRefs.current[focusedInput]?.focus();
-      console.log(focusedInput + "focused");
-    }, [personalState]);
 
-
-    const handleEducationChange = (event) => {
-        event.stopPropagation(); 
-        const { name, value } = event.target;
-        setEducationState(prevState => ({
-          ...prevState,
-          [name]: value
-        }));
-      };
-    
     const [workState, setWorkState] = useState({
         company: '',
         roles: '',
@@ -72,15 +53,15 @@ const ResumeFields = memo(({personalState, handlePersonalChange,educationState, 
                     ...personalState
                 },
 
-                // education: {
-                //     ...educationState
-                // },
+                education: {
+                    ...educationState
+                },
             }
         }
 
         try {
           delete resume.resumeInput.personal.__typename;
-
+          delete resume.resumeInput.education.__typename;
 
           console.log(resume);
           const response = savedResume({variables: { ...resume}});    
@@ -223,10 +204,26 @@ const ResumeFields = memo(({personalState, handlePersonalChange,educationState, 
               <div className='form-box'>
                 
                     <FormControl style={{width : "90%"}}>
-                        <TextField label="School"  name='school' value = {educationState.school} onChange={handleEducationChange} />
-                        <TextField label="Program"  name='program' value = {educationState.program} onChange={handleEducationChange} />
-                        <TextField label="Start"  name='start' value = {educationState.start} onChange={handleEducationChange} />
-                        <TextField label="End"  name='end' value = {educationState.end} onChange={handleEducationChange} />
+                        <TextField label="School"
+                          name='school' 
+                          value = {educationState.school} 
+                          onChange={(event) =>handleEducationChange(event, 'school')}
+                          style={{marginTop: '20px'}} />
+                        <TextField label="Program"  
+                          name='program' 
+                          value = {educationState.program} 
+                          onChange={(event) => handleEducationChange(event, 'program')} 
+                          style={{marginTop: '20px'}}/>
+                        <TextField label="Start"  
+                          name='start' 
+                          value = {educationState.start} 
+                          onChange={(event) => handleEducationChange(event, 'start')} 
+                          style={{marginTop: '20px'}}/>
+                        <TextField label="End"  
+                          name='end' 
+                          value = {educationState.end} 
+                          onChange={(event) => handleEducationChange(event, 'end')} 
+                          style={{marginTop: '20px'}}/>
                     </FormControl>
                 
                 </div>
@@ -236,20 +233,50 @@ const ResumeFields = memo(({personalState, handlePersonalChange,educationState, 
               <div className='form-box'>
               
                   <FormControl style={{width : "90%"}}>
-                      <TextField label="Company" name='company' value={workState.company} onChange={handleWorkChange} />
-                      <TextareaAutosize aria-label="empty textarea" name='roles' value={workState.roles} onChange={handleWorkChange} />
-                      <TextField label="Start" name='startDate' valu ={workState.startDate} onChange={handleWorkChange} />
-                      <TextField label="End" name='endDate' value={workState.endDate} onChange={handleWorkChange} />
-                      <TextareaAutosize aria-label="empty textarea" name='duties' value={workState.duties} onChange={handleWorkChange} />
+                      <TextField label="Company" 
+                        name='company' 
+                        value={workState.company} 
+                        onChange={handleWorkChange} 
+                        style={{marginTop: '20px'}}/>                      
+                      <TextField label="Start" 
+                        name='startDate' 
+                        value ={workState.startDate} 
+                        onChange={handleWorkChange} 
+                        style={{marginTop: '20px'}}/>
+                      <TextField label="End" 
+                        name='endDate' 
+                        value={workState.endDate} 
+                        onChange={handleWorkChange} 
+                        style={{marginTop: '20px'}}/>
+                      <TextareaAutosize                 
+                        minRows={5}
+                        variant="standard"
+                        placeholder="Roles"
+                        name='roles' 
+                        value={workState.roles} 
+                        onChange={handleWorkChange} 
+                        style={{marginTop: '20px'}}/>
+                      <TextareaAutosize aria-label="empty textarea"
+                        minRows={5}
+                        variant="standard"
+                        placeholder="Duties" 
+                        name='duties' 
+                        value={workState.duties} 
+                        onChange={handleWorkChange} 
+                        style={{marginTop: '20px'}}/>
                   </FormControl>
               
               </div>
               )}
               {selectedTab == 3 && (
-              <div className='form-box'>
-              
-                  <FormControl>
+              <div className='form-box'>              
+                  <FormControl style={{width : "90%"}}>
                       <h3 style={{ marginTop : "15px"}}>Skills</h3>
+                      <TextField label="Skill"
+                          name='skill' 
+                          value = {educationState.school} 
+                          onChange={(event) =>handleEducationChange(event, 'school')}
+                          style={{marginTop: '20px'}} />
                   </FormControl>
               
               </div>
