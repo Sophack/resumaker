@@ -28,7 +28,7 @@ Check out the site! -> https://intense-atoll-83101.herokuapp.com/
 ## Usage
 
 Users can register for a free account with us and begin filling out the respective fields: Education, Skills, Work...etc. All the data
-is saved on mongoDB Atlas which allows the fields to be populated on revist. The rendered resume is exported to PDF via a package ____
+is saved on mongoDB Atlas which allows the fields to be populated on revist. The rendered resume is exported to PDF via a package Kendo React
 
 ##### Prerequisites
 
@@ -47,7 +47,7 @@ is saved on mongoDB Atlas which allows the fields to be populated on revist. The
   ```
 - Start the app locally:
   ```sh
-    npm run develop
+  npm run develop
   ```
 
 ## Screenshots
