@@ -84,7 +84,7 @@ const ResumeFields = memo(
         return(
             <>
               <Box id='form-container'>
-                <section id='form-and-buttons'>
+                <section className='form-and-buttons'>
                     <div id='form-tabs'>
                         <Tabs 
                             onChange={handleTabChange} 
@@ -368,15 +368,15 @@ const ResumeFields = memo(
                     </div>
                 )}
 
-                    <div id='button-container'>
+                    <div className='button-container'>
                         <FormControl>
-                            <Button id='resume-save-button' type="submit" onClick={handleSubmit}>
+                            <Button class='save-button' type="submit" onClick={handleSubmit}>
                                 Save
                             </Button>
                         </FormControl> 
-                        <Button id='resume-pdf-button' onClick={handleSubmit}>
+                        {/* <Button id='resume-pdf-button' onClick={handleSubmit}>
                                 Export PDF
-                        </Button>
+                        </Button> */}
                     </div>
                 </section>
             </Box>
