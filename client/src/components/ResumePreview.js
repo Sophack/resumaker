@@ -10,6 +10,7 @@ import Skills from "./ResumeSections/Skills";
 const MainSection = styled('div')`
   float: left;
   width: 70%;
+  height: 100%;
 `
 
 const SideSection = styled('section')`
@@ -30,9 +31,9 @@ const ResumePreview = ({personalState, educationState, workState, skillsState}) 
 
     return(
       <>
-
-        <container id='resume-preview'>
+        <section className='form-and-buttons'>
         <PDFExport ref={pdfExportComponent}>
+        <container id='resume-preview'>
           <MainSection id='main-column'>
             <Personal personalState={personalState}></Personal>
             <Education educationState={educationState}></Education>
@@ -41,13 +42,15 @@ const ResumePreview = ({personalState, educationState, workState, skillsState}) 
           <SideSection id='side-column'>
             <Skills skillsState={skillsState}></Skills>
           </SideSection>
-          <div className='button-area'>
-            <Button primary= {true} onClick={handleExportWithComponent}>
+        </container>  
+        </PDFExport>
+
+        <div className='button-container'>
+            <Button id='resume-pdf-button' onClick={handleExportWithComponent}>
               Download PDF
             </Button>
-          </div>
-          </PDFExport>
-        </container>  
+        </div>
+        </section>
         
       </>  
     );

@@ -358,6 +358,7 @@ a {
 }
 
 #resume-preview {
+  display: block;
   background-color: var(--white);
   border-radius: 10px;
   height: 580px;
@@ -366,13 +367,13 @@ a {
   overflow-wrap: break-word;
 }
 
-#button-container {
+.button-container {
   justify-content: space-between !important;
   width: 100%;
   display: flex;
 }
 
-#resume-save-button,
+.save-button,
 #resume-pdf-button {
   font-family: 'Montserrat', sans-serif !important;
   text-transform: none !important;
