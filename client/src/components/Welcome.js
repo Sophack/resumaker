@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Typography, Box, Button } from '@mui/material';
-
+import Footer from '../components/Footer';
 import MakeAResume from './MakeAResume';
 import Resume from '../components/MakeAResume';
 
@@ -29,9 +29,10 @@ const Welcome = () => {
                 )} 
           </Box>
         </div>
+        <Footer/>
       </section>
       {showElement && <Resume/>}
-    </>
+    </>             
 
   );
 };

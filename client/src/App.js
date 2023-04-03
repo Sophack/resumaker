@@ -51,7 +51,7 @@ function App() {
 
       {/* <DonateButton /> */}
       {/* <PDFButton /> */}
-      <Footer/>
+
       </>
     </Router>
     </ApolloProvider>
