@@ -36,60 +36,59 @@ const Footer = () => {
 
 const [value, setValue] = React.useState('recents');
 
-const handleChange = (event: React.SyntheticEvent, newValue: string) => {
+const handleChange = (event, newValue) => {
   setValue(newValue);
-
 };
 
 return (
     <>
-    <div className='footerDiv'>
-  <BottomNavigation sx={{ 
-      width: 500, 
-      background:"none",
-      height: '2rem',
-      transform: "translate(60%,0)",
-    }} 
-      value={value} onChange={handleChange}>
-      <BottomNavigationAction 
-        label="Github"
-        value="github"
-        href="https://github.com/"
-        icon={<GitHubIcon />}
-        style={styles.lightblue}
-      />
-      
-      <BottomNavigationAction
-        color="secondary"
-        label="LinkedIn"
-        value="linkedin"
-        href="https://www.linkedin.com/"
-        icon={<LinkedInIcon />}
-        style={styles.skyblue}
-      />
-      <BottomNavigationAction
-        label="Twitter"
-        value="twitter"
-        href="https://twitter.com/"
-        icon={<TwitterIcon />}
-        style={styles.purple}
-      />
-      
-      
-      <BottomNavigationAction 
-      label="Youtube" 
-      value="youtube" 
-      href="https://youtube.com/"
-      icon={<YouTubeIcon />} 
-      style={styles.pink}
-      />
-      
-    </BottomNavigation>
+    <div className='footerDiv' style={{display: 'flex', flexDirection: 'row', backgroundColor: "#282828",justifyContent: 'space-evenly'}}>
+      <div className='innerFooter'>
+        <BottomNavigation sx={{       
+            background:"none",
+            height: '2rem',
+            
+          }} 
+            value={value} onChange={handleChange}>
+            <BottomNavigationAction 
+              label="Github"
+              value="github"
+              href="https://github.com/"
+              icon={<GitHubIcon />}
+              style={styles.lightblue}
+            />
+            
+            <BottomNavigationAction
+              color="secondary"
+              label="LinkedIn"
+              value="linkedin"
+              href="https://www.linkedin.com/"
+              icon={<LinkedInIcon />}
+              style={styles.skyblue}
+            />
+            <BottomNavigationAction
+              label="Twitter"
+              value="twitter"
+              href="https://twitter.com/"
+              icon={<TwitterIcon />}
+              style={styles.purple}
+            />
+            
+            
+            <BottomNavigationAction 
+            label="Youtube" 
+            value="youtube" 
+            href="https://youtube.com/"
+            icon={<YouTubeIcon />} 
+            style={styles.pink}
+            />
+            
+          </BottomNavigation>
 
-    <Typography className='footerGasp'>
-    GASP 2023 © 
-    </Typography>
-  
+          {/* <Typography className='footerGasp'>
+          GASP 2023 © 
+          </Typography> */}
+      </div>
     </div>
   </>
   );
