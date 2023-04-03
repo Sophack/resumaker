@@ -71,7 +71,7 @@ email:
 github: https://github.com/kirbyfridge
 
 godwingi
-email: 
+email: girdika.godwin@gmail.com
 github: https://github.com/godwingi
 
 
