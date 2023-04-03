@@ -1,4 +1,4 @@
-import { gql } from '@apollo/client';
+import { gql } from "@apollo/client";
 
 export const GET_ME = gql`
   {
@@ -54,7 +54,9 @@ export const GET_RESUME = gql`
         objective
       }
       skills {
-        skill
+        industryKnowledge
+        toolsAndTechnologies
+        languages
       }
       work {
         company

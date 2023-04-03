@@ -39,7 +39,6 @@ const MakeAResume = () => {
     industryKnowledge: "",
     toolsAndTechnologies: "",
     languages: "",
-    transferableSkills: "",
   });
 
 
@@ -80,8 +79,8 @@ const MakeAResume = () => {
         console.log(data.getResume.education);
         setWorkState(data.getResume.work[0]);
         console.log(data.getResume.work);
-        setSkillsState(data.getResume.skills);
-        console.log(data.getResume.skills[0]);
+        setSkillsState(data.getResume.skills[0]);
+        console.log(data.getResume.skills);
       }
   }, [data])
 

@@ -53,15 +53,16 @@ const ResumeFields = memo(
                 work: {
                     ...workState
                 },
-                // skills: {
-                //     ...skillsState,
-                // },
+                skills: {
+                    ...skillsState,
+                }
             }
         }
         try {
           delete resume.resumeInput.personal.__typename;
           delete resume.resumeInput.education.__typename;
           delete resume.resumeInput.work.__typename;
+          delete resume.resumeInput.skills.__typename;
           console.log(resume);
           const response = savedResume({variables: { ...resume}});    
         } catch (error) {
@@ -310,12 +311,12 @@ const ResumeFields = memo(
                     <div className='form-box'>
                         <FormControl style={{width : "90%"}}>
                             <TextField 
-                                label="Industry skills" 
-                                name='skills' 
-                                onFocus={() => handleFocus('skills')}
+                                label='Industry skills' 
+                                name='industryKnowledge' 
+                                value={skillsState.industryKnowledge} 
+                                onChange={(event) => handleSkills(event, 'industryKnowledge')}
+                                onFocus={() => handleFocus('industryKnowledge')}
                                 ref={(el) => (inputRefs.current[0] = el)}
-                                // value={skillState.skills} 
-                                // onChange={(event) => handleSkillChange(event, 'skills')} 
                                 InputLabelProps={{ shrink: true }} 
                                 style={{marginTop: '20px'}} 
                             />
@@ -329,11 +330,11 @@ const ResumeFields = memo(
                             </Button>
                             <TextField 
                                 label='Tools & Tech'
-                                name='tech' 
-                                onFocus={() => handleFocus('tech')}
+                                name='toolsAndTechnologies' 
+                                value={skillsState.toolsAndTechnologies} 
+                                onChange={(event) => handleSkills(event, 'toolsAndTechnologies')} 
+                                onFocus={() => handleFocus('toolsAndTechnologies')}
                                 ref={(el) => (inputRefs.current[1] = el)}
-                                // value={skillsState.tech} 
-                                // onChange={(event) => handleSkillChange(event, 'tech')} 
                                 InputLabelProps={{ shrink: true }} 
                                 style={{marginTop: '20px'}} 
                             />
@@ -346,12 +347,12 @@ const ResumeFields = memo(
                                 <FontAwesomeIcon icon={faPlus} size="medium" />
                             </Button>
                             <TextField 
-                                label="Languages" 
+                                label='Languages' 
                                 name='languages' 
                                 onFocus={() => handleFocus('languages')}
                                 ref={(el) => (inputRefs.current[2] = el)}
-                                // value={skillState.languages} 
-                                // onChange={(event) => handleSkillChange(event, 'languages')} 
+                                value={skillsState.languages} 
+                                onChange={(event) => handleSkills(event, 'languages')} 
                                 InputLabelProps={{ shrink: true }} 
                                 style={{marginTop: '20px'}} 
                             />
