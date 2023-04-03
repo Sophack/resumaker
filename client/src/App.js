@@ -52,12 +52,12 @@ function App() {
         
         <Switch>
           <Route exact path='/' component={Home} />
-          <Route exact path='/resume' component={Resume} />
+          {/* <Route exact path='/resume' component={Resume} /> */}
           <Route render={() => <h1 className='display-2'>Wrong page!</h1>} />
         </Switch>
 
-      {/* <DonateButton /> */}
-      {/* <PDFButton /> */}
+      <DonateButton />
+      <PDFButton />
 
       </>
     </Router>

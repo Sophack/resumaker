@@ -85,9 +85,9 @@ return (
             
           </BottomNavigation>
 
-          {/* <Typography className='footerGasp'>
+          <Typography className='footerGasp'>
           GASP 2023 © 
-          </Typography> */}
+          </Typography>
       </div>
     </div>
   </>
