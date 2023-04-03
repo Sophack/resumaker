@@ -24,9 +24,8 @@ const PaymentForm = () => {
 
   return ( 
  <form onSubmit={handleSubmit}>
-    <CardElement> 
-    <Button variant="contained">Contained</Button>
-        <CardElement/>
+    <CardElement/> 
+    
     <button className='donateButton'>Click to Donate ☕</button>
     </form>
 )
