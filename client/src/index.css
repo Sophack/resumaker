@@ -501,6 +501,142 @@ a {
   background-color: #a8bbbf;
 }
 
+/* stripe payment styling */
+.donateButton{
+  font-family: 'Montserrat', sans-serif !important;
+  text-transform: none !important;
+  color: var(--white) !important;
+  background-color: var(--pink) !important;
+  border-radius: 20px !important;
+  width: 20% !important;
+  letter-spacing: 1px !important;
+  margin-top: 20px !important;
+  box-shadow: 0 8px 6px -6px var(--shadow) !important;
+  border: none;
+  padding: 5px;
+  margin: 0px 0px 20px 20px;
+}
+
+.donateButton:hover {
+  filter: contrast(115%);
+}
+.donateButton:active {
+  transform: translateY(0px) scale(0.98);
+  filter: brightness(0.9);
+}
+.donateButton:disabled {
+  opacity: 0.5;
+  cursor: none;
+}
+
+
+#paymentBox {
+  max-width: 436px;
+  background-color: var(--white);
+  height: 45vh;
+  padding: 40px 35px 35px 50px;
+  opacity: 92%;
+  box-shadow: 0px 0px 10px 10px var(--shadow);
+  position: absolute;
+  border-radius: 10px;
+  top: 50%;
+  left: 40%;
+}
+
+#paymentBox h2 {
+  cursor: default;
+  font-family: 'Montserrat', sans-serif !important;
+  font-size: 35px !important;
+  font-weight: 800 !important;
+  letter-spacing: 2px !important;
+  position: relative !important;
+  width: fit-content;
+  background: linear-gradient(to right, var(--lightblue) 0%, var(--skyblue) 25%, var(--purple) 75%, var(--pink) 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 30px !important;
+}
+
+/* PDF styling  */
+.PDFcontainer {
+  display: flex;
+  width: 400px;
+  height: 600px;
+  position: absolute;
+  top: 50%;
+  left: 70%;
+  transform: translate(-50%, -50%);
+  background-color: var(--pink);
+  box-shadow: 0 10px 20px 0 var(--shadow);
+  padding: 45px 35px 30px 35px !important;
+  letter-spacing: 1px;
+  border-radius: 28px !important;
+}
+
+.PDFtext {
+  cursor: default;
+  font-family: 'Montserrat', sans-serif !important;
+  font-size: 45px !important;
+  font-weight: 800 !important;
+  letter-spacing: 2px !important;
+  position: relative !important;
+  left: 50%;
+  transform: translate(-50%,0);
+  width: fit-content;
+  background: linear-gradient(to right, var(--lightblue) 0%, var(--skyblue) 25%, var(--purple) 75%, var(--pink) 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 10px !important;
+}
+
+.pdfButton{
+  font-family: 'Montserrat', sans-serif !important;
+  text-transform: none !important;
+  color: var(--white) !important;
+  background-color: var(--pink) !important;
+  border-radius: 20px !important;
+  width: 20% !important;
+  letter-spacing: 1px !important;
+  box-shadow: 0 8px 6px -6px var(--shadow) !important;
+  justify-content: center !important;
+  border: none;
+  padding: 5px;
+  margin: 0px 0px 20px 20px;
+}
+
+.pdfButton:hover {
+  filter: contrast(115%);
+}
+.pdfButton:active {
+  transform: translateY(0px) scale(0.98);
+  filter: brightness(0.9);
+}
+.pdfButton:disabled {
+  opacity: 0.5;
+  cursor: none;
+}
+
+
+/* footer styling */
+
+.footerGasp {
+  cursor: default;
+  font-family: 'Montserrat', sans-serif !important;
+  font-size: 15px !important;
+  font-weight: 600 !important;
+  letter-spacing: 2px !important;
+  position: relative !important;
+  opacity: 60%;
+  transform: translate(-50%,0);
+  width: fit-content;
+  background: linear-gradient(to right, var(--lightblue) 0%, var(--skyblue) 25%, var(--purple) 75%, var(--pink) 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin: 0px 0px 100px 100px !important; 
+}
 
 @media only screen and (max-width: 785px) {
   #welcome-box {
