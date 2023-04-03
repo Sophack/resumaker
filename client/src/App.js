@@ -50,7 +50,7 @@ function App() {
         </Switch>
 
       {/* <DonateButton /> */}
-      <PDFButton />
+      {/* <PDFButton /> */}
       <Footer/>
       </>
     </Router>
