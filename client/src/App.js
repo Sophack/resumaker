@@ -11,6 +11,9 @@ import Home from './pages/Home';
 import Navbar from './components/Navbar';
 import Welcome from './components/Welcome';
 import Resume from './pages/Resume';
+import DonateButton from './components/DonateButton';
+import PDFButton from './components/ButtonPDF';
+import Footer from './components/Footer';
 
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
@@ -47,6 +50,9 @@ function App() {
           <Route render={() => <h1 className='display-2'>Wrong page!</h1>} />
         </Switch>
       </>
+      <DonateButton/>
+      <PDFButton/>
+      <Footer/>
     </Router>
     </ApolloProvider>
   );
