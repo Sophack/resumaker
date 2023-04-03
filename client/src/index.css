@@ -530,7 +530,6 @@ a {
   cursor: none;
 }
 
-
 #paymentBox {
   max-width: 436px;
   background-color: var(--white);
@@ -543,6 +542,7 @@ a {
   margin: 0;
   position: absolute;
   border-radius: 10px;
+  z-index: 3;
 }
 
 #paymentBox h2 {
@@ -615,15 +615,16 @@ a {
 .pdfButton:hover {
   filter: contrast(115%);
 }
+
 .pdfButton:active {
   transform: translateY(0px) scale(0.98);
   filter: brightness(0.9);
 }
+
 .pdfButton:disabled {
   opacity: 0.5;
   cursor: none;
 }
-
 
 /* footer styling */
 .footerDiv{  
