@@ -23,11 +23,12 @@ create a FREE account and not have to enter any credit card details to use the a
 
 ## Demo
 
+Check out the site! -> https://intense-atoll-83101.herokuapp.com/ 
 
 ## Usage
 
-Users can register for a free account with us and begind filling out the respective fields: Education, Skills, Work...etc. All the data
-is saved on mongoDB Atlas which allows the fields to be populated on revist. The rendered resume is exported to PDF via a package
+Users can register for a free account with us and begin filling out the respective fields: Education, Skills, Work...etc. All the data
+is saved on mongoDB Atlas which allows the fields to be populated on revist. The rendered resume is exported to PDF via a package ____
 
 ##### Prerequisites
 
@@ -57,11 +58,24 @@ is saved on mongoDB Atlas which allows the fields to be populated on revist. The
 
 ## Questions
 
-Philip V K:
+Philip V K
 email: philipkurianv@gmail.com
-github profile: https://github.com/PhilipVKurian
+github: https://github.com/PhilipVKurian
+
+Sophack
+email:
+github: https://github.com/Sophack
+
+Kirbyfridge
+email:
+github: https://github.com/kirbyfridge
+
+godwingi
+email: 
+github: https://github.com/godwingi
+
 
 <!-- Links -->
 
-[issues-url]: [https://github.com/lavanyavirushan/p2-bootcamp-forum/issues](https://github.com/Sophack/resumaker/issues)
+
 
