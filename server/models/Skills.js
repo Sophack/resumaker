@@ -1,9 +1,15 @@
 const { Schema } = require("mongoose");
 
 const skillsSchema = new Schema({
-  skill: {
-    type: String,
+  industryKnowledge: {
+    type: [String],
   },
+  toolsAndTechnologies: {
+    type: [String],
+  },
+  languages: {
+    type: [String],
+  }
 });
 
 // const Skills = model("Skills", skillsSchema);

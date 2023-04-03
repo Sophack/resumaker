@@ -360,7 +360,6 @@ a {
 #resume-preview {
   background-color: var(--white);
   border-radius: 10px;
-  padding: 10px 60px 10px 60px;
   height: 580px;
   width: 407px;
   overflow-y: auto;
@@ -514,6 +513,28 @@ a {
 
   #welcome-box p {
   font-size: 12px !important;
+  }
+}
+
+@media only screen and (max-width: 950px) {
+  #templates-box {
+    width: 100% !important;
+  }
+  #bulder-preview {
+    width: 100% !important;
+    margin-right: 0 !important;
+    margin-left: 0 !important;
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  #templates-box {
+    width: 100% !important;
+  }
+  #bulder-preview {
+    width: 100% !important;
+    margin-right: 0 !important;
+    margin-left: 0 !important;
   }
 }
 

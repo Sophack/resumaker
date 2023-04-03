@@ -39,7 +39,6 @@ const MakeAResume = () => {
     industryKnowledge: "",
     toolsAndTechnologies: "",
     languages: "",
-    transferableSkills: "",
   });
 
 
