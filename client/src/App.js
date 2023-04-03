@@ -15,6 +15,7 @@ import DonateButton from './components/DonateButton';
 import PDFButton from './components/ButtonPDF';
 import Footer from './components/Footer';
 
+
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -37,16 +38,22 @@ const client = new ApolloClient({
   cache: new InMemoryCache()
 });
 
+
+
 function App() {
+
+  
+
   return (
     <ApolloProvider client={client}>
     <Router>
       <>
-        <Navbar />
-        <Welcome />
+        <Navbar/>
+        <Welcome/>
+        
         <Switch>
           <Route exact path='/' component={Home} />
-          {/* <Route exact path='/resume' component={Resume} /> */}
+          <Route exact path='/resume' component={Resume} />
           <Route render={() => <h1 className='display-2'>Wrong page!</h1>} />
         </Switch>
       </>
