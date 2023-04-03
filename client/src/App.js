@@ -49,10 +49,11 @@ function App() {
           {/* <Route exact path='/resume' component={Resume} /> */}
           <Route render={() => <h1 className='display-2'>Wrong page!</h1>} />
         </Switch>
-      </>
+
       <DonateButton/>
       <PDFButton/>
       <Footer/>
+      </>
     </Router>
     </ApolloProvider>
   );
