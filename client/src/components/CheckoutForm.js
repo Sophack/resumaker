@@ -5,6 +5,8 @@ import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+
 
 export default function PaymentForm() {
   return (
@@ -61,9 +63,13 @@ export default function PaymentForm() {
           <FormControlLabel
             control={<Checkbox color="secondary" name="saveCard" value="yes" />}
             label="Remember credit card details for next time"
+            id='remember-checkbox'
           />
         </Grid>
       </Grid>
+      <div className='modal-button-container'>
+          <Button className='submit-button'>Pay now</Button>
+      </div>
          
     </React.Fragment>
     </Box>

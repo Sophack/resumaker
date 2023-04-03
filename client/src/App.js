@@ -11,8 +11,6 @@ import Home from './pages/Home';
 import Navbar from './components/Navbar';
 import Welcome from './components/Welcome';
 import DonateButton from './components/DonateButton';
-import PDFButton from './components/ButtonPDF';
-import Footer from './components/Footer';
 
 
 // Construct our main GraphQL API endpoint
@@ -49,7 +47,7 @@ function App() {
       <>
         <Navbar/>
         <Welcome/>
-        
+        <DonateButton />
         <Switch>
           <Route exact path='/' component={Home} />
           {/* <Route exact path='/resume' component={Resume} /> */}

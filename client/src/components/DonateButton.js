@@ -10,7 +10,7 @@ const DonateButton = () => {
         {
             show?<PaymentForm/>:null
         }
-      <button className='donateButton' onClick={()=>setShow(!show)}>Donate <FontAwesomeIcon icon={faCoffee} /></button>
+      <button className='donateButton' onClick={()=>setShow(!show)}><FontAwesomeIcon icon={faCoffee} /></button>
     </>
   )
 }
