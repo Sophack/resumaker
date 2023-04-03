@@ -60,7 +60,9 @@ const typeDefs = gql`
   }
 
   input skillsInput {
-    skill: String
+    industryKnowledge: String
+    toolsAndTechnologies: String
+    languages: String
   }
 
   type Personal {
@@ -91,7 +93,9 @@ const typeDefs = gql`
 
   type Skills {
     _id: ID!
-    skill: String
+    industryKnowledge: String
+    toolsAndTechnologies: String
+    languages: String
   }
   
   type Auth{
