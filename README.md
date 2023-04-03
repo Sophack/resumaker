@@ -5,12 +5,12 @@
 
   
 <p align="center">
-<img src="https://user-images.githubusercontent.com/114792819/228619568-049c6a8e-3afd-4d56-a44f-989d655481e8.png" />
+<img src="images/resumaker-head.jpg" />
 </p>
 
 ## Description
 
-As Bootcamp Students we wanted to create an app that allows users to create free resumes! Trying to get a job is one challenge but 
+As Bootcamp Students, we wanted to create an app that allows users to create free resumes! Trying to get a job is one challenge but 
 having to pay money just to create a resume is NOT COOL! This became our motivation for the project. We want to allow our users to 
 create a FREE account and not have to enter any credit card details to use the application.
 
@@ -52,9 +52,9 @@ is saved on mongoDB Atlas which allows the fields to be populated on revist. The
 
 ## Screenshots
 
-![image](https://user-images.githubusercontent.com/114792819/228628007-05eea55d-1b3a-460a-b1e1-0a48693d9261.png)
-![image](https://user-images.githubusercontent.com/114792819/229455904-48a4818a-d1c2-4cd9-ad3b-8c4967e42b63.png)
+![image](images/resumaker-screenshot.png)
 
+![image](images/resumaker-welcome.png)
 
 ## Questions
 

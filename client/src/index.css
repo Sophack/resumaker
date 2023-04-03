@@ -506,16 +506,16 @@ a {
   text-transform: none !important;
   color: var(--white) !important;
   background-color: var(--pink) !important;
-  border-radius: 20px !important;
-  /* width: 20% !important; */
-  height: 30px;
+  border-radius: 90px !important;
+  width: 50px !important;
+  height: 50px !important;
   letter-spacing: 1px !important;
-  margin-top: 5px !important;
-  /* margin-top: 20px !important; */
   box-shadow: 0 8px 6px -6px var(--shadow) !important;
   border: none;
-  /* padding: 5px; */
-  margin: 0px 0px 20px 20px;
+  padding: 5px;
+  position: fixed;
+  bottom: 5px;
+  right: 15px;
 }
 
 .donateButton:hover {
@@ -530,18 +530,19 @@ a {
   cursor: none;
 }
 
-
 #paymentBox {
   max-width: 436px;
   background-color: var(--white);
-  /* height: 45vh; */
   padding: 40px 35px 35px 50px;
-  opacity: 92%;
   box-shadow: 0px 0px 10px 10px var(--shadow);
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  margin: 0;
   position: absolute;
   border-radius: 10px;
-  top: 50%;
-  left: 40%;
+  z-index: 3;
 }
 
 #paymentBox h2 {
@@ -557,6 +558,10 @@ a {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   margin-bottom: 30px !important;
+}
+
+.css-ahj2mt-MuiTypography-root {
+  font-family: 'Montserrat', sans-serif !important;
 }
 
 /* PDF styling  */
@@ -610,15 +615,16 @@ a {
 .pdfButton:hover {
   filter: contrast(115%);
 }
+
 .pdfButton:active {
   transform: translateY(0px) scale(0.98);
   filter: brightness(0.9);
 }
+
 .pdfButton:disabled {
   opacity: 0.5;
   cursor: none;
 }
-
 
 /* footer styling */
 .footerDiv{  
@@ -631,25 +637,21 @@ a {
 
 .footerGasp {
   cursor: default;
+  vertical-align: middle;
   font-family: 'Montserrat', sans-serif !important;
   font-size: 15px !important;
-  font-weight: 600 !important;
-  letter-spacing: 2px !important;
-  /* position: relative !important; */
-  opacity: 60%;
-  /* transform: translate(-50%,0); */
-  margin-top: 10px !important;
+  font-weight: 700 !important;
+  letter-spacing: 3px !important;
   width: fit-content;
-  background: linear-gradient(to right, var(--lightblue) 0%, var(--skyblue) 25%, var(--purple) 75%, var(--pink) 100%);
-  /* background-clip: text; */
+  background: linear-gradient(to right, var(--skyblue) 0%, var(--purple) 100%) ;
+  background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  margin-bottom: 20px !important; 
 }
 
 .donateGASP{
-  display: flex;
-  flex-direction: row;
+  vertical-align: middle;
+  margin-top: 4px;
 }
 
 @media only screen and (max-width: 785px) {

@@ -26,10 +26,6 @@ const styles = {
             color: '#9fc9fc',
             },
 
-            footerGasp: {
-              border:"pink solid 8px"
-            },
-
   };
 
 
@@ -67,6 +63,13 @@ return (
               icon={<LinkedInIcon />}
               style={styles.skyblue}
             />
+            
+            <div className='donateGASP'>
+              <Typography Typography className='footerGasp'>
+                © GASP 2023
+              </Typography>
+            </div>
+
             <BottomNavigationAction
               label="Twitter"
               value="twitter"
@@ -85,13 +88,6 @@ return (
             />
             
           </BottomNavigation>
-      </div>
-      <div className='donateGASP'>
-            
-            <Typography className='footerGasp'>
-            GASP 2023 © 
-            </Typography>
-            <DonateButton></DonateButton>
       </div>
     </div>
   </>
