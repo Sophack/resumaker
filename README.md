@@ -47,7 +47,7 @@ is saved on mongoDB Atlas which allows the fields to be populated on revist. The
   ```
 - Start the app locally:
   ```sh
-    npm run developp
+    npm run develop
   ```
 
 ## Screenshots
