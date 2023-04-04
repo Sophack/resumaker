@@ -63,7 +63,7 @@ email: philipkurianv@gmail.com
 github: https://github.com/PhilipVKurian
 
 Sophack
-email:
+email: sarafnrealtor@gmail.com
 github: https://github.com/Sophack
 
 Kirbyfridge
