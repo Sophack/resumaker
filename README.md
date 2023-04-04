@@ -52,9 +52,9 @@ is saved on mongoDB Atlas which allows the fields to be populated on revist. The
 
 ## Screenshots
 
-![image](images/resumaker-welcome.png)
+![image](images/resumaker-home.png)
 
-![image](images/resumaker-screenshot.png)
+![image](images/resumaker-form.png)
 
 ## Questions
 
