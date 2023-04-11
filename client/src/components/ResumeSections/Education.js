@@ -6,11 +6,11 @@ import { useQuery, useMutation } from '@apollo/client';
 import styled from '@emotion/styled';
 
 
-const EducationData = ({educationState, styles, theme}) => {
+const EducationData = ({educationState, styles}) => {
     console.log(Object.keys(educationState).length + " the length of the educationState");
 
     const Container = styled('section')`
-        ${styles.Container}
+        ${styles.eContainer}
     `
     const Title = styled('h2')`
         ${styles.eTitle}

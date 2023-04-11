@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { PDFExport, savePDF } from '@progress/kendo-react-pdf';
+import '@progress/kendo-theme-material/dist/all.css';
 import { FormControl, TextField, Box, Button, Tab, Tabs } from '@mui/material';
 import styled from '@emotion/styled';
 import Personal from "./ResumeSections/Personal";
@@ -29,13 +30,13 @@ const ResumePreview = ({personalState, educationState, workState, skillsState, s
         <PDFExport ref={pdfExportComponent} paperSize="A4" scale={1.465} >
         <container id='resume-preview'>
           <SideSection id='side-column'>
-            <Skills skillsState={skillsState}></Skills>
+            <Skills skillsState={skillsState} styles={styles}></Skills>
           </SideSection>
           <MainSection id='main-column'>
-            <Personal personalState={personalState}></Personal> 
+            <Personal personalState={personalState} styles={styles}></Personal> 
             <Title>Education</Title>           
             <Education educationState={educationState} styles={styles} theme={theme}></Education>
-            <Work workState={workState}></Work>
+            <Work workState={workState} styles={styles}></Work>
           </MainSection>
 
         </container>  

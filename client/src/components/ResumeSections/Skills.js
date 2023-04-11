@@ -1,26 +1,22 @@
 import React, { useState, useEffect } from "react";
 import styled from '@emotion/styled';
 
-const Container = styled('section')`
-    margin-left: 10px;
-`
 
-const Box = styled('div')`
-  margin-top: 155px;
-`
+const Skills = ({ skillsState, styles }) => {
 
-const Title = styled('h2')`
-    font-size: 11px;
-    font-weight: bold;
-    letter-spacing: 1px;
-`
+  const Container = styled('h2')`
+    ${styles.sContainer}
+  ` 
+  const Box = styled('h2')`
+    ${styles.sBox}
+  ` 
+  const Title = styled('h2')`
+    ${styles.sTitle}
+  ` 
+  const Paragraph = styled('h2')`
+    ${styles.sParagraph}
+  `  
 
-const Paragraph = styled('p')`
-    font-size: 10px;
-    margin-right: 10px;
-`
-
-const Skills = ({ skillsState }) => {
   if (skillsState) {
     return (
       <>
