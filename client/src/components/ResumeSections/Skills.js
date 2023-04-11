@@ -21,7 +21,6 @@ const Paragraph = styled('p')`
 `
 
 const Skills = ({ skillsState }) => {
-  console.log(skillsState)
   if (skillsState) {
     return (
       <>

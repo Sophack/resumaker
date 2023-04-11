@@ -5,70 +5,68 @@ import Auth from '../../utils/auth';
 import { useQuery, useMutation } from '@apollo/client';
 import styled from '@emotion/styled';
 
-const Container = styled('section')`
-    margin-left: 30px;
-`
 
-const Title = styled('h2')`
-    font-size: 16px;
-    font-weight: bold;
-    letter-spacing: 1px;
-`
-const Box = styled('div')`
-    padding-left: 13px;
-    border-left: 2px solid;
-    border-color: #7f7cb3;
-`
+const EducationData = ({educationState, styles, theme}) => {
+    console.log(Object.keys(educationState).length + " the length of the educationState");
 
-const Program = styled('h3')`
-    font-size: 13px;
-    letter-spacing: 1px;
-    margin-top: 0;
-`
+    const Container = styled('section')`
+        ${styles.Container}
+    `
+    const Title = styled('h2')`
+        ${styles.eTitle}
+    `
+    const Box = styled('div')`
+        ${styles.eBox}    `
 
-const School = styled('h4')`
-    font-size: 12px;
-    letter-spacing: 1px;
-    margin-top: -5px;
-`
+    const Program = styled('h3')`
+        ${styles.eProgram}
+    `
+    const School = styled('h4')`
+        ${styles.eSchool}
+    `
+    const Time = styled('div')`
+        ${styles.eTime}
+    `
+    const StartEnd = styled('h5')`
+        ${styles.eStartEnd}
+    `
 
-const Time = styled('div')`
-    color: #a5a5a5;
-    margin-top: -6px;
-    display: flex;
-`
-
-const StartEnd = styled('h5')`
-    color: #a5a5a5;
-    font-size: 11px;
-    font-weight: 400;
-    letter-spacing: 1px;
-    margin-bottom: 0;
-`
-
-const EducationData = ({educationState}) => {
 
     if(educationState){
-        return(
+        console.log(Object.keys(educationState).length + " is the length of the state in redndere");
+        console.log('education state in render is ' + JSON.stringify(educationState[0]));
+        return Object.keys(educationState).map((item) => (
             <>
-                <div>
+            {console.log(item)}
+                <div key = {item} style={{marginTop: "5px"}}>
                     <Container className='education'>
-                        <Title>Education</Title>    
                         <Box>
-                            <Program>{educationState.program ? educationState.program : 'Degree / Program'}</Program>          
-                            <School>{educationState.school ? educationState.program : 'Institution Name'}</School>
+                            <School>{educationState[item].school ? educationState[item].school : 'Institution Name'}</School>
+                            <Program>{educationState[item].program ? educationState[item].program : 'Degree / Program'}</Program>                           
                             <Time id='education-time'>
-                                <StartEnd>{educationState.start ? educationState.start : '20XX'}</StartEnd><StartEnd>  -  </StartEnd><StartEnd>{educationState.end ? educationState.end : '20XX'}</StartEnd>
+                                <StartEnd>{educationState[item].start ? educationState[item].start : '20XX'}</StartEnd><StartEnd>  -  </StartEnd><StartEnd>{educationState[item].end ? educationState[item].end : '20XX'}</StartEnd>
                             </Time>
                         </Box>
                     </Container>
                 </div>                             
             </>  
-        );
+        ));
     } else {
+        console.log('education state in render NO ITEM ' + JSON.stringify(educationState));
         return(
             <>
-                <h2>No Education Data</h2>
+                <div>
+                    <Container className='education'>
+                        <Box> 
+                            {console.log(educationState)}
+                            <School>{educationState.school ? educationState.school : 'Institution Name'}</School>
+                            <Program>{educationState.program ? educationState.program : 'Degree / Program'}</Program>         
+                            <Time id='education-time'>
+                                <StartEnd>{educationState.start ? educationState.start : '20XX'}</StartEnd><StartEnd>  -  </StartEnd><StartEnd>{educationState.end ? educationState.end : '20XX'}</StartEnd>
+                            </Time>
+                        </Box>
+                    </Container>
+                </div>    
              </>  
         )
     }

@@ -24,13 +24,16 @@ const ResumeFields = memo(
         skillsState,
         handleSkillsChange,
         handleSkills,
+        setIndexEducation,
+        setField1,
+        field1
     }) => {
 
     const [selectedTab, setSelectedTab] = useState(0);
     const [focusedInput, setFocusedInput] = useState(null);
     const inputRefs = useRef([]);
     const [savedResume] = useMutation(CREATE_RESUME);
-
+    const textFieldRef = useRef(null);    
     //State Objects
     const [educationStateObject, setEducation] = useState([]);
     const [workStateObject, setWork] = useState([]);
@@ -71,7 +74,38 @@ const ResumeFields = memo(
 
     }
 
+    // const handleClear = () => {
+    //     if(textFieldRef != null){
+    //         // inputRefs.current.forEach((ref) => (ref.current.value = ""));
+    //         console.log(inputRefs.current.values);
+    //     }
+
+    //     // textFieldRef.current.value = ""; 
+    // };
+
+    useEffect(()=> {
+        setEducationState({
+          ...educationState,
+          field1
+        })
+      }, [field1])
+
+
+    async function handleAddEducation(event) {
+
+        const elements = document.getElementsByClassName('education');
+        await setIndexEducation(1);
+
+        for( let i = 0; i < elements.length; i++){
+            const input = elements[i].querySelector("input");
+            if (input) {
+                input.value = "";
+            }            
+        }    
+    }
+
     const handleTabChange = (event, newValue) => {
+        event.preventDefault();
         setSelectedTab(newValue);        
       };
 
@@ -88,31 +122,32 @@ const ResumeFields = memo(
                     <div id='form-tabs'>
                         <Tabs 
                             onChange={handleTabChange} 
-                            selectedTab={selectedTab} 
+                            // selectedTab={selectedTab} 
                             aria-label="Form Tabs"
                         >
                             {/* {console.log(selectedTab)} */}
                             <Tab 
                                 className='tab-personal' 
-                                value={0} 
+                                // value={0} 
                                 icon={userIcon} 
                                 aria-label="Personal"  
                                 />
                             <Tab 
                                 className='tab-education' 
-                                value={1}  
+                                // value={1}  
                                 icon={gradCapIcon} 
                                 aria-label="Education"  
                             />
                             <Tab 
                                 className='tab-work' 
-                                value={2} 
+                                // value={2} 
                                 icon={briefcaseIcon}  
                                 aria-label="Work"  
                             />
                             <Tab 
                                 className='tab-skills' 
-                                value={3} icon={clipboardIcon}  
+                                // value={3} 
+                                icon={clipboardIcon}  
                                 aria-label="Skills" 
                             />
                         </Tabs>
@@ -129,7 +164,7 @@ const ResumeFields = memo(
                             onFocus={() => handleFocus('fullName')}
                             ref={(el) => (inputRefs.current.fullName = el)}
                             InputLabelProps={{ shrink: true }} 
-                            style={{marginTop: '20px' }} 
+                            style={{marginTop: '20px' }}                             
                         />
                         <TextField
                             label="Role" 
@@ -192,48 +227,60 @@ const ResumeFields = memo(
                             <TextField 
                                 label="School"  
                                 name='school' 
+                                className='education'
                                 onFocus={() => handleFocus('school')}
                                 ref={(el) => (inputRefs.current[0] = el)} 
-                                value = {educationState.school} 
-                                onChange={(event) => handleEducationChange(event, 'school')} 
+                                defaultValue={educationState.school}
+                                // value = {educationState.school}
+                                onChange={(event) => handleEducationChange(event)} 
                                 InputLabelProps={{ shrink: true }} 
                                 style={{marginTop: '20px'}} 
+                                inputRef={textFieldRef}
                             />
                             <TextField 
                                 label="Program"  
-                                name='program' 
+                                name='program'
+                                className='education' 
                                 onFocus={() => handleFocus('program')}
                                 ref={(el) => (inputRefs.current[1] = el)} 
-                                value={educationState.program} 
-                                onChange={(event) => handleEducationChange(event, 'program')} 
+                                defaultValue={educationState.program}
+                                // value={educationState.program}
+                                onChange={handleEducationChange} 
                                 InputLabelProps={{ shrink: true }} 
                                 style={{marginTop: '20px'}} 
+                                inputRef={textFieldRef}
                             />
                             <TextField 
                                 label="Start"  
-                                name='start' 
+                                name='start'
+                                className='education' 
                                 onFocus={() => handleFocus('start')}
                                 ref={(el) => (inputRefs.current[2] = el)} 
-                                value={educationState.start} 
-                                onChange={(event) => handleEducationChange(event, 'start')} 
+                                defaultValue={educationState.start}
+                                // value={educationState.start}
+                                onChange={handleEducationChange} 
                                 InputLabelProps={{ shrink: true }} 
-                                style={{marginTop: '20px'}} 
+                                style={{marginTop: '20px'}}
+                                inputRef={textFieldRef} 
                             />
                             <TextField 
                                 label="End"  
-                                name='end' 
+                                name='end'
+                                className='education' 
                                 onFocus={() => handleFocus('start')}
                                 ref={(el) => (inputRefs.current[3] = el)}
-                                value={educationState.end} 
-                                onChange={(event) => handleEducationChange(event, 'end')} 
+                                defaultValue={educationState.end}
+                                // value={educationState.end}
+                                onChange={handleEducationChange} 
                                 InputLabelProps={{ shrink: true }} 
-                                style={{marginTop: '20px'}} 
+                                style={{marginTop: '20px'}}
+                                inputRef={textFieldRef} 
                             />
                             <Button
                                 className='add-button'
                                 variant="outlined"
                                 size="medium"
-                                // onClick={}
+                                onClick={handleAddEducation}
                             >
                                 <FontAwesomeIcon icon={faPlus} size="medium" />
                             </Button>
