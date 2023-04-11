@@ -7,41 +7,37 @@ import Education from "./ResumeSections/Education";
 import Work from "./ResumeSections/Work";
 import Skills from "./ResumeSections/Skills";
 
-const MainSection = styled('div')`
-  float: left;
-  width: 70%;
-  height: 100%;
-`
+const ResumePreview = ({personalState, educationState, workState, skillsState, styles, theme}) => {
 
-const SideSection = styled('section')`
-  float: right;
-  width: 30%;
-  height: 100%;
-  background-color: #f7f7f7;
-`
-const ResumePreview = ({personalState, educationState, workState, skillsState}) => {
 
+  const Title = styled('h2')`
+    ${styles.Title}
+  `  
+  const SideSection = styled('section')`
+    ${styles.SideSection}
+  `
+  const MainSection = styled('div')`
+    ${styles.MainSection}
+  `
   const pdfExportComponent = useRef(null);
   const handleExportWithComponent = (event) => {
     pdfExportComponent.current.save();
-    console.log("clicked");
   }
-
-
-
     return(
       <>
         <section className='form-and-buttons'>
-        <PDFExport ref={pdfExportComponent}>
+        <PDFExport ref={pdfExportComponent} paperSize="A4" scale={1.465} >
         <container id='resume-preview'>
-          <MainSection id='main-column'>
-            <Personal personalState={personalState}></Personal>
-            <Education educationState={educationState}></Education>
-            <Work workState={workState}></Work>
-          </MainSection>
           <SideSection id='side-column'>
             <Skills skillsState={skillsState}></Skills>
           </SideSection>
+          <MainSection id='main-column'>
+            <Personal personalState={personalState}></Personal> 
+            <Title>Education</Title>           
+            <Education educationState={educationState} styles={styles} theme={theme}></Education>
+            <Work workState={workState}></Work>
+          </MainSection>
+
         </container>  
         </PDFExport>
 

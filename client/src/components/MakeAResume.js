@@ -10,6 +10,11 @@ const MakeAResume = () => {
 
   const {loading, data} = useQuery(GET_RESUME);
   let resumeData = data?.getResume || {};
+  const [indexEducation, setIndexEducation] = useState(0);
+
+  const[styles, setStyles] = useState({});
+  const [theme, setTheme] = useState('professional');
+
 
   const [personalState, setPersonalState] = useState({
       fullName: '',
@@ -18,14 +23,20 @@ const MakeAResume = () => {
       location: '',
       objective: '',
       role: ''
-  })
-
-  const [educationState, setEducationState] = useState({    
-    school: '',
-    program: '',
-    start: '',
-    end: ''    
   });
+
+  const [educationState, setEducationState] = useState([
+      // {
+      //   school: '',
+      //   program: '',
+      //   start: '',
+      //   end: ''    
+      // }
+    ]
+  );
+  const [field0,setField0] = useState({});
+  const [field1, setField1] = useState({});
+
 
   const [workState, setWorkState] = useState({
     company: "",
@@ -43,17 +54,46 @@ const MakeAResume = () => {
 
 
   const handlePersonalChange = (event, propertyName) => { 
+
       setPersonalState({
         ...personalState,
         [propertyName]: event.target.value
     });     
   };
 
-  const handleEducationChange = (event, propertyName) => {
-    setEducationState({
-      ...educationState,
-      [propertyName]: event.target.value
-    }); 
+
+  const handleEducationChange = async(event) => {
+    console.log(indexEducation);
+
+    if(event.target === undefined){
+      return;
+    }
+    if(indexEducation === 0) {
+      console.log("1st index " + JSON.stringify(educationState));
+
+       
+      setField0(field0 => ({
+        ...field0,
+        [event.target.name]: event.target.value
+      }));  
+      
+
+      setEducationState({
+          ...educationState,          
+          field0
+      });  
+    }
+    if(indexEducation === 1){
+      console.log(" NOW YOU CAN CHANGE THE FIELD1 VALUE "  + JSON.stringify(educationState));
+      setField1({
+        ...field1,
+        [event.target.name]: event.target.value
+      })
+      setEducationState({
+        ...educationState,
+        field1
+      })
+    }    
   };
 
   const handleWork = (event, propertyName) => {
@@ -70,17 +110,31 @@ const MakeAResume = () => {
     });
   };
 
+  useEffect(() => {
+    async function loadStyles() {
+      const stylesModule = await import(`../themes/${theme}.js`);
+      setStyles(stylesModule.default);
+    }
+    loadStyles();
+  }, [theme])
+
+  useEffect(()=> {
+    setEducationState({
+      ...educationState,
+      field0
+    })
+  }, [field0])
+
+
   
   useEffect(()=> {
       if (data) {    
         setPersonalState(data.getResume.personal[0]);
-        console.log(data.getResume.personal[0]);
-        setEducationState(data.getResume.education[0]);
+        setEducationState(data.getResume.education);
         console.log(data.getResume.education);
         setWorkState(data.getResume.work[0]);
-        console.log(data.getResume.work);
         setSkillsState(data.getResume.skills[0]);
-        console.log(data.getResume.skills);
+
       }
   }, [data])
 
@@ -88,7 +142,7 @@ const MakeAResume = () => {
       <>
         <section id='resume-maker-container'>
             <h2 id='builder-title'>Create your resume</h2>
-            <Templates />
+            <Templates setTheme={setTheme}/>
             <div id='builder-preview'>
                 <ResumeBuilder 
                     personalState={personalState}
@@ -102,9 +156,14 @@ const MakeAResume = () => {
                     skillsState={skillsState}
                     setSkillsState={setSkillsState}
                     handleSkills={handleSkills}
+                    setIndexEducation={setIndexEducation}
+                    field1={field1}
+                    setField1={setField1}
                 />
                 
                 <ResumePreview 
+                    styles={styles}
+                    theme={theme}
                     personalState={personalState}
                     educationState={educationState}
                     workState={workState}
