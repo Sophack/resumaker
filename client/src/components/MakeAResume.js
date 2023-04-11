@@ -141,7 +141,6 @@ const MakeAResume = () => {
     return(
       <>
         <section id='resume-maker-container'>
-            <h2 id='builder-title'>Create your resume</h2>
             <Templates setTheme={setTheme}/>
             <div id='builder-preview'>
                 <ResumeBuilder 

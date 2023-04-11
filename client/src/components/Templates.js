@@ -38,9 +38,9 @@ const Templates = ({setTheme}) => {
             </div>
 
             
-            <div id='agent' className='hoverable' onClick={handleThemeChange}>
+            <div id='agent' className='hoverable' onClick={handleThemeChange} >
               <div className='dropDown'>
-                <p>Agent</p>  
+                <p style={{textAlign:"center"}}>Agent</p>  
               </div>             
             </div>   
 

@@ -1,63 +1,38 @@
 import React, { useState, useEffect } from "react";
 import styled from '@emotion/styled';
 
-const Container = styled('section')`
-    margin-left: 30px;
-`
 
-const Title = styled('h2')`
-    font-size: 16px;
-    font-weight: bold;
-    letter-spacing: 1px;
-    margin-top: 20px;
-`
-const Box = styled('div')`
-    padding-left: 13px;
-    border-left: 2px solid;
-    border-color: #7f7cb3;
-`
+const WorkData = ({ workState, styles }) => {
 
-const RoleCompany = styled('div')`
-    display: flex;
-`
+  const Container = styled('h2')`
+    ${styles.wContainer}
+  ` 
+  const Title = styled('h2')`
+    ${styles.wTitle}
+  ` 
+  const Box = styled('h2')`
+  ${styles.wBox}
+  ` 
+  const RoleCompany = styled('h2')`
+  ${styles.wRoleCompany}
+  ` 
+  const Role = styled('h2')`
+  ${styles.wRole}
+  ` 
+  const Company = styled('h2')`
+  ${styles.wCompany}
+  ` 
+  const Time = styled('h2')`
+  ${styles.wTime}
+  ` 
+  const StartEnd = styled('h2')`
+  ${styles.wStartEnd}
+  ` 
+  const Paragraph = styled('h2')`
+  ${styles.wParagraph}
+  ` 
 
-const Role = styled('h3')`
-    font-size: 13px;
-    font-weight: 600;
-    letter-spacing: 1px;
-    margin-top: 0;
-    margin-right: 8px;
-`
 
-const Company = styled('h3')`
-    font-size: 13px;
-    font-weight: 500;
-    letter-spacing: 1px;
-    margin-top: 0;
-    margin-right: 8px;
-`
-
-const Time = styled('div')`
-    color: #a5a5a5;
-    margin-top: -3px;
-    margin-bottom: 5px;
-    display: flex;
-`
-
-const StartEnd = styled('h5')`
-    color: #a5a5a5;
-    font-size: 11px;
-    font-weight: 400;
-    letter-spacing: 1px;
-    margin-bottom: 0;
-`
-
-const Paragraph = styled('p')`
-    font-size: 10px;
-    margin-right: 10px;
-`
-
-const WorkData = ({ workState }) => {
   if (workState) {
     return (
       <>
