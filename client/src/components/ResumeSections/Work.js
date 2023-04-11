@@ -58,7 +58,6 @@ const Paragraph = styled('p')`
 `
 
 const WorkData = ({ workState }) => {
-  console.log("Work Section", workState)
   if (workState) {
     return (
       <>

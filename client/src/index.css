@@ -409,10 +409,25 @@ a {
   padding: 10px 20px 10px 20px;
 }
 
-#template-1 {
+#professional {
   background-image: url('../public/images/resume-template-1.jpg');
   box-shadow: 3px 1px 3px 1px var(--shadow);
   height: 80vh;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  object-fit: cover;
+  height: 90px;
+  width: 65px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+#agent{
+  background-image: url('https://cdn-images.resumelab.com/pages/student_resume_example_resumelab.png?1580369708');
+  box-shadow: 3px 1px 3px 1px var(--shadow);
+  height: 80vh;
+  margin-left: 20px;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -449,6 +464,19 @@ a {
 
 .template-selected {
   filter: drop-shadow(0 0 3px var(--skyblue));
+}
+
+.dropDown {
+  display:none;
+  margin-top: 90px;
+  left: 0;
+  z-index: 1;
+  font-size: smaller;
+
+}
+
+.hoverable:hover .dropDown {
+  display: block;
 }
 
 .Mui-disabled {
